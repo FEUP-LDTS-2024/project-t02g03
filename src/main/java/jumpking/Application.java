@@ -1,16 +1,25 @@
 package jumpking;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import jumpking.model.game.ScreenRefresher;
+import jumpking.model.game.scene.Scene;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
-public class Application {
+public class Application implements ScreenRefresher {
+
+    private Screen screen;
+    private Scene scene;
+    private boolean running = true;
 
     public Application() throws Exception {
         // Load the custom font
@@ -38,13 +47,60 @@ public class Application {
 
         TerminalSize terminalSize = screen.getTerminalSize();
         //System.out.println("Terminal Size: " + terminalSize.getColumns() + "x" + terminalSize.getRows());
-        arena = new Arena(terminalSize.getColumns(), terminalSize.getRows(), this);
+        scene = new Scene(terminalSize.getColumns(), terminalSize.getRows(), this);
 
         screen.clear();
         screen.refresh();
     }
 
     public static void main(String[] args) {
+        try {
+            Application app = new Application();
+            app.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void run() throws IOException {
+        handleFalling();
+        while (running) {
+            draw();
+            KeyStroke key = screen.readInput();
+            try {
+                processKey(key);
+                handleFalling();
+            } catch (IOException e) {
+                running = false;
+            }
+        }
+        screen.close();
+    }
+
+    private void draw()  throws IOException  {
+        screen.clear();
+        scene.draw(screen.newTextGraphics());
+        screen.refresh();
+    }
+
+    private void processKey(KeyStroke key) throws IOException {
+        scene.processKey(key);
+    }
+
+    private void handleFalling() throws IOException {
+        while (scene.isHeroFalling()) {
+            scene.moveHeroDown();
+            try {
+                Thread.sleep(10); // Adjust the speed of falling as needed
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            draw();
+        }
+    }
+
+    @Override
+    public void drawAndRefresh() throws IOException {
+        draw();
     }
 }

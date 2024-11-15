@@ -1,81 +1,112 @@
 package jumpking.model.game.elements.king;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import jumpking.model.Position;
 import jumpking.model.game.elements.Element;
 
-public class King extends Element{
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-    private static final int maxHeightJump = 100;
-    private static final int maxLengthJump = 180;
+public class King extends Element {
 
-    private boolean isJumping = false;
-    private boolean isFalling = false;
-    private boolean isRebounding = false;
-    private boolean isRunning = false;
-    //private Scene scene;
-    private int jumps;
-    private long startTime;
+    private String color = "#FFFFFF";
+    private BufferedImage image;
 
-    public King(int x, int y /*, Scene scene*/) {
+    public King (int x, int y) {
         super(x, y);
-        //this.state = new IdleState(this);
-        //this.scene = scene;
-        this.jumps = 0;
-        this.startTime = System.currentTimeMillis();
+        loadImage();
     }
 
-    public void setIsJumping(boolean isJumping) {
-        this.isJumping = isJumping;
+    public String getColor() {
+        return color;
     }
 
-    public boolean isJumping() {
-        return isJumping;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public void setIsFalling(boolean isFalling) {
-        this.isFalling = isFalling;
+    public Position moveUp() {
+        return new Position(position.getX(), position.getY() - 1);
     }
 
-    public boolean isFalling() {
-        return isFalling;
+    public Position moveDown() {
+        return new Position(position.getX(), position.getY() + 1);
     }
 
-    public void setIsRebounding(boolean isRebounding) {
-        this.isRebounding = isRebounding;
+    public Position moveLeft() {
+        return new Position(position.getX() - 1, position.getY());
     }
 
-    public boolean isRebounding() {
-        return isRebounding;
+    public Position moveRight() {
+        return new Position(position.getX() + 1, position.getY());
     }
 
-    public void setIsRunning(boolean isRunning) {
-        this.isRunning = isRunning;
+    private int calculateX(double height) {
+        double velocity = 1;
+        double angle = 38;
+        //velocity is 9.15 for running and 2.7 for standing
+        //angle is 21 for running and 38 for standing
+        // Convert angle to radians
+        double angleRadians = Math.toRadians(angle);
+        // Calculate the distance using the projectile motion formula
+        double distance = velocity * Math.cos(angleRadians) * ((velocity * Math.sin(angleRadians) + Math.sqrt(Math.pow(velocity * Math.sin(angleRadians), 2) - (2 * 9.81 * height))) / 9.81);
+        // Return the new position
+        return position.getX() + (int) Math.round(distance);
     }
 
-    public boolean isRunning() {
-        return isRunning;
+    public List<Position> projectileMotion(double height, int direction, int maxX) {
+        List<Position> points = new ArrayList<>();
+
+        // Vertex of the parabola is at (maxX/2, height)
+        double h = maxX / 2.0;
+        double k = height;
+
+        // Calculate "a" for the parabola equation y = a * (x - h)^2 + k
+        double a = -4.0 * height / (maxX * maxX);
+
+        // Generate points along the arc
+        for (double x = 0; x <= maxX; x += 0.1) {
+            double y = a * Math.pow(x - h, 2) + k;
+            // Round x and y to integers and add to the list as Position objects
+            points.add(new Position(position.getX() + (int) Math.round(x * direction), position.getY() - (int) Math.round(y)));
+        }
+
+        return points;
     }
 
-//    public Scene getScene() {
-//        return scene;
-//    }
-//
-//    public void setScene(Scene scene) {
-//        this.scene = scene;
-//    }
-
-    public void increaseJumps() {
-        jumps++;
+    private void loadImage() {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("sprites/kingIdle.png")) {
+            if (is != null) {
+                image = ImageIO.read(is);
+            } else {
+                throw new IOException("Image not found");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int getJumps() {
-        return jumps;
+    @Override
+    public void draw(TextGraphics graphics) {
+        if (image != null) {
+            for (int i = 0; i < image.getWidth(); i++) {
+                for (int j = 0; j < image.getHeight(); j++) {
+                    int color = image.getRGB(i, j);
+                    int alpha = (color >> 24) & 0xff;
+                    if (alpha > 0) { // Only draw pixels that are not fully transparent
+                        graphics.setBackgroundColor(TextColor.Factory.fromString(String.format("#%06X", (0xFFFFFF & color))));
+                        graphics.fillRectangle(new TerminalPosition(position.getX() + i, position.getY() - image.getHeight() + j + 1), new TerminalSize(1, 1), ' ');
+                    }
+                }
+            }
+        }
     }
-
-    public long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(long birthTime) {this.startTime = startTime; }
 
 }
