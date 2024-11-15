@@ -1,6 +1,6 @@
 package jumpking.model.menu;
 
-import model.Position;
+import jumpking.model.Position;
 
 public class Item {
 

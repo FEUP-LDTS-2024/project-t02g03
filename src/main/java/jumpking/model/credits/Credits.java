@@ -1,5 +1,7 @@
 package jumpking.model.credits;
 
+import jumpking.model.game.elements.king.King;
+
 public class Credits {
     private int jumps;
     private final int minutes;
@@ -9,8 +11,6 @@ public class Credits {
 
     public Credits(King king) {
         this.jumps = king.getJumps();
-        this.minutes = king.getMinutes();
-        this.seconds = king.getSeconds();
         long duration = System.currentTimeMillis() - king.getStartTime();
         this.seconds = (int) ((duration / 1000) % 60);
         this.minutes = (int) ((duration / 1000) / 60);
