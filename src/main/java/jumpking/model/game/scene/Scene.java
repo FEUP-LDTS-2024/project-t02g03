@@ -17,14 +17,16 @@ import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.king.King;
 
 public class Scene {
+    private final int refreshRate = 10;
+
     private int width;
     private int height;
     private King king;
     private List<Block> blocks;
     private Instant keyPressStartTime;
     private boolean upKeyPressed = false;
-    private final int MIN_JUMP_HEIGHT = 1;
-    private final int MAX_JUMP_HEIGHT = 30;
+    private final int MIN_JUMP_HEIGHT = 10;
+    private final int MAX_JUMP_HEIGHT = 100;
     private ScreenRefresher screenRefresher;
 
     public Scene(int width, int height, ScreenRefresher screenRefresher) throws IOException {
@@ -33,7 +35,7 @@ public class Scene {
         this.king = new King(width / 2, height - 2); //spawn hero at the bottom of the screen
         this.blocks = new ArrayList<>();
         this.screenRefresher = screenRefresher;
-        loadArenaFromFile("src/main/resources/scenes/screen1.txt");
+        loadArenaFromFile("src/main/resources/scenes/screen.txt");
     }
 
     private void loadArenaFromFile(String filePath) throws IOException {
@@ -72,14 +74,18 @@ public class Scene {
             Position newPosition = king.moveUp();
             if (canHeroMove(newPosition)) {
                 king.setPosition(newPosition);
-                screenRefresher.drawAndRefresh();
+                if (i % refreshRate == 0) {
+                    screenRefresher.drawAndRefresh();
+                }
                 try {
-                    Thread.sleep(10); // Adjust the speed of jumping as needed
+                    Thread.sleep(1); // Adjust the speed of jumping as needed
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
             }
         }
+        // Ensure the final position is drawn
+        screenRefresher.drawAndRefresh();
     }
 
     public void moveHeroDown() {
@@ -89,44 +95,65 @@ public class Scene {
         }
     }
 
-    public void moveHeroRight() {
-        Position newPosition = king.moveRight();
-        if (canHeroMove(newPosition)) {
-            king.setPosition(newPosition);
-        }
-    }
-
-    public void moveHeroLeft() {
-        Position newPosition = king.moveLeft();
-        if (canHeroMove(newPosition)) {
-            king.setPosition(newPosition);
-        }
-    }
-
-    public void moveHero(int jumpHeight, int direction) throws IOException {
-        int maxX;
-        if (jumpHeight <= 2) {
-            maxX = 1;
-        } else if (jumpHeight <= 6) {
-            maxX = 2;
-        } else {
-            maxX = 6;
-        }
-
-        List<Position> trajectory = king.projectileMotion(jumpHeight, direction, maxX);
-        for (Position position : trajectory) {
-            if (canHeroMove(position)) {
-                king.setPosition(position);
-                screenRefresher.drawAndRefresh();
+    public void moveHeroRight() throws IOException {
+        int steps = 5;
+        for (int i = 0; i < steps; i++) {
+            Position newPosition = king.moveRight();
+            if (canHeroMove(newPosition)) {
+                king.setPosition(newPosition);
+                if (i % refreshRate == 0) {
+                    screenRefresher.drawAndRefresh();
+                }
                 try {
-                    Thread.sleep(10); // Adjust the speed of jumping as needed
+                    Thread.sleep(1); // Adjust the speed of movement as needed
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
+            }
+        }
+        // Ensure the final position is drawn
+        screenRefresher.drawAndRefresh();
+    }
+
+    public void moveHeroLeft() throws IOException {
+        int steps = 5;
+        for (int i = 0; i < steps; i++) {
+            Position newPosition = king.moveLeft();
+            if (canHeroMove(newPosition)) {
+                king.setPosition(newPosition);
+                if (i % refreshRate == 0) {
+                    screenRefresher.drawAndRefresh();
+                }
+                try {
+                    Thread.sleep(1); // Adjust the speed of movement as needed
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+        // Ensure the final position is drawn
+        screenRefresher.drawAndRefresh();
+    }
+
+    public void moveHero(int jumpHeight, int direction) throws IOException {
+        int maxX = (int) (230 * (jumpHeight / 100.0));
+
+        List<Position> trajectory = king.projectileMotion(jumpHeight, direction, maxX);
+        int step = 0;
+
+        for (Position position : trajectory) {
+            if (canHeroMove(position)) {
+                king.setPosition(position);
+                if (step % refreshRate == 0) {
+                    screenRefresher.drawAndRefresh();
+                }
+                step++;
             } else {
                 break;
             }
         }
+        // Ensure the final position is drawn
+        screenRefresher.drawAndRefresh();
     }
 
     public void processKey(KeyStroke key) throws IOException {
@@ -138,7 +165,7 @@ public class Scene {
                 king.setColor("#000000");
             } else { // If key was previously pressed
                 Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
-                jumpHeight = (int) keyPressDuration.toMillis() / 100; // Adjust divisor for jump sensitivity
+                jumpHeight = (int) keyPressDuration.toMillis() / 20; // Adjust divisor for jump sensitivity
                 jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT)); // Apply limits
                 king.setColor("#FFFFFF");
                 moveHeroUp(jumpHeight);
@@ -149,7 +176,7 @@ public class Scene {
         } else {
             if (upKeyPressed) { // Key was released (when any other key is pressed)
                 Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
-                jumpHeight = (int) keyPressDuration.toMillis() / 100; // Adjust divisor for jump sensitivity
+                jumpHeight = (int) keyPressDuration.toMillis() / 20; // Adjust divisor for jump sensitivity
                 jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT)); // Apply limits
                 king.setColor("#FFFFFF");
                 if (key.getKeyType() == KeyType.ArrowLeft) {

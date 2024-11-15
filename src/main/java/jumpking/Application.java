@@ -28,14 +28,14 @@ public class Application implements ScreenRefresher {
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-        Font newfont = font.deriveFont(Font.PLAIN, 5);
+        Font newfont = font.deriveFont(Font.PLAIN, 3);
 
         AWTTerminalFontConfiguration cfg = AWTTerminalFontConfiguration.newInstance(newfont);
 
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
 
         Terminal terminal = new DefaultTerminalFactory()
-                .setInitialTerminalSize(new TerminalSize(111, 74))
+                .setInitialTerminalSize(new TerminalSize(333, 250))
                 .setTerminalEmulatorFontConfiguration(cfg)
                 .setForceAWTOverSwing(true)
                 .createTerminal();
@@ -88,15 +88,22 @@ public class Application implements ScreenRefresher {
     }
 
     private void handleFalling() throws IOException {
+        int refreshRate = 15; // Adjust this value to control how often the screen is refreshed
+        int step = 0;
         while (scene.isHeroFalling()) {
             scene.moveHeroDown();
+            if (step % refreshRate == 0) {
+                draw();
+            }
+            step++;
             try {
-                Thread.sleep(10); // Adjust the speed of falling as needed
+                Thread.sleep(1); // Adjust the speed of falling as needed
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            draw();
         }
+        // Ensure the final position is drawn
+        draw();
     }
 
     @Override
