@@ -1,4 +1,4 @@
-package model.credits;
+package jumpking.model.credits;
 
 public class Credits {
     private int jumps;
