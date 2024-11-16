@@ -1,10 +1,22 @@
 package jumpking.model.game.scene;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.graphics.TextImage;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -29,6 +41,8 @@ public class Scene {
     private final int MAX_JUMP_HEIGHT = 100;
     private ScreenRefresher screenRefresher;
 
+    private TextImage backgroundImage;
+
     public Scene(int width, int height, ScreenRefresher screenRefresher) throws IOException {
         this.width = width;
         this.height = height;
@@ -36,6 +50,25 @@ public class Scene {
         this.blocks = new ArrayList<>();
         this.screenRefresher = screenRefresher;
         loadArenaFromFile("src/main/resources/scenes/screen.txt");
+        loadBackgroundImage();
+    }
+    private void loadBackgroundImage() throws IOException {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("scenes/backgrounds/Bloco1.png")) {
+            if (is != null) {
+                BufferedImage bufferedImage = ImageIO.read(is);
+                backgroundImage = new BasicTextImage(new TerminalSize(bufferedImage.getWidth(), bufferedImage.getHeight()));
+
+                for (int x = 0; x < bufferedImage.getWidth(); x++) {
+                    for (int y = 0; y < bufferedImage.getHeight(); y++) {
+                        int rgb = bufferedImage.getRGB(x, y);
+                        TextColor color = TextColor.Factory.fromString(String.format("#%06X", (0xFFFFFF & rgb)));
+                        backgroundImage.setCharacterAt(x, y, new TextCharacter(' ', TextColor.ANSI.DEFAULT, color));
+                    }
+                }
+            } else {
+                throw new IOException("Background image not found");
+            }
+        }
     }
 
     private void loadArenaFromFile(String filePath) throws IOException {
@@ -59,8 +92,9 @@ public class Scene {
     }
 
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(com.googlecode.lanterna.TextColor.ANSI.BLUE);
-        graphics.fillRectangle(new com.googlecode.lanterna.TerminalPosition(0, 0), new com.googlecode.lanterna.TerminalSize(width, height), ' ');
+        if (backgroundImage != null) {
+            graphics.drawImage(new TerminalPosition(0, 0), backgroundImage);
+        }
 
         for (Block block : blocks) {
             block.draw(graphics);
