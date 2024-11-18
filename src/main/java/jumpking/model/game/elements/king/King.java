@@ -19,14 +19,45 @@ public class King extends Element {
     private String color = "#FFFFFF";
     private BufferedImage image;
 
+    private Position bottomRight;
+    private Position topLeft;
+    private Position topRight;
+
 
     public King (int x, int y) {
         super(x, y);
+        this.bottomRight = new Position(x + 14, y);
+        this.topLeft = new Position(x, y - 15);
+        this.topRight = new Position(x + 14, y - 15);
         loadImage();
+    }
+
+    public Position getBottomRight() {
+        return bottomRight;
+    }
+
+    public Position getTopLeft() {
+        return topLeft;
+    }
+
+    public Position getTopRight() {
+        return topRight;
     }
 
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(position);
+        updatePositions();
+    }
+
+    private void updatePositions() {
+        this.bottomRight = new Position(position.getX() + 13, position.getY());
+        this.topLeft = new Position(position.getX(), position.getY() - 15);
+        this.topRight = new Position(position.getX() + 13, position.getY() - 15);
     }
 
     public void setColor(String color) {
@@ -100,6 +131,11 @@ public class King extends Element {
                 }
             }
         }
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#00FF00"));
+        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' '); // Bottom-left
+        graphics.fillRectangle(new TerminalPosition(bottomRight.getX(), bottomRight.getY()), new TerminalSize(1, 1), ' '); // Bottom-right
+        graphics.fillRectangle(new TerminalPosition(topLeft.getX(), topLeft.getY()), new TerminalSize(1, 1), ' '); // Top-left
+        graphics.fillRectangle(new TerminalPosition(topRight.getX(), topRight.getY()), new TerminalSize(1, 1), ' '); // Top-right
     }
 
 }

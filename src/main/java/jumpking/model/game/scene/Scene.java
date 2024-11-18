@@ -239,8 +239,16 @@ public class Scene {
     }
 
     private boolean canHeroMove(Position position) {
+        Position bottomRight = new Position(position.getX() + 13, position.getY());
+        Position topLeft = new Position(position.getX(), position.getY() - 15);
+        Position topRight = new Position(position.getX() + 13, position.getY() - 15);
+
         for (Block block : blocks) {
-            if (block.getPosition().equals(position)) {
+            Position blockPosition = block.getPosition();
+            if (blockPosition.equals(position) ||
+                    blockPosition.equals(bottomRight) ||
+                    blockPosition.equals(topLeft) ||
+                    blockPosition.equals(topRight)) {
                 return false;
             }
         }
