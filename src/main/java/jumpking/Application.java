@@ -1,6 +1,7 @@
 package jumpking;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -8,9 +9,13 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class Application {
+
+    private Screen screen;
+    private Boolean running = true;
 
     public Application() throws Exception {
         // Load the custom font
@@ -38,13 +43,25 @@ public class Application {
 
         TerminalSize terminalSize = screen.getTerminalSize();
         //System.out.println("Terminal Size: " + terminalSize.getColumns() + "x" + terminalSize.getRows());
-        arena = new Arena(terminalSize.getColumns(), terminalSize.getRows(), this);
 
         screen.clear();
         screen.refresh();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Application app = new Application();
+        app.run();
+    }
 
+    public void run() throws IOException {
+        while (running) {
+            draw();
+        }
+        screen.close();
+    }
+
+    private void draw()  throws IOException  {
+        screen.clear();
+        screen.refresh();
     }
 }
