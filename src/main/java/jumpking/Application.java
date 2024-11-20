@@ -1,11 +1,13 @@
 package jumpking;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import jumpking.gui.LanternaGUI;
+import jumpking.gui.LanternaScreenCreator;
+import jumpking.gui.ScreenCreator;
 
 import java.awt.*;
 import java.io.File;
@@ -14,38 +16,18 @@ import java.net.URL;
 
 public class Application {
 
-    private Screen screen;
+    public static final int PIXEL_WIDTH = 333;
+    public static final int PIXEL_HEIGHT = 250;
+    private final LanternaGUI gui;
+
     private Boolean running = true;
 
     public Application() throws Exception {
-        // Load the custom font
-        URL resource = getClass().getClassLoader().getResource("fonts/Square.ttf");
-        File fontFile = new File(resource.toURI());
-        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(font);
-        Font newfont = font.deriveFont(Font.PLAIN, 5);
-
-        AWTTerminalFontConfiguration cfg = AWTTerminalFontConfiguration.newInstance(newfont);
-
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
-
-        Terminal terminal = new DefaultTerminalFactory()
-                .setInitialTerminalSize(new TerminalSize(111, 74))
-                .setTerminalEmulatorFontConfiguration(cfg)
-                .setForceAWTOverSwing(true)
-                .createTerminal();
-
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null); // we don't need a cursor
-        screen.startScreen(); // screens must be started
-        screen.doResizeIfNecessary(); // resize screen if necessary
-
-        TerminalSize terminalSize = screen.getTerminalSize();
-        //System.out.println("Terminal Size: " + terminalSize.getColumns() + "x" + terminalSize.getRows());
-
-        screen.clear();
-        screen.refresh();
+        ScreenCreator screenCreator = new LanternaScreenCreator(
+                new DefaultTerminalFactory(),
+                new TerminalSize(PIXEL_WIDTH, PIXEL_HEIGHT)
+        );
+        this.gui = new LanternaGUI(screenCreator, "Jump King");
     }
 
     public static void main(String[] args) throws Exception {
@@ -55,13 +37,10 @@ public class Application {
 
     public void run() throws IOException {
         while (running) {
-            draw();
+            gui.clear();
+            gui.refresh();
         }
-        screen.close();
+        gui.close();
     }
 
-    private void draw()  throws IOException  {
-        screen.clear();
-        screen.refresh();
-    }
 }
