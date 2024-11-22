@@ -88,7 +88,15 @@ public class Scene {
                     king.setPosition(new Position(x, y));
                 }
             }
+            // Add extra width for the left wall
+            blocks.add(new Block(-1, y));
+            blocks.add(new Block(-2, y));
+            // Add extra width for the right wall
+            blocks.add(new Block(width, y));
+            blocks.add(new Block(width + 1, y));
         }
+
+
     }
 
     public void draw(TextGraphics graphics) {
@@ -257,10 +265,11 @@ public class Scene {
 
     public boolean isHeroFalling() {
         Position heroPosition = king.getPosition();
-        Position positionBelowHero = new Position(heroPosition.getX(), heroPosition.getY() + 1);
+        Position positionBelowHeroLeft = new Position(heroPosition.getX(), heroPosition.getY() + 1);
+        Position postionBelowHeroRight = new Position(heroPosition.getX() + 13, heroPosition.getY() + 1);
 
         for (Block block : blocks) {
-            if (block.getPosition().equals(positionBelowHero)) {
+            if (block.getPosition().equals(positionBelowHeroLeft) || block.getPosition().equals(postionBelowHeroRight)) {
                 return false;
             }
         }
