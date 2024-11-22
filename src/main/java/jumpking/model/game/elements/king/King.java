@@ -8,6 +8,10 @@ public class King extends Element{
     private static final int maxHeightJump = 100;
     private static final int maxLengthJump = 180;
 
+    private Position bottomRight;
+    private Position topLeft;
+    private Position topRight;
+
     private boolean isJumping = false;
     private boolean isFalling = false;
     private boolean isRebounding = false;
