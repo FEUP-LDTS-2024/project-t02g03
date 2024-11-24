@@ -37,7 +37,14 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
     <img src="documents/mockups/Jump King pixel sheet.png" alt="Sprite Sheet">
 </p>
 
+## Design Patterns and Architecure
+- **MVC** - The game was developed using the Model-View-Controller design architecture. The Model is responsible for the game logic, the View is responsible for the game visuals, and the Controller is responsible for the game inputs.
+<p align="center">
+    <img src="documents/uml/MVC Diagram.png" alt="MVC" style="border-radius: 10px">
+</p>
+- 
+
 ## UML CLASS STRUCTURES AND OVERVIEW
 <p align="center">
-    <img src="documents/Structure UML.png" alt="UML">
+    <img src="documents/uml/Structure%20UML.png" alt="UML" style="border-radius: 10px">
 </p>
