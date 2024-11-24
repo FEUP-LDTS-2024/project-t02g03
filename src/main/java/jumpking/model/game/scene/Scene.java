@@ -38,7 +38,7 @@ public class Scene {
     private Instant keyPressStartTime;
     private boolean upKeyPressed = false;
     private final int MIN_JUMP_HEIGHT = 10;
-    private final int MAX_JUMP_HEIGHT = 100;
+    private final int MAX_JUMP_HEIGHT = 230;
     private ScreenRefresher screenRefresher;
 
     private TextImage backgroundImage;
@@ -46,7 +46,7 @@ public class Scene {
     public Scene(int width, int height, ScreenRefresher screenRefresher) throws IOException {
         this.width = width;
         this.height = height;
-        this.king = new King(width / 2, height - 2); //spawn hero at the bottom of the screen
+        this.king = new King(168, 228); //spawn hero at the bottom of the screen
         this.blocks = new ArrayList<>();
         this.screenRefresher = screenRefresher;
         loadArenaFromFile("src/main/resources/scenes/screen.txt");

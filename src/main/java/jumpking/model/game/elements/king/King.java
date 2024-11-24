@@ -131,11 +131,11 @@ public class King extends Element {
                 }
             }
         }
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#00FF00"));
-        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' '); // Bottom-left
-        graphics.fillRectangle(new TerminalPosition(bottomRight.getX(), bottomRight.getY()), new TerminalSize(1, 1), ' '); // Bottom-right
-        graphics.fillRectangle(new TerminalPosition(topLeft.getX(), topLeft.getY()), new TerminalSize(1, 1), ' '); // Top-left
-        graphics.fillRectangle(new TerminalPosition(topRight.getX(), topRight.getY()), new TerminalSize(1, 1), ' '); // Top-right
+//        graphics.setBackgroundColor(TextColor.Factory.fromString("#00FF00"));
+//        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' '); // Bottom-left
+//        graphics.fillRectangle(new TerminalPosition(bottomRight.getX(), bottomRight.getY()), new TerminalSize(1, 1), ' '); // Bottom-right
+//        graphics.fillRectangle(new TerminalPosition(topLeft.getX(), topLeft.getY()), new TerminalSize(1, 1), ' '); // Top-left
+//        graphics.fillRectangle(new TerminalPosition(topRight.getX(), topRight.getY()), new TerminalSize(1, 1), ' '); // Top-right
     }
 
 }
