@@ -1,4 +1,4 @@
-package jumpking.view;
+package jumpking.view.elements;
 
 import jumpking.gui.GUI;
 

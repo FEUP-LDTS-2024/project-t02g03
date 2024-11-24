@@ -8,12 +8,12 @@ import jumpking.gui.GUI;
 import jumpking.gui.LanternaGUI;
 import jumpking.gui.LanternaScreenCreator;
 import jumpking.gui.ScreenCreator;
-import jumpking.model.game.elements.king.King;
+import jumpking.model.game.elements.King;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.game.scene.SceneBuilder;
 import jumpking.states.GameState;
 import jumpking.states.State;
-import jumpking.view.GameViewer;
+import jumpking.view.screens.GameViewer;
 import jumpking.view.IngameSpriteLoader;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
@@ -40,7 +40,7 @@ public class Application {
         );
         this.gui = new LanternaGUI(screenCreator, "Jump King");
         this.spriteLoader = new IngameSpriteLoader();
-        King king = new King(0,0); // Create a King instance
+        King king = new King(168,228); // Create a King instance
         this.scene = new SceneBuilder(0).buildScene(king);
         ViewProvider viewProvider = new ViewProvider(spriteLoader);
         this.gameViewer = new GameViewer(scene, viewProvider);

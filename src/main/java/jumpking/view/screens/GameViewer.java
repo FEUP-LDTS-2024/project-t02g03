@@ -1,10 +1,13 @@
-package jumpking.view;
+package jumpking.view.screens;
 
 import com.googlecode.lanterna.TextColor;
 import jumpking.gui.GUI;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Element;
 import jumpking.model.game.scene.Scene;
+import jumpking.view.elements.ElementViewer;
+import jumpking.view.elements.KingViewer;
+import jumpking.view.ViewProvider;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class GameViewer extends ScreenViewer<Scene> {
         gui.clear();
         drawBackground(gui);
         drawElement(gui, getModel().getKing(), kingViewer, time);
-        drawBlocks(gui);
+        //drawBlocks(gui);
     }
 
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, long time) {
@@ -35,10 +38,10 @@ public class GameViewer extends ScreenViewer<Scene> {
         }
     }
 
-    //remove
-    public void drawBlocks(GUI gui) {
-        for (Block block : getModel().getBlocks()) {
-            gui.drawPixel(block.getPosition(), TextColor.Factory.fromString("#00FF00"));
-        }
-    }
+//for visual testing purposes
+//    public void drawBlocks(GUI gui) {
+//        for (Block block : getModel().getBlocks()) {
+//            gui.drawPixel(block.getPosition(), TextColor.Factory.fromString("#00FF00"));
+//        }
+//    }
 }

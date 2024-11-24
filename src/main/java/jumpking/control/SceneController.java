@@ -2,14 +2,7 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
-import jumpking.model.game.elements.king.King;
 import jumpking.model.game.scene.Scene;
-import jumpking.model.game.scene.SceneBuilder;
-import jumpking.states.GameState;
-import jumpking.view.GameViewer;
-import jumpking.view.IngameSpriteLoader;
-import jumpking.view.KingViewer;
-import jumpking.view.SpriteLoader;
 
 import java.io.IOException;
 

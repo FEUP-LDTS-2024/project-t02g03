@@ -1,5 +1,7 @@
 package jumpking.view;
 
+import jumpking.view.elements.KingViewer;
+
 import java.io.IOException;
 
 public class ViewProvider {

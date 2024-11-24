@@ -1,7 +1,6 @@
-package jumpking.model.game.elements.king;
+package jumpking.model.game.elements;
 
 import jumpking.model.Position;
-import jumpking.model.game.elements.Element;
 import jumpking.model.game.scene.Scene;
 
 import java.util.ArrayList;

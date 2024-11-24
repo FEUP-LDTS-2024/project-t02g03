@@ -1,6 +1,5 @@
-package jumpking.view;
+package jumpking.view.screens;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
 

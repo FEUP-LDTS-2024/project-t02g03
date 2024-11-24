@@ -1,7 +1,9 @@
-package jumpking.view;
+package jumpking.view.elements;
 
 import jumpking.gui.GUI;
-import jumpking.model.game.elements.king.King;
+import jumpking.model.game.elements.King;
+import jumpking.view.Sprite;
+import jumpking.view.SpriteLoader;
 
 import java.io.IOException;
 import java.util.HashMap;

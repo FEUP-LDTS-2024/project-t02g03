@@ -4,8 +4,8 @@ import jumpking.control.Controller;
 import jumpking.control.KingController;
 import jumpking.control.SceneController;
 import jumpking.model.game.scene.Scene;
-import jumpking.view.GameViewer;
-import jumpking.view.ScreenViewer;
+import jumpking.view.screens.GameViewer;
+import jumpking.view.screens.ScreenViewer;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
 

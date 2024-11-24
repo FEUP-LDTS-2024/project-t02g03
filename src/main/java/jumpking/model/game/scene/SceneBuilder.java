@@ -3,8 +3,7 @@ package jumpking.model.game.scene;
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
-import jumpking.model.game.elements.king.King;
-import jumpking.view.BackgroundImageLoader;
+import jumpking.model.game.elements.King;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class SceneBuilder {
     }
 
     private King createKing(Scene scene, King king) {
-        return new King(0,0);
+        return king;
     }
 
     private Princess createPrincess() {

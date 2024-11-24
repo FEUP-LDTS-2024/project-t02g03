@@ -3,7 +3,7 @@ package jumpking.states;
 import jumpking.Application;
 import jumpking.control.Controller;
 import jumpking.gui.GUI;
-import jumpking.view.ScreenViewer;
+import jumpking.view.screens.ScreenViewer;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
 

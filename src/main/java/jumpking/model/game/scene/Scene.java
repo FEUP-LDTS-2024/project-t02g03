@@ -4,7 +4,7 @@ import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.model.Position;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
-import jumpking.model.game.elements.king.King;
+import jumpking.model.game.elements.King;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Scene {
     public Scene(int sceneCode) {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
-        this.king = new King(0, 0);
+        this.king = new King(100, 100);
     }
 
     public int getSceneCode() {
