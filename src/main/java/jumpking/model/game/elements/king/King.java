@@ -106,7 +106,7 @@ public class King extends Element {
     }
 
     private void loadImage() {
-        try (InputStream is = getClass().getClassLoader().getResourceAsStream("sprites/kingIdle.png")) {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("sprites/king-idle.png")) {
             if (is != null) {
                 image = ImageIO.read(is);
             } else {
