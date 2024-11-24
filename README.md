@@ -1,5 +1,6 @@
 <h1 align="center"> LDTS_T02G03 - Jump King </h1>
 
+##Game Description
 <p>Jump King is a 2D platformer game where the main objective is to reach the top of the map. However, if you make a mistake, you risk falling and losing a significant part of your progress.
 </p>
 
