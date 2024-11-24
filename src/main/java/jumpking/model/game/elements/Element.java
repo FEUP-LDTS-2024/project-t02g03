@@ -4,7 +4,7 @@ import jumpking.model.Position;
 
 public abstract class Element {
 
-    private Position position;
+    protected Position position;
 
     public Element(int x, int y) {
         this.position = new Position(x, y);

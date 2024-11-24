@@ -1,24 +1,35 @@
 package jumpking;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import jumpking.control.KingController;
+import jumpking.control.SceneController;
+import jumpking.gui.GUI;
 import jumpking.gui.LanternaGUI;
 import jumpking.gui.LanternaScreenCreator;
 import jumpking.gui.ScreenCreator;
+import jumpking.model.game.elements.king.King;
+import jumpking.model.game.scene.Scene;
+import jumpking.model.game.scene.SceneBuilder;
+import jumpking.states.GameState;
+import jumpking.states.State;
+import jumpking.view.GameViewer;
+import jumpking.view.IngameSpriteLoader;
+import jumpking.view.SpriteLoader;
+import jumpking.view.ViewProvider;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class Application {
 
     public static final int PIXEL_WIDTH = 333;
     public static final int PIXEL_HEIGHT = 250;
     private final LanternaGUI gui;
+    private final Scene scene;
+    private State<?> state;
+    private final GameViewer gameViewer;
+    private final SpriteLoader spriteLoader;
+    private final SceneController sceneController;
 
     private Boolean running = true;
 
@@ -28,6 +39,14 @@ public class Application {
                 new TerminalSize(PIXEL_WIDTH, PIXEL_HEIGHT)
         );
         this.gui = new LanternaGUI(screenCreator, "Jump King");
+        this.spriteLoader = new IngameSpriteLoader();
+        King king = new King(0,0); // Create a King instance
+        this.scene = new SceneBuilder(0).buildScene(king);
+        ViewProvider viewProvider = new ViewProvider(spriteLoader);
+        this.gameViewer = new GameViewer(scene, viewProvider);
+        KingController kingController = new KingController(scene);
+        this.sceneController = new SceneController(scene, kingController);
+
     }
 
     public static void main(String[] args) throws Exception {
@@ -36,11 +55,34 @@ public class Application {
     }
 
     public void run() throws IOException {
+        long time = System.currentTimeMillis();
         while (running) {
-            gui.clear();
+            gameViewer.draw(gui, time);
             gui.refresh();
+            GUI.Act act = gui.getNextAction(); // Get the next action from the GUI
+            sceneController.step(this, act, time); // Call the step method of SceneController
+            time = System.currentTimeMillis();
         }
         gui.close();
     }
 
+    public Scene getModel() {
+        return ((GameState) state).getModel();
+    }
+
+    public void setState(State<?> state) {
+        this.state = state;
+    }
+
+    public SpriteLoader getSpriteLoader() {
+        return spriteLoader;
+    }
+
+    public void setRunning(Boolean running) {
+        this.running = running;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
 }
