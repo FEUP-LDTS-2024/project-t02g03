@@ -1,6 +1,6 @@
 package jumpking.model.credits;
 
-import jumpking.model.game.elements.king.King;
+import jumpking.model.game.elements.King;
 
 public class Credits {
     private int jumps;

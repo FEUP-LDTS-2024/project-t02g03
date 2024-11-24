@@ -1,51 +1,52 @@
 package jumpking;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import jumpking.control.KingController;
+import jumpking.control.SceneController;
+import jumpking.gui.GUI;
+import jumpking.gui.LanternaGUI;
+import jumpking.gui.LanternaScreenCreator;
+import jumpking.gui.ScreenCreator;
+import jumpking.model.game.elements.King;
+import jumpking.model.game.scene.Scene;
+import jumpking.model.game.scene.SceneBuilder;
+import jumpking.states.GameState;
+import jumpking.states.State;
+import jumpking.view.screens.GameViewer;
+import jumpking.view.IngameSpriteLoader;
+import jumpking.view.SpriteLoader;
+import jumpking.view.ViewProvider;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class Application {
 
-    private Screen screen;
+    public static final int PIXEL_WIDTH = 333;
+    public static final int PIXEL_HEIGHT = 250;
+    private final LanternaGUI gui;
+    private final Scene scene;
+    private State<?> state;
+    private final GameViewer gameViewer;
+    private final SpriteLoader spriteLoader;
+    private final SceneController sceneController;
+
     private Boolean running = true;
 
     public Application() throws Exception {
-        // Load the custom font
-        URL resource = getClass().getClassLoader().getResource("fonts/Square.ttf");
-        File fontFile = new File(resource.toURI());
-        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(font);
-        Font newfont = font.deriveFont(Font.PLAIN, 5);
+        ScreenCreator screenCreator = new LanternaScreenCreator(
+                new DefaultTerminalFactory(),
+                new TerminalSize(PIXEL_WIDTH, PIXEL_HEIGHT)
+        );
+        this.gui = new LanternaGUI(screenCreator, "Jump King");
+        this.spriteLoader = new IngameSpriteLoader();
+        King king = new King(168,228); // Create a King instance
+        this.scene = new SceneBuilder(0).buildScene(king);
+        ViewProvider viewProvider = new ViewProvider(spriteLoader);
+        this.gameViewer = new GameViewer(scene, viewProvider);
+        KingController kingController = new KingController(scene);
+        this.sceneController = new SceneController(scene, kingController);
 
-        AWTTerminalFontConfiguration cfg = AWTTerminalFontConfiguration.newInstance(newfont);
-
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
-
-        Terminal terminal = new DefaultTerminalFactory()
-                .setInitialTerminalSize(new TerminalSize(111, 74))
-                .setTerminalEmulatorFontConfiguration(cfg)
-                .setForceAWTOverSwing(true)
-                .createTerminal();
-
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null); // we don't need a cursor
-        screen.startScreen(); // screens must be started
-        screen.doResizeIfNecessary(); // resize screen if necessary
-
-        TerminalSize terminalSize = screen.getTerminalSize();
-        //System.out.println("Terminal Size: " + terminalSize.getColumns() + "x" + terminalSize.getRows());
-
-        screen.clear();
-        screen.refresh();
     }
 
     public static void main(String[] args) throws Exception {
@@ -54,14 +55,34 @@ public class Application {
     }
 
     public void run() throws IOException {
+        long time = System.currentTimeMillis();
         while (running) {
-            draw();
+            gameViewer.draw(gui, time);
+            gui.refresh();
+            GUI.Act act = gui.getNextAction(); // Get the next action from the GUI
+            sceneController.step(this, act, time); // Call the step method of SceneController
+            time = System.currentTimeMillis();
         }
-        screen.close();
+        gui.close();
     }
 
-    private void draw()  throws IOException  {
-        screen.clear();
-        screen.refresh();
+    public Scene getModel() {
+        return ((GameState) state).getModel();
+    }
+
+    public void setState(State<?> state) {
+        this.state = state;
+    }
+
+    public SpriteLoader getSpriteLoader() {
+        return spriteLoader;
+    }
+
+    public void setRunning(Boolean running) {
+        this.running = running;
+    }
+
+    public GUI getGui() {
+        return gui;
     }
 }
