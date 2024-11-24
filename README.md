@@ -1,5 +1,9 @@
 <h1 align="center"> LDTS_T02G03 - Jump King </h1>
 
+<p align="center">
+    <img src="documents/resources/Jump King Title Logo.png" alt="logo">
+</p>
+
 ## GAME DESCRIPTION
 <p>Jump King is a 2D platformer game where the main objective is to reach the top of the map. However, if you make a mistake, you risk falling and losing a significant part of your progress.
 </p>
@@ -24,5 +28,16 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
 - **Credits** - when finishing the game, the user is presented with an ending screen, where he can visualize the number of jumps and the total time of gameplay. Once done, the user can return to the main menu using the Escape button.
 
 ## GAME SCREENSHOTS AND MOCKUPS
+<p align="center">
+    <img src="documents/mockups/starting.png" alt="starting point">
+</p>
+
+## Sprite Sheet
+<p align="center">
+    <img src="documents/mockups/Jump King pixel sheet.png" alt="Sprite Sheet">
+</p>
 
 ## UML CLASS STRUCTURES AND OVERVIEW
+<p align="center">
+    <img src="documents/Structure UML.png" alt="UML">
+</p>
