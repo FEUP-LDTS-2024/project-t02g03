@@ -1,6 +1,6 @@
 <h1 align="center"> LDTS_T02G03 - Jump King </h1>
 
-##Game Description
+## GAME DESCRIPTION
 <p>Jump King is a 2D platformer game where the main objective is to reach the top of the map. However, if you make a mistake, you risk falling and losing a significant part of your progress.
 </p>
 
@@ -12,9 +12,7 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
 <p>This project was developed by : <a href="https://github.com/andre-cotrim">André Cotrim</a> (up202305592@fe.up.pt), <a href="https://github.com/H-Aze2005">Hugo Azevedo</a> (up202305965@fe.edu.up.pt) and <a href="https://github.com/andre-cotrim">Joana Carvalhal</a> (up202306568@fe.up.pt) </p>
 
 
-
-
-## List of Features
+## LIST OF FEATURES
 - **Main Menu** - Simple menu that prompts the user to start the game or exit the game.
 - **Pause Menu** - A menu that can be accessed by pressing the `ESC` key during gameplay. The user can choose to resume the game, restart the game, or exit to the main menu.
 - **Map Loader** - Loads the map from a text file.
