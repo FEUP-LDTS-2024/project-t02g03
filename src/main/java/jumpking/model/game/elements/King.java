@@ -8,8 +8,6 @@ import java.util.List;
 
 public class King extends Element{
 
-    private static final int maxHeightJump = 100;
-    private static final int maxLengthJump = 180;
     private static final int width = 14;
     private static final int height = 15;
 
