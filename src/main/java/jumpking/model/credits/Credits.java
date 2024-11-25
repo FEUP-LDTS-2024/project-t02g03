@@ -18,7 +18,7 @@ public class Credits {
         String[] names = new String[3];
         names[0] = "  André Cortim";
         names[1] = "  Hugo Azevedo";
-        names[2] = "Joana Carvalho";
+        names[2] = "Joana Carvalhal";
         this.names = names;
     }
 

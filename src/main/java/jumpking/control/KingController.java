@@ -12,8 +12,8 @@ public class KingController extends Controller {
 
     private boolean upKeyPressed = false;
     private Instant keyPressStartTime;
-    private static final int MIN_JUMP_HEIGHT = 10;
-    private static final int MAX_JUMP_HEIGHT = 230;
+    public static final int MIN_JUMP_HEIGHT = 10;
+    public static final int MAX_JUMP_HEIGHT = 230;
     private static final int refreshRate = 5;
 
     public KingController(Scene scene) {
