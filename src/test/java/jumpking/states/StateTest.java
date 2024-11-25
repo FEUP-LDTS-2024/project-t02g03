@@ -1,13 +1,13 @@
+package jumpking.states;
+
 import jumpking.Application;
 import jumpking.control.Controller;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
-import jumpking.states.State;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
 import jumpking.view.screens.ScreenViewer;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
