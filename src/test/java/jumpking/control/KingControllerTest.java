@@ -31,26 +31,26 @@ class KingControllerTest {
     }
 
     @Test
-    void moveLeftTest() throws IOException {
+    void moveLeftTest() throws IOException, InterruptedException {
         kingController.step(app, GUI.Act.LEFT, 0);
         verify(scene, times(1)).moveLeft(5);
     }
 
     @Test
-    void jumpLeftTest() throws IOException, InterruptedException {
+    void jumpLeftTest() throws IOException {
         kingController.step(app, GUI.Act.UP, 0);
         kingController.step(app, GUI.Act.LEFT, 0);
         verify(scene, times(1)).jump(KingController.MIN_JUMP_HEIGHT, -1);
     }
 
     @Test
-    void moveRightTest() throws IOException {
+    void moveRightTest() throws IOException, InterruptedException {
         kingController.step(app, GUI.Act.RIGHT, 0);
         verify(scene, times(1)).moveRight(5);
     }
 
     @Test
-    void testJumpRight() throws IOException, InterruptedException {
+    void testJumpRight() throws IOException {
         kingController.step(app, GUI.Act.UP, 0);
         kingController.step(app, GUI.Act.RIGHT, 0);
         verify(scene, times(1)).jump(KingController.MIN_JUMP_HEIGHT, 1);
