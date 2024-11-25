@@ -1,5 +1,6 @@
+package jumpking.control;
+
 import jumpking.Application;
-import jumpking.control.KingController;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
 import java.io.IOException;
@@ -36,10 +37,10 @@ class KingControllerTest {
     }
 
     @Test
-    void jumpLeftTest() throws IOException {
+    void jumpLeftTest() throws IOException, InterruptedException {
         kingController.step(app, GUI.Act.UP, 0);
         kingController.step(app, GUI.Act.LEFT, 0);
-        verify(scene, times(1)).jump();
+        verify(scene, times(1)).jump(KingController.MIN_JUMP_HEIGHT, -1);
     }
 
     @Test
@@ -49,10 +50,10 @@ class KingControllerTest {
     }
 
     @Test
-    void testJumpRight() throws IOException {
+    void testJumpRight() throws IOException, InterruptedException {
         kingController.step(app, GUI.Act.UP, 0);
         kingController.step(app, GUI.Act.RIGHT, 0);
-        verify(scene, times(1)).jump();
+        verify(scene, times(1)).jump(KingController.MIN_JUMP_HEIGHT, 1);
     }
 
     @Test

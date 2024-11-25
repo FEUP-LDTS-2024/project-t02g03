@@ -1,6 +1,6 @@
+package jumpking.control;
+
 import jumpking.Application;
-import jumpking.control.KingController;
-import jumpking.control.SceneController;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
 import java.io.IOException;
