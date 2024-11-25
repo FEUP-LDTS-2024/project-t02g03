@@ -21,7 +21,7 @@ public class ViewProviderTest {
     }
 
     @Test
-    public void kingViewerTest() {
+    public void kingViewerTest() throws IOException {
         KingViewer kingViewer = viewProvider.getKingViewer();
         assertNotNull(kingViewer);
         verify(spriteLoader, times(1)).getSprite("sprites/king-idle.png");

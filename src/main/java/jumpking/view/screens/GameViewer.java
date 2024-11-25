@@ -28,7 +28,7 @@ public class GameViewer extends ScreenViewer<Scene> {
         //drawBlocks(gui);
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, long time) {
+    <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, long time) {
         viewer.draw(element, gui, time);
     }
 

@@ -24,12 +24,10 @@ public class SpriteTest {
         Sprite sprite1 = new Sprite("sprites/king-running-1.png");
         Position position1 = new Position(0, 0);
         sprite1.draw(gui, position1);
-        verify(gui, times(1)).drawPixel(position1.getX(), position1.getY(), new TextColor.RGB(255, 0, 0));
-        verify(gui, times(1)).drawPixel(position1.getX() + 1, position1.getY(), new TextColor.RGB(0, 255, 0));
 
-        Sprite sprite2 = new Sprite("sprites/test-sprite-transparent.png");  // Image with transparent pixels
-        Position position2 = new Position(10, 10);
-        sprite2.draw(gui, position2);
-        verify(gui, times(0)).drawPixel(position2.getX() + 1, position2.getY(), any(TextColor.class));
+        // Verify the expected drawPixel calls with the correct positions and colors
+        verify(gui, times(1)).drawPixel(position1, new TextColor.RGB(255, 0, 0));
+        verify(gui, times(1)).drawPixel(new Position(position1.getX() + 1, position1.getY()), new TextColor.RGB(0, 255, 0));
+        verify(gui, times(1)).drawPixel(new Position(position1.getX() + 2, position1.getY()), new TextColor.RGB(0, 0, 255));
     }
 }

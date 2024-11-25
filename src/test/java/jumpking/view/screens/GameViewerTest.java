@@ -9,6 +9,7 @@ import jumpking.view.elements.ElementViewer;
 import jumpking.view.elements.KingViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,22 +25,24 @@ public class GameViewerTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-       this.gui = Mockito.mock(GUI.class);
-       this.kingViewer = Mockito.mock(KingViewer.class);
-       this.king = Mockito.mock(King.class);
-       this.scene = Mockito.mock(Scene.class);
+        this.gui = Mockito.mock(GUI.class);
+        this.kingViewer = Mockito.mock(KingViewer.class);
+        this.king = Mockito.mock(King.class);
+        this.scene = Mockito.mock(Scene.class);
+        SpriteLoader spriteLoader = Mockito.mock(SpriteLoader.class);
+        ViewProvider viewProvider = Mockito.mock(ViewProvider.class);
 
-       Mockito.when(scene.getKing()).thenReturn(king);
+        Mockito.when(scene.getKing()).thenReturn(king);
+        Mockito.when(viewProvider.getKingViewer()).thenReturn(kingViewer);
 
-       gameViewer = new GameViewer(scene, new ViewProvider((SpriteLoader) kingViewer));
-        //gameViewer = new GameViewer(scene, new ViewProvider(new SpriteLoader())); não sei qual das formas é
+        gameViewer = new GameViewer(scene, viewProvider);
     }
 
     @Test
     public void drawTest() {
         long time = 1000;
         gameViewer.draw(gui, time);
-        verify(kingViewer, times(1).draw(king, gui, time));
+        verify(kingViewer, times(1)).draw(king, gui, time);
     }
 
     @Test
@@ -47,7 +50,7 @@ public class GameViewerTest {
         long time = 1000;
         ElementViewer<King> viewer = Mockito.mock(ElementViewer.class);
         gameViewer.drawElement(gui, king, viewer, time);
-        verify(viewer, times(1).draw(king, gui, time));
+        verify(viewer, times(1)).draw(king, gui, time);
     }
 
     @Test
@@ -57,7 +60,7 @@ public class GameViewerTest {
         King king2 = Mockito.mock(King.class);
         List<King> kings = List.of(king, king2);
         gameViewer.drawElements(gui, kings, viewer, time);
-        verify(viewer, times(1).draw(king, gui, time));
-        verify(viewer, times(1).draw(king2, gui, time));
+        verify(viewer, times(1)).draw(king, gui, time);
+        verify(viewer, times(1)).draw(king2, gui, time);
     }
 }
