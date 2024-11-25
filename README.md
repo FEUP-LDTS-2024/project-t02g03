@@ -93,3 +93,14 @@ Here is the state machine for the game:
 <p align="center">
     <img src="documents/uml/Structure%20UML.png" alt="UML">
 </p>
+
+## Testing
+- **Unit Testing** - We used JUnit to test the individual components of the game, such as the collision logic, player movement, and map loading. This helped ensure that each component worked as expected in isolation.
+- **Mock Testing** - We used Mockito to mock dependencies in our tests, such as the Lanterna library. This allowed us to test our code without relying on external dependencies.
+  - Test results:
+<p>
+    <img src="documents/tests/Tests Pass Rate.png" alt="Tests">
+</p>
+<p>
+  <img src="documents/tests/Test Coverage.png" alt="Tests">
+</p>
