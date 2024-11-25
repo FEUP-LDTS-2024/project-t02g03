@@ -22,7 +22,7 @@ public class PositionTest {
 
     @Test
     public void setYTest() {
-        position.setX(5);
+        position.setY(5);
         assertEquals(5, position.getY());
     }
 
