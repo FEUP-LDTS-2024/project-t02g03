@@ -13,6 +13,8 @@ public interface GUI {
     Screen getScreen();
     void drawPixel(Position position, TextColor color);
     void drawImage(BasicTextImage image);
+    void drawTextImage(Position position, String[] image, TextColor color);
+    void drawLine(Position position, String imageline,TextColor color);
     void clear();
     Act getNextAction();
     void refresh() throws IOException;

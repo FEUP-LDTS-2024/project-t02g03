@@ -2,6 +2,7 @@ package jumpking;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.sun.tools.javac.Main;
 import jumpking.control.KingController;
 import jumpking.control.SceneController;
 import jumpking.gui.GUI;
@@ -13,6 +14,7 @@ import jumpking.model.game.scene.Scene;
 import jumpking.model.game.scene.SceneBuilder;
 import jumpking.model.menu.MainMenu;
 import jumpking.states.GameState;
+import jumpking.states.MainMenuState;
 import jumpking.states.State;
 import jumpking.view.screens.GameViewer;
 import jumpking.view.IngameSpriteLoader;
@@ -27,11 +29,11 @@ public class Application {
     public static final int PIXEL_WIDTH = 333;
     public static final int PIXEL_HEIGHT = 250;
     private final LanternaGUI gui;
-    private final Scene scene;
+    //private final Scene scene;
     private State<?> state;
-    private final GameViewer gameViewer;
+    //private final GameViewer gameViewer;
     private final SpriteLoader spriteLoader;
-    private final SceneController sceneController;
+    //private final SceneController sceneController;
     private final MenuViewer menuViewer;
 
     private Boolean running = true;
@@ -44,12 +46,12 @@ public class Application {
         this.gui = new LanternaGUI(screenCreator, "Jump King"); //Esta duas criam screen
         this.spriteLoader = new IngameSpriteLoader();
         King king = new King(168,228); // Create a King instance
-        this.scene = new SceneBuilder(0).buildScene(king); // desenham a tela em caracteres
+        //this.scene = new SceneBuilder(0).buildScene(king); // desenham a tela em caracteres
         ViewProvider viewProvider = new ViewProvider(spriteLoader); //desenham na tela as imagens (hero)
-        this.gameViewer = new GameViewer(scene, viewProvider);
+        //this.gameViewer = new GameViewer(scene, viewProvider);
         this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
-        KingController kingController = new KingController(scene); //continuar aqui
-        this.sceneController = new SceneController(scene, kingController);
+        //KingController kingController = new KingController(scene); //continuar aqui
+        //this.sceneController = new SceneController(scene, kingController);
 
     }
 
@@ -59,18 +61,22 @@ public class Application {
     }
 
     public void run() throws IOException {
+
+        state = new MainMenuState(new MainMenu(), spriteLoader);
         long time = System.currentTimeMillis();
         while (running) {
             menuViewer.draw(gui,time);
             gui.refresh();
-        }
-        while (running) {
-            gameViewer.draw(gui, time);
-            gui.refresh();
-            GUI.Act act = gui.getNextAction(); // Get the next action from the GUI
-            sceneController.step(this, act, time); // Call the step method of SceneController
+            GUI.Act act = gui.getNextAction();
             time = System.currentTimeMillis();
         }
+//        while (running) {
+//            gameViewer.draw(gui, time);
+//            gui.refresh();
+//            GUI.Act act = gui.getNextAction(); // Get the next action from the GUI
+//            sceneController.step(this, act, time); // Call the step method of SceneController
+//            time = System.currentTimeMillis();
+//        }
         gui.close();
     }
 

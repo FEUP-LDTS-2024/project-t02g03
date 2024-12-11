@@ -29,8 +29,11 @@ public abstract class Menu {
     public void moveUp() {
         currentItem += getNumberItems() - 1;
         currentItem = currentItem % getNumberItems();
-        //if (currentItem==0) currentItem=1;
+        //if (currentItem==1) currentItem=2;
     }
+//    public void select() {
+//        items.get(currentItem).executeAction();
+//    }
 
     public Item getCurrentItem() {
         return items.get(currentItem);

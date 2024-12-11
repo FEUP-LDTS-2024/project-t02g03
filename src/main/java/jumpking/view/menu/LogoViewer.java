@@ -13,7 +13,7 @@ public class LogoViewer {
     private final Sprite sprite;
 
     public LogoViewer(SpriteLoader spriteLoader) throws IOException {
-        this.sprite= spriteLoader.getSprite("sprites/king-idle.png");//testar
+        this.sprite= spriteLoader.getSprite("sprites/logo.png");//testar
     }
 
     public void draw(GUI gui, int x, int y) {

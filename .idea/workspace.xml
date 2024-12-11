@@ -7,13 +7,15 @@
     <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/control/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/control/ItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/gui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaScreenCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaScreenCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/credits/Credits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/credits/Credits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/ViewProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/ViewProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/GameViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/GameViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/ScreenViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/ScreenViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/PauseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/PauseMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/LogoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/LogoViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/MainMenuViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/MainMenuViewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +78,7 @@
     &quot;git-widget-placeholder&quot;: &quot;menu__mvc&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/joana/IdeaProjects/jumpking/src/main/java/jumpking/control&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/andrecotrim/Desktop/project-t02g03&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/andrecotrim/Desktop/feup-ldts&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/joana/IdeaProjects/jumpking/src/main/java/org/example/Main.java&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }

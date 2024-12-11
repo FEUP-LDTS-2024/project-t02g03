@@ -10,11 +10,12 @@ public class MainMenu extends Menu {
 
     @Override
     protected List<Item> createItems() {
-        int screenWidth = 111;
-        int screenHeight = 74;
-        Item title = new Item(screenWidth / 2 - 10, screenHeight / 4, Item.Type.TITLE, 30, 30); // Título no topo
-        Item start = new Item(screenWidth / 2 - 10, screenHeight / 2 + 5, Item.Type.START_GAME, 30, 30); // Início no meio
-        Item exit = new Item(screenWidth / 2 - 10, screenHeight / 2 + 10, Item.Type.EXIT, 30, 30); // Sair logo abaixo
+        int screenWidth = 333;
+        int screenHeight = 250;
+
+        Item title = new Item(screenWidth / 2 - 10, screenHeight / 4, Item.Type.TITLE); // Título no topo
+        Item start = new Item(screenWidth / 2 - 10, screenHeight / 2 - 10, Item.Type.START_GAME); // Início no meio
+        Item exit = new Item(screenWidth / 2 - 10, screenHeight / 2 +5 , Item.Type.EXIT); // Sair logo abaixo
         return Arrays.asList(title, start, exit);
     }
 
