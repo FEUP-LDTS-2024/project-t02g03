@@ -3,6 +3,8 @@ package jumpking.view.screens;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
 
+import java.io.IOException;
+
 public abstract class ScreenViewer<T> {
     private final T model;
 
@@ -14,7 +16,7 @@ public abstract class ScreenViewer<T> {
         return model;
     }
 
-    public abstract void draw(GUI gui, long time);
+    public abstract void draw(GUI gui, long time) throws IOException;
 
     protected void drawBackground(GUI gui) {
         if (model instanceof Scene) {

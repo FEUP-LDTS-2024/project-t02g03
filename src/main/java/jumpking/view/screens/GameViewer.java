@@ -1,8 +1,6 @@
 package jumpking.view.screens;
 
-import com.googlecode.lanterna.TextColor;
 import jumpking.gui.GUI;
-import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Element;
 import jumpking.model.game.scene.Scene;
 import jumpking.view.elements.ElementViewer;

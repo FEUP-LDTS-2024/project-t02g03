@@ -11,12 +11,14 @@ import jumpking.gui.ScreenCreator;
 import jumpking.model.game.elements.King;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.game.scene.SceneBuilder;
+import jumpking.model.menu.MainMenu;
 import jumpking.states.GameState;
 import jumpking.states.State;
 import jumpking.view.screens.GameViewer;
 import jumpking.view.IngameSpriteLoader;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
+import jumpking.view.screens.MenuViewer;
 
 import java.io.IOException;
 
@@ -30,6 +32,7 @@ public class Application {
     private final GameViewer gameViewer;
     private final SpriteLoader spriteLoader;
     private final SceneController sceneController;
+    private final MenuViewer menuViewer;
 
     private Boolean running = true;
 
@@ -38,13 +41,14 @@ public class Application {
                 new DefaultTerminalFactory(),
                 new TerminalSize(PIXEL_WIDTH, PIXEL_HEIGHT)
         );
-        this.gui = new LanternaGUI(screenCreator, "Jump King");
+        this.gui = new LanternaGUI(screenCreator, "Jump King"); //Esta duas criam screen
         this.spriteLoader = new IngameSpriteLoader();
         King king = new King(168,228); // Create a King instance
-        this.scene = new SceneBuilder(0).buildScene(king);
-        ViewProvider viewProvider = new ViewProvider(spriteLoader);
+        this.scene = new SceneBuilder(0).buildScene(king); // desenham a tela em caracteres
+        ViewProvider viewProvider = new ViewProvider(spriteLoader); //desenham na tela as imagens (hero)
         this.gameViewer = new GameViewer(scene, viewProvider);
-        KingController kingController = new KingController(scene);
+        this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
+        KingController kingController = new KingController(scene); //continuar aqui
         this.sceneController = new SceneController(scene, kingController);
 
     }
@@ -56,6 +60,10 @@ public class Application {
 
     public void run() throws IOException {
         long time = System.currentTimeMillis();
+        while (running) {
+            menuViewer.draw(gui,time);
+            gui.refresh();
+        }
         while (running) {
             gameViewer.draw(gui, time);
             gui.refresh();

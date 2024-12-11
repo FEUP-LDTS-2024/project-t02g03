@@ -23,6 +23,10 @@ public class LanternaGUI implements GUI {
     private Screen screen;
     private KeyStroke keyPressed;
 
+    public Screen getScreen() {
+        return screen;
+    }
+
     public LanternaGUI(ScreenCreator screenCreator, String title) throws IOException, URISyntaxException, FontFormatException {
         this.screenCreator = screenCreator;
         this.title = title;
