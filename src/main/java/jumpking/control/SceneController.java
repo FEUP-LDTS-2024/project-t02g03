@@ -21,6 +21,9 @@ public class SceneController extends Controller<Scene> {
         Scene scene = (Scene) getModel();
         try {
             handleFalling(app.getGui());
+            if (scene.isKingOnPrincess()) {
+                app.setRunning(false);
+            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
