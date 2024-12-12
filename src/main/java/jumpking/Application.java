@@ -3,7 +3,9 @@ package jumpking;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.sun.tools.javac.Main;
+import jumpking.control.ItemController;
 import jumpking.control.KingController;
+import jumpking.control.MainMenuController;
 import jumpking.control.SceneController;
 import jumpking.gui.GUI;
 import jumpking.gui.LanternaGUI;
@@ -35,6 +37,8 @@ public class Application {
     private final SpriteLoader spriteLoader;
     //private final SceneController sceneController;
     private final MenuViewer menuViewer;
+    private final ItemController itemController;
+    private final MainMenuController mainMenuController;
 
     private Boolean running = true;
 
@@ -45,13 +49,15 @@ public class Application {
         );
         this.gui = new LanternaGUI(screenCreator, "Jump King"); //Esta duas criam screen
         this.spriteLoader = new IngameSpriteLoader();
-        King king = new King(168,228); // Create a King instance
+        //King king = new King(168,228); // Create a King instance
         //this.scene = new SceneBuilder(0).buildScene(king); // desenham a tela em caracteres
         ViewProvider viewProvider = new ViewProvider(spriteLoader); //desenham na tela as imagens (hero)
         //this.gameViewer = new GameViewer(scene, viewProvider);
         this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
         //KingController kingController = new KingController(scene); //continuar aqui
         //this.sceneController = new SceneController(scene, kingController);
+        this.itemController = new ItemController(new MainMenu());
+        this.mainMenuController = new MainMenuController(new MainMenu(), itemController);
 
     }
 
@@ -60,14 +66,16 @@ public class Application {
         app.run();
     }
 
-    public void run() throws IOException {
+    public void run() throws Exception {
 
         state = new MainMenuState(new MainMenu(), spriteLoader);
         long time = System.currentTimeMillis();
         while (running) {
             menuViewer.draw(gui,time);
             gui.refresh();
-            GUI.Act act = gui.getNextAction();
+            //GUI.Act act = gui.getNextAction();
+            //itemController.step(this, gui.getNextAction(), time);
+            state.step(this, gui, time);
             time = System.currentTimeMillis();
         }
 //        while (running) {

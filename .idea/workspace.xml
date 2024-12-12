@@ -7,15 +7,8 @@
     <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/control/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/control/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/gui/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/control/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/control/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/PauseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/menu/PauseMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/LogoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/LogoViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/MainMenuViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/menu/MainMenuViewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +40,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="Class" />
       </list>
     </option>
