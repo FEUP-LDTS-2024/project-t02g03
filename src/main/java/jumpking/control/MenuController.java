@@ -19,8 +19,11 @@ public abstract class MenuController<T extends Menu> extends Controller<T> {
         if (act == GUI.Act.UP) {
             this.getModel().moveUp();
         } else if (act == GUI.Act.DOWN) {
-            this.getModel().moveUp();
+            this.getModel().moveDown();
+        }else if(act == GUI.Act.QUIT){
+
         }
+
 //        else if(act == GUI.Act.SELECT){
 //            this.getModel().select();
 //        }

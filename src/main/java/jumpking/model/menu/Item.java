@@ -4,7 +4,7 @@ import jumpking.model.Position;
 
 public class Item {
 
-    public enum Type { START_GAME, EXIT,RESTART,TITLE}
+    public enum Type { START_GAME, EXIT}
 
     private final Position position;
     private final Type type;

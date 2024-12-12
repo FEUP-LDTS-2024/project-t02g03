@@ -10,7 +10,6 @@ public class PauseMenu extends Menu {
     protected List<Item> createItems() {
         Item start = new Item(160/ 2 - (5 / 2) * 3 - (5 / 2) - 2, 55, Item.Type.START_GAME); //Valores provisórios
         Item exit = new Item(160/ 2 - (4 / 2) * 3 - (4 / 2), 65, Item.Type.EXIT);
-        Item restart = new Item(160/ 2 - (4 / 2) * 3 - (3 / 2)-4, 65, Item.Type.RESTART);
         return Arrays.asList(start, exit);
     }
 

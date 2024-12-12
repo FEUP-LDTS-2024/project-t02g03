@@ -23,10 +23,7 @@ public class MainMenuViewer {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000")); // meter imagem inicial
 
-        if (item.getType() == Item.Type.TITLE) {
-            TextGraphics graphics_title = screen.newTextGraphics();
-            graphics_title.putString(new TerminalPosition(item.getPosition().getX(), item.getPosition().getY()), "JUMP KING");
-        } else if (item.getType() == Item.Type.START_GAME) {
+         if (item.getType() == Item.Type.START_GAME) {
             gui.drawTextImage(item.getPosition(), startText.getStartText(),color);
         } else if (item.getType() == Item.Type.EXIT) {
             gui.drawTextImage(item.getPosition(), exitText.getExitText(),color);

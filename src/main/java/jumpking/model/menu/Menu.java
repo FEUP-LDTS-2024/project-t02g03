@@ -5,10 +5,11 @@ import java.util.List;
 public abstract class Menu {
 
     private final List<Item> items;
-    private int currentItem = 1;
+    private int currentItem;
 
     public Menu() {
         this.items = createItems();
+        currentItem= 1;
     }
 
     protected abstract List<Item> createItems();
@@ -22,18 +23,18 @@ public abstract class Menu {
     }
 
     public void moveDown() {
-        currentItem++;
-        currentItem = getNumberItems() % currentItem;
+        currentItem = currentItem + 1;
+        if(currentItem>getNumberItems()-1){
+            currentItem =0;
+        }
     }
 
     public void moveUp() {
-        currentItem += getNumberItems() - 1;
-        currentItem = currentItem % getNumberItems();
-        //if (currentItem==1) currentItem=2;
+        currentItem = currentItem - 1 ;
+        if(currentItem<0){
+            currentItem =getNumberItems()-1;
+        }
     }
-//    public void select() {
-//        items.get(currentItem).executeAction();
-//    }
 
     public Item getCurrentItem() {
         return items.get(currentItem);

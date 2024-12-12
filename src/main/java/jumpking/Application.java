@@ -37,8 +37,8 @@ public class Application {
     private final SpriteLoader spriteLoader;
     //private final SceneController sceneController;
     private final MenuViewer menuViewer;
-    private final ItemController itemController;
-    private final MainMenuController mainMenuController;
+    //private final ItemController itemController;
+    //private final MainMenuController mainMenuController;
 
     private Boolean running = true;
 
@@ -56,8 +56,9 @@ public class Application {
         this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
         //KingController kingController = new KingController(scene); //continuar aqui
         //this.sceneController = new SceneController(scene, kingController);
-        this.itemController = new ItemController(new MainMenu());
-        this.mainMenuController = new MainMenuController(new MainMenu(), itemController);
+        this.state = new MainMenuState(new MainMenu(), spriteLoader);
+        //this.itemController = new ItemController(new MainMenu());
+        //this.mainMenuController = new MainMenuController(new MainMenu(), itemController);
 
     }
 
@@ -67,15 +68,14 @@ public class Application {
     }
 
     public void run() throws Exception {
-
-        state = new MainMenuState(new MainMenu(), spriteLoader);
         long time = System.currentTimeMillis();
         while (running) {
             menuViewer.draw(gui,time);
             gui.refresh();
-            //GUI.Act act = gui.getNextAction();
-            //itemController.step(this, gui.getNextAction(), time);
             state.step(this, gui, time);
+            GUI.Act act = gui.getNextAction();
+            //mainMenuController.step(this, gui.getNextAction(), time);
+            //itemController.step(this, gui.getNextAction(), time);
             time = System.currentTimeMillis();
         }
 //        while (running) {
