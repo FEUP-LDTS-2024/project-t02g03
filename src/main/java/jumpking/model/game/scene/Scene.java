@@ -22,6 +22,7 @@ public class Scene {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
         this.king = new King(100, 100);
+        this.princess = new Princess(100, 200);
     }
 
     public int getSceneCode() {
