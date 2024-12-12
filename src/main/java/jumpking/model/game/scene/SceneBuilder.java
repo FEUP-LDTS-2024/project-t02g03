@@ -73,7 +73,7 @@ public class SceneBuilder {
     }
 
     private Princess createPrincess() {
-        return new Princess(100, 200);
+        return new Princess(100, 228);
     }
 
 

@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
+    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="creating and drawing the princess element onto the game">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/control/SceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/control/SceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/game/elements/Princess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/game/elements/Princess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/SceneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/SceneBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/ViewProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/ViewProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/GameViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/GameViewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,10 +95,29 @@
       <option name="presentableId" value="Default" />
       <updated>1732475870891</updated>
     </task>
+    <task id="LOCAL-00001" summary="added princess sprite">
+      <option name="closed" value="true" />
+      <created>1734028998086</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734028998086</updated>
+    </task>
+    <task id="LOCAL-00002" summary="creating and drawing the princess element onto the game">
+      <option name="closed" value="true" />
+      <created>1734029030624</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734029030624</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="added princess sprite" />
+    <MESSAGE value="creating and drawing the princess element onto the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="creating and drawing the princess element onto the game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

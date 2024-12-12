@@ -96,6 +96,23 @@ public class Scene {
         return true;
     }
 
+    public boolean isKingOnPrincess() {
+        Position kingBottomRight = king.getBottomRight();
+        Position kingTopLeft = king.getTopLeft();
+        Position kingTopRight = king.getTopRight();
+
+        Position princessBottomRight = princess.getBottomRight();
+        Position princessTopLeft = princess.getTopLeft();
+        Position princessTopRight = princess.getTopRight();
+
+        boolean intersects = kingTopLeft.getX() < princessBottomRight.getX() &&
+                kingBottomRight.getX() > princessTopLeft.getX() &&
+                kingTopLeft.getY() < princessBottomRight.getY() &&
+                kingBottomRight.getY() > princessTopLeft.getY();
+
+        return intersects;
+    }
+
     public void moveUp(int steps) {
         for (int i = 0; i < steps; i++) {
             king.moveUp();
