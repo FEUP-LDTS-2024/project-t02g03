@@ -1,7 +1,10 @@
 package jumpking.view.screens;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import jumpking.gui.GUI;
+import jumpking.model.game.scene.BackgroundImageLoader;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.MainMenu;
@@ -27,7 +30,8 @@ public class MenuViewer<T extends Menu> extends ScreenViewer<T> {
     public void draw(GUI gui, long time) throws IOException {
         gui.clear();
         drawItems(gui, getModel().getItems());
-        logoViewer.draw(gui, 0, 0);
+        logoViewer.draw(gui, 70, 50);
+        //desenhar imagem com tg
         gui.refresh();
     }
 

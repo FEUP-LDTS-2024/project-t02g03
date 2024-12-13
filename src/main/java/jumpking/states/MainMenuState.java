@@ -1,10 +1,12 @@
 package jumpking.states;
 
 import com.sun.tools.javac.Main;
+import jumpking.Application;
 import jumpking.control.Controller;
 import jumpking.control.ItemController;
 import jumpking.control.MainMenuController;
 import jumpking.control.MenuController;
+import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.MainMenu;

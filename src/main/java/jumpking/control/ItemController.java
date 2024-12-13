@@ -19,12 +19,11 @@ public class ItemController extends Controller<Menu> {
     public void step(Application app, GUI.Act act, long time) throws Exception {
         if (act == GUI.Act.SELECT) {
             if(this.getModel().getCurrentItem().getType()== Item.Type.START_GAME){
-                    Scene scene = new SceneBuilder(0).buildScene(new King(168,228));
-                    app.setState(new GameState(scene,app.getSpriteLoader()));
+                Scene scene = new SceneBuilder(0).buildScene(new King(168, 228));
+                app.setState(new GameState(scene, app.getSpriteLoader()));
             }if(this.getModel().getCurrentItem().getType()== Item.Type.EXIT){
                 app.setRunning(false);
             }
         }
-
     }
 }

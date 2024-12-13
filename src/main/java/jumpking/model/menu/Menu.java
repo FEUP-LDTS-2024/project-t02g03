@@ -25,7 +25,7 @@ public abstract class Menu {
     public void moveDown() {
         currentItem = currentItem + 1;
         if(currentItem>getNumberItems()-1){
-            currentItem =0;
+            currentItem =1;
         }
     }
 

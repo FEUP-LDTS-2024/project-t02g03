@@ -31,14 +31,9 @@ public class Application {
     public static final int PIXEL_WIDTH = 333;
     public static final int PIXEL_HEIGHT = 250;
     private final LanternaGUI gui;
-    //private final Scene scene;
     private State<?> state;
-    //private final GameViewer gameViewer;
     private final SpriteLoader spriteLoader;
-    //private final SceneController sceneController;
-    private final MenuViewer menuViewer;
-    //private final ItemController itemController;
-    //private final MainMenuController mainMenuController;
+
 
     private Boolean running = true;
 
@@ -47,18 +42,12 @@ public class Application {
                 new DefaultTerminalFactory(),
                 new TerminalSize(PIXEL_WIDTH, PIXEL_HEIGHT)
         );
-        this.gui = new LanternaGUI(screenCreator, "Jump King"); //Esta duas criam screen
+        this.gui = new LanternaGUI(screenCreator, "Jump King");
         this.spriteLoader = new IngameSpriteLoader();
-        //King king = new King(168,228); // Create a King instance
-        //this.scene = new SceneBuilder(0).buildScene(king); // desenham a tela em caracteres
-        ViewProvider viewProvider = new ViewProvider(spriteLoader); //desenham na tela as imagens (hero)
-        //this.gameViewer = new GameViewer(scene, viewProvider);
-        this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
-        //KingController kingController = new KingController(scene); //continuar aqui
-        //this.sceneController = new SceneController(scene, kingController);
+        //ViewProvider viewProvider = new ViewProvider(spriteLoader);
+        //this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
         this.state = new MainMenuState(new MainMenu(), spriteLoader);
-        //this.itemController = new ItemController(new MainMenu());
-        //this.mainMenuController = new MainMenuController(new MainMenu(), itemController);
+
 
     }
 
@@ -70,21 +59,9 @@ public class Application {
     public void run() throws Exception {
         long time = System.currentTimeMillis();
         while (running) {
-            menuViewer.draw(gui,time);
-            gui.refresh();
             state.step(this, gui, time);
-            GUI.Act act = gui.getNextAction();
-            //mainMenuController.step(this, gui.getNextAction(), time);
-            //itemController.step(this, gui.getNextAction(), time);
             time = System.currentTimeMillis();
         }
-//        while (running) {
-//            gameViewer.draw(gui, time);
-//            gui.refresh();
-//            GUI.Act act = gui.getNextAction(); // Get the next action from the GUI
-//            sceneController.step(this, act, time); // Call the step method of SceneController
-//            time = System.currentTimeMillis();
-//        }
         gui.close();
     }
 

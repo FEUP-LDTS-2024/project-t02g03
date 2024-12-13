@@ -3,6 +3,8 @@ package jumpking.control;
 import jumpking.Application;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;
+import jumpking.model.menu.PauseMenu;
+import jumpking.states.PauseState;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -59,6 +61,8 @@ public class KingController extends Controller {
                         scene.moveRight(5);
                     }
                     break;
+                case PAUSE:
+                    app.setState(new PauseState(new PauseMenu(), app.getSpriteLoader()));
                 case QUIT:
                     app.setRunning(false);
                     break;

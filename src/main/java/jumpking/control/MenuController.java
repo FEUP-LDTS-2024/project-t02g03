@@ -21,7 +21,9 @@ public abstract class MenuController<T extends Menu> extends Controller<T> {
         } else if (act == GUI.Act.DOWN) {
             this.getModel().moveDown();
         }else if(act == GUI.Act.QUIT){
-
+            app.setRunning(false);
+        }else{
+            itemController.step(app,act,time);
         }
 
 //        else if(act == GUI.Act.SELECT){

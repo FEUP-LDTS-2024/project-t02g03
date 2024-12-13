@@ -101,11 +101,12 @@ public class LanternaGUI implements GUI {
             case ArrowUp -> Act.UP;
             case ArrowRight -> Act.RIGHT;
             case ArrowDown -> Act.DOWN;
+            case Enter -> Act.SELECT;
             case Character -> {
                 if (keyPressed.getCharacter() == 'q') {
                     yield Act.QUIT;
-                } else if (keyPressed.getCharacter() == '\n') {
-                    yield Act.SELECT;
+                }else if(keyPressed.getCharacter()== 'p'){
+                    yield Act.PAUSE;
                 } else {
                     yield Act.NONE;
                 }
