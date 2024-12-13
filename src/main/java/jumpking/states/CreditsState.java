@@ -2,11 +2,10 @@ package jumpking.states;
 
 import jumpking.control.Controller;
 import jumpking.control.CreditsController;
-import jumpking.control.ItemController;
-import jumpking.control.PauseMenuController;
 import jumpking.model.credits.Credits;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
+import jumpking.view.screens.CreditsViewer;
 import jumpking.view.screens.ScreenViewer;
 
 import java.io.IOException;
@@ -25,6 +24,6 @@ public class CreditsState extends State<Credits> {
 
     @Override
     protected ScreenViewer<Credits> createScreenViewer(ViewProvider viewProvider) {
-        return null;
+        return new CreditsViewer<>(getModel(),viewProvider);
     }
 }

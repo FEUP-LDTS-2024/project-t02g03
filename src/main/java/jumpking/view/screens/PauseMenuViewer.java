@@ -40,23 +40,4 @@ public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
         }
     }
 
-    //trocar
-    public void drawitems(Item item, GUI gui, Item currentItem){
-
-        TextColor color;
-        if(item.equals(currentItem)) {
-            color = TextColor.Factory.fromString("#FFFFFF");
-        }else {
-            color = TextColor.Factory.fromString("#FF5000");
-        }
-        Screen screen = gui.getScreen();
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000")); // meter imagem inicial
-
-        if (item.getType() == Item.Type.RESUME) {
-            gui.drawTextImage(item.getPosition(), resumeText.getResumeText(),color);
-        } else if (item.getType() == Item.Type.QUIT) {
-            gui.drawTextImage(item.getPosition(), quitText.getExitText(),color);
-        }
-    }
 }

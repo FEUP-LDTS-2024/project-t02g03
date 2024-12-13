@@ -32,6 +32,7 @@ public abstract class State<T> {
         screenViewer.draw(gui, time);
         GUI.Act act = gui.getNextAction();
         controller.step(app, act, time);
+        screenViewer.draw(gui, time);
     }
 
 }

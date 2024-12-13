@@ -33,8 +33,6 @@ public class Application {
     private final LanternaGUI gui;
     private State<?> state;
     private final SpriteLoader spriteLoader;
-
-
     private Boolean running = true;
 
     public Application() throws Exception {
@@ -77,4 +75,5 @@ public class Application {
     public GUI getGui() {
         return gui;
     }
+
 }

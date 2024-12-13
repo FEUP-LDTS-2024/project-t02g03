@@ -1,5 +1,8 @@
 package jumpking.view.screens;
 
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
 import jumpking.gui.GUI;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.Menu;
@@ -23,6 +26,9 @@ public class MenuViewer<T extends Menu> extends ScreenViewer<T> {
     @Override
     public void draw(GUI gui, long time) throws IOException {
         gui.clear();
+        Screen screen = gui.getScreen();
+        TextGraphics graphics = screen.newTextGraphics();
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000")); // meter imagem inicial
         drawItems(gui, getModel().getItems());
         logoViewer.draw(gui, 70, 50);
         //desenhar imagem com tg
