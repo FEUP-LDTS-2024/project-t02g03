@@ -20,8 +20,7 @@ public class PauseState extends State<PauseMenu> {
     }
     @Override
     protected ScreenViewer<PauseMenu> createScreenViewer(ViewProvider viewProvider) {
-        System.out.println("ola");
-        return new PauseMenuViewer<>(getModel());
+        return new PauseMenuViewer<>(getModel(),viewProvider);
     }
 
     @Override

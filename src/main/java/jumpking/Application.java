@@ -44,8 +44,6 @@ public class Application {
         );
         this.gui = new LanternaGUI(screenCreator, "Jump King");
         this.spriteLoader = new IngameSpriteLoader();
-        //ViewProvider viewProvider = new ViewProvider(spriteLoader);
-        //this.menuViewer = new MenuViewer<>(new MainMenu(),viewProvider);
         this.state = new MainMenuState(new MainMenu(), spriteLoader);
 
 
@@ -63,10 +61,6 @@ public class Application {
             time = System.currentTimeMillis();
         }
         gui.close();
-    }
-
-    public Scene getModel() {
-        return ((GameState) state).getModel();
     }
 
     public void setState(State<?> state) {

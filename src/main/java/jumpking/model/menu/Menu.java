@@ -9,7 +9,7 @@ public abstract class Menu {
 
     public Menu() {
         this.items = createItems();
-        currentItem= 1;
+        currentItem= 0;
     }
 
     protected abstract List<Item> createItems();
@@ -23,17 +23,13 @@ public abstract class Menu {
     }
 
     public void moveDown() {
-        currentItem = currentItem + 1;
-        if(currentItem>getNumberItems()-1){
-            currentItem =1;
-        }
+        currentItem++;
+        currentItem = currentItem % getNumberItems();
     }
 
     public void moveUp() {
-        currentItem = currentItem - 1 ;
-        if(currentItem<0){
-            currentItem =getNumberItems()-1;
-        }
+        currentItem += getNumberItems() - 1;
+        currentItem = currentItem % getNumberItems();
     }
 
     public Item getCurrentItem() {

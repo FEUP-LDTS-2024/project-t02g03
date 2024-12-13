@@ -29,9 +29,9 @@ public abstract class State<T> {
     }
 
     public void step(Application app, GUI gui, long time) throws Exception {
+        screenViewer.draw(gui, time);
         GUI.Act act = gui.getNextAction();
         controller.step(app, act, time);
-        screenViewer.draw(gui, time);
     }
 
 }

@@ -6,14 +6,18 @@ import com.googlecode.lanterna.screen.Screen;
 import jumpking.gui.GUI;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.Menu;
+import jumpking.model.menu.PauseMenu;
+import jumpking.view.ViewProvider;
 import jumpking.view.images.quitText;
 import jumpking.view.images.startText;
+import jumpking.view.menu.MainMenuViewer;
 
 import java.io.IOException;
 import java.util.List;
 
 public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
-    public PauseMenuViewer(T model) {
+
+    public PauseMenuViewer(T model, ViewProvider viewProvider) {
         super(model);
     }
 
@@ -25,7 +29,6 @@ public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
     }
 
     public void drawItems(GUI gui, List<Item> items) {
-
         for (Item item : items) {
             drawitems(item, gui, getModel().getCurrentItem());
         }
@@ -33,6 +36,7 @@ public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
 
     //trocar
     public void drawitems(Item item, GUI gui, Item currentItem){
+
         TextColor color;
         if(item.equals(currentItem)) {
             color = TextColor.Factory.fromString("#FFFFFF");
