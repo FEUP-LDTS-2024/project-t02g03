@@ -48,9 +48,11 @@ public class KingController extends Controller {
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.jump(jumpHeight, -1);
                         upKeyPressed = false;
+                        king.setFacingRight(false);
                         king.setIsJumping(false);
                     } else {
                         scene.moveLeft(5);
+                        king.setFacingRight(false);
                         king.setIsRunning(true);
                     }
                     break;
@@ -61,9 +63,11 @@ public class KingController extends Controller {
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.jump(jumpHeight, 1);
                         upKeyPressed = false;
+                        king.setFacingRight(true);
                         king.setIsJumping(false);
                     } else {
                         scene.moveRight(5);
+                        king.setFacingRight(true);
                         king.setIsRunning(true);
                     }
                     break;

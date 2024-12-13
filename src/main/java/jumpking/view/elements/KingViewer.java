@@ -46,7 +46,11 @@ public class KingViewer implements ElementViewer<King> {
         Sprite[] sprites = spritesMap.get(state);
         if (sprites != null) {
             Sprite sprite = getCurrentSprite(sprites);
-            sprite.draw(gui, king.getPosition());
+            if (king.isFacingRight()) {
+                sprite.draw(gui, king.getPosition());
+            } else {
+                sprite.drawFlipped(gui, king.getPosition());
+            }
         }
     }
 

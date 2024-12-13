@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="creating and drawing the princess element onto the game">
+    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="animated the running and crouching states">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/control/KingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/control/KingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/game/elements/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/game/elements/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/elements/KingViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/elements/KingViewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,7 @@
     "JUnit.KingControllerTest.jumpLeftTest.executor": "Run",
     "JUnit.PositionTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "animation",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/jumpking/control",
     "last_opened_file_path": "C:/Users/joana/IdeaProjects/numbers",
@@ -112,13 +113,22 @@
       <option name="project" value="LOCAL" />
       <updated>1734029030624</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="animated the running and crouching states">
+      <option name="closed" value="true" />
+      <created>1734091967843</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734091967843</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added princess sprite" />
     <MESSAGE value="creating and drawing the princess element onto the game" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating and drawing the princess element onto the game" />
+    <MESSAGE value="animated the running and crouching states" />
+    <option name="LAST_COMMIT_MESSAGE" value="animated the running and crouching states" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
