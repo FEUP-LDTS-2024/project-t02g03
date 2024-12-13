@@ -2,6 +2,7 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.game.elements.King;
 import jumpking.model.game.scene.Scene;
 
 import java.io.IOException;
@@ -23,18 +24,21 @@ public class KingController extends Controller {
     @Override
     public void step(Application app, GUI.Act act, long time) throws IOException {
         Scene scene = (Scene) getModel();
+        King king = scene.getKing();
         try {
             switch (act) {
                 case UP:
                     if (!upKeyPressed) {
                         upKeyPressed = true;
                         keyPressStartTime = Instant.now();
+                        king.setIsJumping(true);
                     } else {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.moveUp(jumpHeight);
                         upKeyPressed = false;
+                        king.setIsJumping(false);
                     }
                     break;
                 case LEFT:
@@ -44,8 +48,10 @@ public class KingController extends Controller {
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.jump(jumpHeight, -1);
                         upKeyPressed = false;
+                        king.setIsJumping(false);
                     } else {
                         scene.moveLeft(5);
+                        king.setIsRunning(true);
                     }
                     break;
                 case RIGHT:
@@ -55,8 +61,10 @@ public class KingController extends Controller {
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.jump(jumpHeight, 1);
                         upKeyPressed = false;
+                        king.setIsJumping(false);
                     } else {
                         scene.moveRight(5);
+                        king.setIsRunning(true);
                     }
                     break;
                 case QUIT:
