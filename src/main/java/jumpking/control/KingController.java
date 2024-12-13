@@ -2,6 +2,7 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.game.elements.King;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.PauseMenu;
 import jumpking.states.PauseState;
@@ -9,6 +10,7 @@ import jumpking.states.PauseState;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 
 public class KingController extends Controller {
 
@@ -18,6 +20,7 @@ public class KingController extends Controller {
     public static final int MAX_JUMP_HEIGHT = 230;
     private static final int refreshRate = 5;
 
+
     public KingController(Scene scene) {
         super(scene);
     }
@@ -25,6 +28,7 @@ public class KingController extends Controller {
     @Override
     public void step(Application app, GUI.Act act, long time) throws IOException {
         Scene scene = (Scene) getModel();
+        King king = scene.getKing();
         try {
             switch (act) {
                 case UP:
@@ -62,7 +66,8 @@ public class KingController extends Controller {
                     }
                     break;
                 case PAUSE:
-                    app.setState(new PauseState(new PauseMenu(), app.getSpriteLoader()));
+                    app.setState(new PauseState(new PauseMenu(king.getX(), king.getY(), scene.getSceneCode()), app.getSpriteLoader()));
+                    break;
                 case QUIT:
                     app.setRunning(false);
                     break;

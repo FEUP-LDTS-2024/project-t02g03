@@ -7,10 +7,11 @@ import jumpking.model.game.scene.Scene;
 import jumpking.model.game.scene.SceneBuilder;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.Menu;
+import jumpking.model.menu.PauseMenu;
 import jumpking.states.GameState;
-import jumpking.view.SpriteLoader;
 
 public class ItemController extends Controller<Menu> {
+
     public ItemController(Menu menu) {
         super(menu);
     }
@@ -21,8 +22,12 @@ public class ItemController extends Controller<Menu> {
             if(this.getModel().getCurrentItem().getType()== Item.Type.START_GAME){
                 Scene scene = new SceneBuilder(0).buildScene(new King(168, 228));
                 app.setState(new GameState(scene, app.getSpriteLoader()));
-            }if(this.getModel().getCurrentItem().getType()== Item.Type.EXIT){
+            }else if(this.getModel().getCurrentItem().getType()== Item.Type.QUIT){
                 app.setRunning(false);
+            }else if(this.getModel().getCurrentItem().getType()== Item.Type.RESUME){
+                PauseMenu pauseMenu = (PauseMenu) this.getModel();
+                Scene scene = new SceneBuilder(pauseMenu.getSceneCode()).buildScene(new King(pauseMenu.getKingX(), pauseMenu.getKingY()));
+                app.setState(new GameState(scene, app.getSpriteLoader()));
             }
         }
     }

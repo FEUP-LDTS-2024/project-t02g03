@@ -1,17 +1,37 @@
 package jumpking.model.menu;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PauseMenu extends Menu {
+    private int kingX;
+    private int kingY;
+    private int sceneCode;
 
+    public PauseMenu(int kingX,int kingY,int sceneCode){
+        this.kingX = kingX;
+        this.kingY = kingY;
+        this.sceneCode = sceneCode;
+    }
     @Override
     protected List<Item> createItems() {
-        //valores provisorios
-        Item start = new Item(160/ 2 - (5 / 2) * 3 - (5 / 2) - 2, 55, Item.Type.START_GAME); //trocar para resume
-        Item exit = new Item(160/ 2 - (4 / 2) * 3 - (4 / 2), 65, Item.Type.EXIT);
+        int screenWidth = 333;
+        int screenHeight = 250;
+
+        Item start = new Item(screenWidth / 2 - 10, screenHeight / 2 - 10, Item.Type.RESUME); // Início no meio
+        Item exit = new Item(screenWidth / 2 - 10, screenHeight / 2 +5 , Item.Type.QUIT); // Sair logo abaixo
         return Arrays.asList(start, exit);
+    }
+
+    public int getKingX() {
+        return kingX;
+    }
+
+    public int getKingY() {
+        return kingY;
+    }
+
+    public int getSceneCode() {
+        return sceneCode;
     }
 }

@@ -66,7 +66,6 @@ public class Application {
     public void setState(State<?> state) {
         this.state = state;
     }
-
     public SpriteLoader getSpriteLoader() {
         return spriteLoader;
     }
