@@ -2,9 +2,11 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.credits.Credits;
 import jumpking.model.game.elements.King;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.PauseMenu;
+import jumpking.states.CreditsState;
 import jumpking.states.PauseState;
 
 import java.io.IOException;
@@ -69,7 +71,7 @@ public class KingController extends Controller {
                     app.setState(new PauseState(new PauseMenu(king.getX(), king.getY(), scene.getSceneCode()), app.getSpriteLoader()));
                     break;
                 case QUIT:
-                    app.setRunning(false);
+                    app.setState(new CreditsState(new Credits(king),app.getSpriteLoader()));
                     break;
                 default:
                     break;

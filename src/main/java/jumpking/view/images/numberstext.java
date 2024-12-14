@@ -11,6 +11,7 @@ public class numberstext {
             "  ██",
             "  ██",
             "  ██",
+            "  ██",
     };
     public static String[] getOne() {
         return one;
@@ -155,16 +156,16 @@ public class numberstext {
     }
 
     private static final String[] colon = {
-            "  ",
-            "  ",
-            "████  ",
-            "████",
-            "  ",
-            "  ",
-            "████",
-            "████  ",
-            "  ",
-            "  ",
+            "   ",
+            "   ",
+            "███",
+            "███",
+            "   ",
+            "   ",
+            "███",
+            "███",
+            "   ",
+            "   ",
     };
     public static String[] getColon() {
         return colon;

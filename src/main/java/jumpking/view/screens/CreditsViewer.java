@@ -43,33 +43,40 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     public void drawNames(GUI gui){
         gui.drawTextImage(new Position(10,200), namesText.getnamesText(), TextColor.Factory.fromString("#000000"),true);
     }
+
     //posicoes com valores provisorios
     //imagem desfocada e muito forte
+    //grande gap entre : e numeros
     //algo como press q to go to mainmenu idk
     public void drawStatistics(GUI gui){
         gui.drawTextImage(new Position(150,130), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
         gui.drawTextImage(new Position(150,150), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
-
         List<Integer>digitsjumps = getDigitsJumps();
         List<Integer>digitstime = getDigitsTime();
-        Position position = new Position(190,150);
-        int space =5;
+
+        Position position = new Position(205,130);
+        int space = 10;
         for(int digitjump : digitsjumps){
             drawdigit(digitjump,position,gui);
-            position.setPosition(space+position.getX(),150);
+            position.setPosition(position.getX()+space, position.getY());
         }
-        position.setPosition(210,130);
+        position.setPosition(190,150);
         for(int digittime : digitstime){
             drawdigit(digittime,position,gui);
-            position.setPosition(space+position.getX(),130);
+            if(digittime!=10)
+            position.setPosition(position.getX()+space, position.getY());
+            else
+            position.setPosition(position.getX()+6, position.getY());
         }
     }
 
+    //ignorar zeros
     List<Integer> getDigitsJumps(){
         int jumps = getModel().getJumps();
         return Arrays.asList(jumps/1000, jumps/100%10, jumps/10%10, jumps%10);
     }
 
+    //ignorar zeros
     List<Integer> getDigitsTime(){
         int minutes = getModel().getMinutes();
         int seconds = getModel().getSeconds();
