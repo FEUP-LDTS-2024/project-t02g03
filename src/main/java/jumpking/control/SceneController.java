@@ -2,7 +2,9 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.credits.Credits;
 import jumpking.model.game.scene.Scene;
+import jumpking.states.CreditsState;
 
 import java.io.IOException;
 
@@ -22,7 +24,7 @@ public class SceneController extends Controller<Scene> {
         try {
             handleFalling(app.getGui());
             if (scene.isKingOnPrincess()) {
-                app.setRunning(false);
+                app.setState(new CreditsState(new Credits(scene.getKing()),app.getSpriteLoader()));
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

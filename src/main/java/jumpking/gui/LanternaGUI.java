@@ -44,6 +44,36 @@ public class LanternaGUI implements GUI {
         tg.setCharacter(position.getX(), position.getY(), ' ');
     }
 
+    //renomear
+    @Override
+    public void drawTextImage(Position position, String[] image, TextColor color,boolean isCredits) {
+        TextGraphics tg = screen.newTextGraphics();
+        int y = position.getY();
+        for (String imageline : image) {
+            drawLine(new Position(position.getX(), y), imageline,color,isCredits);
+            y++;
+        }
+    }
+
+    @Override
+    public void drawLine(Position position, String imageline, TextColor color,boolean isCredits) {
+        TextGraphics tg = screen.newTextGraphics();
+        if(!isCredits){
+            tg.putString(position.getX(), position.getY(), imageline);
+        }
+        int x = position.getX();
+        int y = position.getY();
+        for (int i = 0; i < imageline.length(); i++) {
+            char character = imageline.charAt(i);
+            if (character != ' ') {
+                tg.setForegroundColor(color);
+                tg.setBackgroundColor(color);
+                tg.setCharacter(new TerminalPosition(x,y),character);
+            }
+            x++;
+        }
+    }
+
     @Override
     public void clear() {
         screen.clear();
@@ -57,7 +87,7 @@ public class LanternaGUI implements GUI {
     @Override
     public Act getNextAction() {
         try {
-            keyPressed = screen.readInput();
+            keyPressed = screen.pollInput();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -70,11 +100,13 @@ public class LanternaGUI implements GUI {
             case ArrowUp -> Act.UP;
             case ArrowRight -> Act.RIGHT;
             case ArrowDown -> Act.DOWN;
+            case Enter -> Act.SELECT;
+            case EOF -> Act.QUIT;
             case Character -> {
                 if (keyPressed.getCharacter() == 'q') {
                     yield Act.QUIT;
-                } else if (keyPressed.getCharacter() == '\n') {
-                    yield Act.SELECT;
+                }else if(keyPressed.getCharacter()== 'p'){
+                    yield Act.PAUSE;
                 } else {
                     yield Act.NONE;
                 }

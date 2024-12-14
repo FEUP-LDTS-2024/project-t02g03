@@ -1,6 +1,7 @@
 package jumpking.model.game.scene;
 
 import com.googlecode.lanterna.graphics.BasicTextImage;
+import jumpking.model.BackgroundImageLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
