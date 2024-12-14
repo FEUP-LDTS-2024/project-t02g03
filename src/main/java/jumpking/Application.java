@@ -17,8 +17,13 @@ import jumpking.view.screens.GameViewer;
 import jumpking.view.IngameSpriteLoader;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
+import jumpking.sound.BackgroundSoundPlayer;
+import jumpking.sound.SoundLoader;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.FloatControl;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Application {
 
@@ -30,6 +35,7 @@ public class Application {
     private final GameViewer gameViewer;
     private final SpriteLoader spriteLoader;
     private final SceneController sceneController;
+    private final BackgroundSoundPlayer backgroundSoundPlayer;
 
     private Boolean running = true;
 
@@ -46,6 +52,10 @@ public class Application {
         this.gameViewer = new GameViewer(scene, viewProvider);
         KingController kingController = new KingController(scene);
         this.sceneController = new SceneController(scene, kingController);
+        this.backgroundSoundPlayer = new BackgroundSoundPlayer(new SoundLoader().loadSound(AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/demo.wav"))), AudioSystem.getClip()));
+
+        FloatControl gainControl = (FloatControl) backgroundSoundPlayer.getSound().getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-15f);
 
     }
 
@@ -56,6 +66,7 @@ public class Application {
 
     public void run() throws IOException {
         long time = System.currentTimeMillis();
+        backgroundSoundPlayer.start();
         while (running) {
             gameViewer.draw(gui, time);
             gui.refresh();
@@ -63,6 +74,7 @@ public class Application {
             sceneController.step(this, act, time); // Call the step method of SceneController
             time = System.currentTimeMillis();
         }
+        backgroundSoundPlayer.stop();
         gui.close();
     }
 
