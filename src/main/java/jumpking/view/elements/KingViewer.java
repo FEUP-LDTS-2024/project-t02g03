@@ -12,6 +12,7 @@ import java.util.Map;
 public class KingViewer implements ElementViewer<King> {
     private final Map<String, Sprite[]> spritesMap;
     private int animationFrame = 0;
+    private int runningFrameCounter = 0;
 
     public KingViewer(SpriteLoader spriteLoader) throws IOException {
         spritesMap = new HashMap<>();

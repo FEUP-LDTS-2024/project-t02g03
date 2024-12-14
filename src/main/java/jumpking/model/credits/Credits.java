@@ -1,25 +1,24 @@
 package jumpking.model.credits;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
+import jumpking.model.BackgroundImageLoader;
 import jumpking.model.game.elements.King;
+
+import java.io.IOException;
 
 public class Credits {
     private int jumps;
     private final int minutes;
     private final int seconds;
+    private BasicTextImage backgroundImage;
 
-    private String[] names;
 
     public Credits(King king) {
         this.jumps = king.getJumps();
         long duration = System.currentTimeMillis() - king.getStartTime();
         this.seconds = (int) ((duration / 1000) % 60);
         this.minutes = (int) ((duration / 1000) / 60);
-
-        String[] names = new String[3];
-        names[0] = "  André Cortim";
-        names[1] = "  Hugo Azevedo";
-        names[2] = "Joana Carvalhal";
-        this.names = names;
+        loadBackground();
     }
 
     public void setJumps(int jumps) {
@@ -30,19 +29,23 @@ public class Credits {
         return jumps;
     }
 
-    public void setNames(String[] names) {
-        this.names = names;
-    }
-
-    public String[] getNames() {
-        return names;
-    }
-
     public int getSeconds() {
         return seconds;
     }
 
     public int getMinutes() {
         return minutes;
+    }
+
+    public BasicTextImage getBackgroundImage() {
+        return backgroundImage;
+    }
+    private void loadBackground() {
+        BackgroundImageLoader loader = new BackgroundImageLoader();
+        try {
+            this.backgroundImage = loader.loadBackgroundImage("backgrounds/credits.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

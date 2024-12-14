@@ -40,7 +40,7 @@ public class LanternaScreenCreator implements ScreenCreator {
     }
 
     private AWTTerminalFontConfiguration loadFont(int fontSize) throws URISyntaxException, IOException, FontFormatException {
-        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/Square.ttf");
         File fontFile = new File(Objects.requireNonNull(resource).toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.PLAIN, fontSize);
         return AWTTerminalFontConfiguration.newInstance(font);

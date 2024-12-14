@@ -1,4 +1,4 @@
-package jumpking.model.game.scene;
+package jumpking.model;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;

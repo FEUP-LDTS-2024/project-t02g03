@@ -21,6 +21,7 @@ public class King extends Element{
     private boolean isRunning = false;
     private boolean isFallen = false;
     private boolean facingRight = true;
+    private boolean isIdle = false;
     private Scene scene;
     private int jumps;
     private long startTime;
@@ -102,6 +103,14 @@ public class King extends Element{
         return isFallen;
     }
 
+    public void setIsIdle(boolean isIdle) {
+        this.isIdle = isIdle;
+    }
+
+    public boolean isIdle() {
+        return isIdle;
+    }
+
     public boolean isFacingRight() {
         return facingRight;
     }
@@ -153,6 +162,8 @@ public class King extends Element{
     public String getState() {
         if (isJumping) {
             return "crouching";
+        } else if (isIdle){
+            return "idle";
         } else if (isFalling) {
             return "falling";
         } else if (isRebounding) {
