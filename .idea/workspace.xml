@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="" />
+    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/jumpking/control/SceneControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/jumpking/control/SceneControllerTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +65,11 @@
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/jumpking/control",
     "last_opened_file_path": "C:/Users/joana/IdeaProjects/jumpking/out/production/resources/backgrounds",
-    "onboarding.tips.debug.path": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/org/example/Main.java"
+    "onboarding.tips.debug.path": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -73,6 +80,14 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="GradleRunConfiguration" />
+        <option value="GroovyScriptRunConfiguration" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="JUnit.PositionTest">
     <configuration name="KingControllerTest.jumpLeftTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -124,6 +139,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -131,6 +157,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/jumpking/view/SpriteTest.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
