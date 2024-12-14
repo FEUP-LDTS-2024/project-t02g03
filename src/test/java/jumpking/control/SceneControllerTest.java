@@ -37,14 +37,15 @@ public class SceneControllerTest {
 
     @Test
     void handleFallingTest() throws IOException {
-        Mockito.when(scene.isKingFalling()).thenReturn(true,false);
+        Mockito.when(scene.isKingFalling()).thenReturn(true);
         sceneController.step(app, Mockito.mock(GUI.Act.class), 1000);
         verify(scene, times(1)).moveDown();
         verify(gui, atLeastOnce()).draw();
 
+        Mockito.reset(scene);
         Mockito.when(scene.isKingFalling()).thenReturn(false);
         sceneController.step(app, Mockito.mock(GUI.Act.class), 1000);
         verify(scene, times(1)).moveDown();
-        verify(gui, atLeastOnce()).draw();
+        verify(gui, atLeast(2)).draw();
     }
 }
