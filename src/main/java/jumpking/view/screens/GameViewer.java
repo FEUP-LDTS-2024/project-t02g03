@@ -25,7 +25,7 @@ public class GameViewer extends ScreenViewer<Scene> {
         gui.clear();
         drawBackground(gui);
         drawElement(gui, getModel().getKing(), kingViewer, time);
-        //drawBlocks(gui);
+        drawBlocks(gui);
     }
 
     <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, long time) {
@@ -39,9 +39,9 @@ public class GameViewer extends ScreenViewer<Scene> {
     }
 
 //for visual testing purposes
-//    public void drawBlocks(GUI gui) {
-//        for (Block block : getModel().getBlocks()) {
-//            gui.drawPixel(block.getPosition(), TextColor.Factory.fromString("#00FF00"));
-//        }
-//    }
+    public void drawBlocks(GUI gui) {
+        for (Block block : getModel().getBlocks()) {
+            gui.drawPixel(block.getPosition(), TextColor.Factory.fromString("#00FF00"));
+        }
+    }
 }

@@ -17,7 +17,7 @@ public class SceneBuilder {
 
     public SceneBuilder(int sceneCode) throws IOException {
         this.sceneCode = sceneCode;
-        InputStream resource = getClass().getClassLoader().getResourceAsStream("levels/scene" + sceneCode + ".txt");
+        InputStream resource = getClass().getClassLoader().getResourceAsStream("levels/scene1.txt");
         if (resource == null){
             throw new FileNotFoundException("Level file not found!");
         }
@@ -28,7 +28,7 @@ public class SceneBuilder {
 
     private void loadBackgroundImage() throws IOException {
         BackgroundImageLoader loader = new BackgroundImageLoader();
-        this.backgroundImage = loader.loadBackgroundImage("backgrounds/scene" + sceneCode + ".png");
+        this.backgroundImage = loader.loadBackgroundImage("backgrounds/scene1.png");
     }
 
     private List<String> readLines(BufferedReader bufferedReader) throws IOException {
