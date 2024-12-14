@@ -33,7 +33,8 @@ public class KingViewer implements ElementViewer<King> {
         spritesMap.put("running", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-running-1.png"),
                 spriteLoader.getSprite("sprites/king-running-2.png"),
-                spriteLoader.getSprite("sprites/king-running-3.png")
+                spriteLoader.getSprite("sprites/king-running-3.png"),
+                spriteLoader.getSprite("sprites/king-running-2.png")
         });
         spritesMap.put("rebound", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-rebound.png")
@@ -46,7 +47,11 @@ public class KingViewer implements ElementViewer<King> {
         Sprite[] sprites = spritesMap.get(state);
         if (sprites != null) {
             Sprite sprite = getCurrentSprite(sprites);
-            sprite.draw(gui, king.getPosition());
+            if (king.isFacingRight()) {
+                sprite.draw(gui, king.getPosition());
+            } else {
+                sprite.drawFlipped(gui, king.getPosition());
+            }
         }
     }
 

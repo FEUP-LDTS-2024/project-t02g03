@@ -152,7 +152,7 @@ public class King extends Element{
 
     public String getState() {
         if (isJumping) {
-            return "jumping";
+            return "crouching";
         } else if (isFalling) {
             return "falling";
         } else if (isRebounding) {

@@ -115,7 +115,10 @@ public class Scene {
 
     public void moveUp(int steps) {
         for (int i = 0; i < steps; i++) {
-            king.moveUp();
+            Position newPosition = king.moveUp();
+            if (canKingMove(newPosition)) {
+                king.setPosition(newPosition);
+            }
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
