@@ -2,9 +2,9 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.game.scene.Scene;
 import jumpking.model.credits.Credits;
 import jumpking.model.game.elements.King;
-import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.PauseMenu;
 import jumpking.states.CreditsState;
 import jumpking.states.PauseState;
@@ -22,7 +22,6 @@ public class KingController extends Controller {
     public static final int MAX_JUMP_HEIGHT = 230;
     private static final int refreshRate = 5;
 
-
     public KingController(Scene scene) {
         super(scene);
     }
@@ -37,12 +36,15 @@ public class KingController extends Controller {
                     if (!upKeyPressed) {
                         upKeyPressed = true;
                         keyPressStartTime = Instant.now();
+                        king.setIsJumping(true);
+                        king.increaseJumps();
                     } else {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.moveUp(jumpHeight);
                         upKeyPressed = false;
+                        king.setIsJumping(false);
                     }
                     break;
                 case LEFT:
@@ -52,8 +54,12 @@ public class KingController extends Controller {
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.jump(jumpHeight, -1);
                         upKeyPressed = false;
+                        king.setFacingRight(false);
+                        king.setIsJumping(false);
                     } else {
                         scene.moveLeft(5);
+                        king.setFacingRight(false);
+                        king.setIsRunning(true);
                     }
                     break;
                 case RIGHT:
@@ -63,8 +69,12 @@ public class KingController extends Controller {
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         scene.jump(jumpHeight, 1);
                         upKeyPressed = false;
+                        king.setFacingRight(true);
+                        king.setIsJumping(false);
                     } else {
                         scene.moveRight(5);
+                        king.setFacingRight(true);
+                        king.setIsRunning(true);
                     }
                     break;
                 case PAUSE:
@@ -74,6 +84,7 @@ public class KingController extends Controller {
                     app.setState(new CreditsState(new Credits(king),app.getSpriteLoader()));
                     break;
                 default:
+                    //king.setIsIdle(true);
                     break;
             }
         } catch (InterruptedException e) {

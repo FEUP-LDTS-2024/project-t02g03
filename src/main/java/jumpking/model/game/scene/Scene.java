@@ -22,6 +22,7 @@ public class Scene {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
         this.king = new King(100, 100);
+        this.princess = new Princess(100, 200);
     }
 
     public int getSceneCode() {
@@ -95,9 +96,29 @@ public class Scene {
         return true;
     }
 
+    public boolean isKingOnPrincess() {
+        Position kingBottomRight = king.getBottomRight();
+        Position kingTopLeft = king.getTopLeft();
+        Position kingTopRight = king.getTopRight();
+
+        Position princessBottomRight = princess.getBottomRight();
+        Position princessTopLeft = princess.getTopLeft();
+        Position princessTopRight = princess.getTopRight();
+
+        boolean intersects = kingTopLeft.getX() < princessBottomRight.getX() &&
+                kingBottomRight.getX() > princessTopLeft.getX() &&
+                kingTopLeft.getY() < princessBottomRight.getY() &&
+                kingBottomRight.getY() > princessTopLeft.getY();
+
+        return intersects;
+    }
+
     public void moveUp(int steps) {
         for (int i = 0; i < steps; i++) {
-            king.moveUp();
+            Position newPosition = king.moveUp();
+            if (canKingMove(newPosition)) {
+                king.setPosition(newPosition);
+            }
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
