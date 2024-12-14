@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/levels/scene3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/resources/levels/scene3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/scene3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/scene3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/levels/scene3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/SceneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/SceneBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +65,7 @@
     "git-widget-placeholder": "blocos",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/jumpking/control",
-    "last_opened_file_path": "C:/Users/joana/IdeaProjects/jumpking/src/test/resources/levels",
+    "last_opened_file_path": "C:/Users/joana/IdeaProjects/jumpking/src/main/resources/levels",
     "onboarding.tips.debug.path": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
@@ -78,11 +75,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\src\test\resources\levels" />
+      <recent name="C:\Users\joana\IdeaProjects\jumpking\src\main\resources\levels" />
+      <recent name="C:\Users\joana\IdeaProjects\jumpking\build\resources\main\levels" />
+      <recent name="C:\Users\joana\IdeaProjects\jumpking\build\resources\test\levels" />
       <recent name="C:\Users\joana\IdeaProjects\jumpking\out\production\resources\levels" />
       <recent name="C:\Users\joana\IdeaProjects\jumpking\out\test\resources\levels" />
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\out\test\resources" />
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\src\main\resources\levels" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
