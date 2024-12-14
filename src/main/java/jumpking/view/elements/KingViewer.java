@@ -12,6 +12,7 @@ import java.util.Map;
 public class KingViewer implements ElementViewer<King> {
     private final Map<String, Sprite[]> spritesMap;
     private int animationFrame = 0;
+    private int runningFrameCounter = 0;
 
     public KingViewer(SpriteLoader spriteLoader) throws IOException {
         spritesMap = new HashMap<>();
@@ -33,7 +34,8 @@ public class KingViewer implements ElementViewer<King> {
         spritesMap.put("running", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-running-1.png"),
                 spriteLoader.getSprite("sprites/king-running-2.png"),
-                spriteLoader.getSprite("sprites/king-running-3.png")
+                spriteLoader.getSprite("sprites/king-running-3.png"),
+                spriteLoader.getSprite("sprites/king-running-2.png")
         });
         spritesMap.put("rebound", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-rebound.png")
@@ -46,7 +48,11 @@ public class KingViewer implements ElementViewer<King> {
         Sprite[] sprites = spritesMap.get(state);
         if (sprites != null) {
             Sprite sprite = getCurrentSprite(sprites);
-            sprite.draw(gui, king.getPosition());
+            if (king.isFacingRight()) {
+                sprite.draw(gui, king.getPosition());
+            } else {
+                sprite.drawFlipped(gui, king.getPosition());
+            }
         }
     }
 

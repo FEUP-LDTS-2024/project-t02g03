@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/SceneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/model/game/scene/SceneBuilder.java" afterDir="false" />
-    </list>
+    <list default="true" id="7c9c61a3-172f-4a08-bafa-6c31cafe8d42" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
@@ -35,169 +27,22 @@
       </state>
     </system>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="2pJEdUbFVTeNa2HlYUe4wPpFy07" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Run",
-    "Gradle.C:/Users/joana/IdeaProjects/jumpking.executor": "Run",
-    "JUnit.GameViewerTest.executor": "Run",
-    "JUnit.KingControllerTest.executor": "Run",
-    "JUnit.KingControllerTest.jumpLeftTest.executor": "Run",
-    "JUnit.PositionTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "blocos",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/jumpking/control",
-    "last_opened_file_path": "C:/Users/joana/IdeaProjects/jumpking/src/main/resources/levels",
-    "onboarding.tips.debug.path": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler"
+    "git-widget-placeholder": "Merging blocos"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\src\main\resources\levels" />
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\build\resources\main\levels" />
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\build\resources\test\levels" />
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\out\production\resources\levels" />
-      <recent name="C:\Users\joana\IdeaProjects\jumpking\out\test\resources\levels" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="GradleRunConfiguration" />
-        <option value="GroovyScriptRunConfiguration" />
-      </set>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.Application">
-    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="jumpking.Application" />
-      <module name="JumpKing.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jumpking.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameViewerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JumpKing.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jumpking.view.screens.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="jumpking.view.screens" />
-      <option name="MAIN_CLASS_NAME" value="jumpking.view.screens.GameViewerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KingControllerTest.jumpLeftTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JumpKing.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value=".*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="jumpking.control" />
-      <option name="MAIN_CLASS_NAME" value="jumpking.control.KingControllerTest" />
-      <option name="METHOD_NAME" value="jumpLeftTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PositionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JumpKing.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jumpking.model.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="jumpking.model.game" />
-      <option name="MAIN_CLASS_NAME" value="jumpking.model.game.PositionTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Application" />
-        <item itemvalue="JUnit.GameViewerTest" />
-        <item itemvalue="JUnit.PositionTest" />
-        <item itemvalue="JUnit.KingControllerTest.jumpLeftTest" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="" />
-      <created>1732475870891</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1732475870891</updated>
-    </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/jumpking/view/SpriteTest.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed merge conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed merge conflicts" />
   </component>
 </project>

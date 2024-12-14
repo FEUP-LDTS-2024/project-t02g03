@@ -8,16 +8,19 @@ import jumpking.model.game.scene.Scene;
 import jumpking.view.elements.ElementViewer;
 import jumpking.view.elements.KingViewer;
 import jumpking.view.ViewProvider;
+import jumpking.view.elements.PrincessViewer;
 
 import java.util.List;
 
 public class GameViewer extends ScreenViewer<Scene> {
 
     private final KingViewer kingViewer;
+    private final PrincessViewer princessViewer;
 
     public GameViewer(Scene model, ViewProvider viewProvider) {
         super(model);
         this.kingViewer = viewProvider.getKingViewer();
+        this.princessViewer = viewProvider.getPrincessViewer();
     }
 
     @Override
@@ -25,7 +28,8 @@ public class GameViewer extends ScreenViewer<Scene> {
         gui.clear();
         drawBackground(gui);
         drawElement(gui, getModel().getKing(), kingViewer, time);
-        drawBlocks(gui);
+        drawElement(gui, getModel().getPrincess(), princessViewer, time);
+        //drawBlocks(gui);
     }
 
     <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer, long time) {
