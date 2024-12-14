@@ -1,6 +1,7 @@
 package jumpking.model.game.scene;
 
 import com.googlecode.lanterna.graphics.BasicTextImage;
+import jumpking.model.BackgroundImageLoader;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;

@@ -1,5 +1,9 @@
 package jumpking.model.menu;
 
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.BasicTextImage;
+
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 

@@ -1,12 +1,9 @@
 package jumpking.view.menu;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.gui.GUI;
 import jumpking.model.Position;
-import jumpking.model.game.scene.BackgroundImageLoader;
 import jumpking.view.Sprite;
 import jumpking.view.SpriteLoader;
-import jumpking.view.ViewProvider;
 
 import java.io.IOException;
 public class LogoViewer {

@@ -26,8 +26,7 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     @Override
     public void draw(GUI gui, long time) throws IOException {
         gui.clear();
-        Screen screen = gui.getScreen();
-        TextGraphics graphics = screen.newTextGraphics();
+        drawBackground(gui);
         logoViewer.draw(gui, 70, 50);
         drawStatistics(gui);
         drawNames(gui);
@@ -36,6 +35,7 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     }
     //valores provisórios
     public void drawMessages(GUI gui){
+
     }
 
     public void drawNames(GUI gui){

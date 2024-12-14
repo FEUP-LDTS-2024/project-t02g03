@@ -18,8 +18,8 @@ public class PauseMenu extends Menu {
         int screenWidth = 333;
         int screenHeight = 250;
 
-        Item start = new Item(screenWidth / 2 - 10, screenHeight / 2 - 10, Item.Type.RESUME); // Início no meio
-        Item exit = new Item(screenWidth / 2 - 10, screenHeight / 2 +5 , Item.Type.QUIT); // Sair logo abaixo
+        Item start = new Item(screenWidth / 2 - 30, screenHeight / 2 - 10, Item.Type.RESUME); // Início no meio
+        Item exit = new Item(screenWidth / 2 - 30, screenHeight / 2 +5 , Item.Type.QUIT); // Sair logo abaixo
         return Arrays.asList(start, exit);
     }
 

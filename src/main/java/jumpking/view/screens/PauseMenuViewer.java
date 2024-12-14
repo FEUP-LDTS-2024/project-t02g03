@@ -29,6 +29,7 @@ public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
     @Override
     public void draw(GUI gui, long time) throws IOException {
         gui.clear();
+        drawBackground(gui);
         logoViewer.draw(gui, 70, 50);
         drawItems(gui, getModel().getItems());
         gui.refresh();
