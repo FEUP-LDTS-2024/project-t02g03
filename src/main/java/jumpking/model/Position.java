@@ -21,6 +21,9 @@ public class Position {
     public int getY() {
         return y;
     }
+    public Position setPosition(int x, int y){
+        return new Position(x,y);
+    }
 
     @Override
     public boolean equals(Object obj) {

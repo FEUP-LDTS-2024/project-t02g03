@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/control/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/control/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/gui/LanternaGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/CreditsViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jumpking/view/screens/CreditsViewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
