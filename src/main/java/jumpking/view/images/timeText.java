@@ -16,4 +16,5 @@ public class timeText {
     public static String[] gettimeText() {
         return timeText;
     }
+
 }

@@ -12,8 +12,8 @@ public interface GUI {
     enum Act {LEFT, UP, RIGHT, DOWN, QUIT, SELECT, JUMP, PAUSE, NONE};
     void drawPixel(Position position, TextColor color);
     void drawImage(BasicTextImage image);
-    void drawTextImage(Position position, String[] image, TextColor color);
-    void drawLine(Position position, String imageline,TextColor color);
+    void drawTextImage(Position position, String[] image, TextColor color,boolean isCredits);
+    void drawLine(Position position, String imageline,TextColor color,boolean isCredits);
     void clear();
     Act getNextAction();
     void refresh() throws IOException;

@@ -46,24 +46,27 @@ public class LanternaGUI implements GUI {
 
     //renomear
     @Override
-    public void drawTextImage(Position position, String[] image, TextColor color) {
+    public void drawTextImage(Position position, String[] image, TextColor color,boolean isCredits) {
         TextGraphics tg = screen.newTextGraphics();
         int y = position.getY();
         for (String imageline : image) {
-            drawLine(new Position(position.getX(), y), imageline,color);
+            drawLine(new Position(position.getX(), y), imageline,color,isCredits);
             y++;
         }
     }
 
     @Override
-    public void drawLine(Position position, String imageline, TextColor color) {
+    public void drawLine(Position position, String imageline, TextColor color,boolean isCredits) {
         TextGraphics tg = screen.newTextGraphics();
-        tg.putString(position.getX(), position.getY(), imageline);
+        if(!isCredits){
+            tg.putString(position.getX(), position.getY(), imageline);
+        }
         int x = position.getX();
         int y = position.getY();
         for (int i = 0; i < imageline.length(); i++) {
             char character = imageline.charAt(i);
             if (character != ' ') {
+                tg.setForegroundColor(color);
                 tg.setBackgroundColor(color);
                 tg.setCharacter(new TerminalPosition(x,y),character);
             }

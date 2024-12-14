@@ -154,4 +154,20 @@ public class numberstext {
         return zero;
     }
 
+    private static final String[] colon = {
+            "  ",
+            "  ",
+            "████  ",
+            "████",
+            "  ",
+            "  ",
+            "████",
+            "████  ",
+            "  ",
+            "  ",
+    };
+    public static String[] getColon() {
+        return colon;
+    }
+
 }

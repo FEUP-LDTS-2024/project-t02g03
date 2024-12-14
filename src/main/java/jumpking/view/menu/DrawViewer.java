@@ -20,11 +20,11 @@ public class DrawViewer {
             color = TextColor.Factory.fromString("#FFFFFF");
         }
         if (item.getType() == Item.Type.START_GAME) {
-            gui.drawTextImage(item.getPosition(), startText.getStartText(), color);
+            gui.drawTextImage(item.getPosition(), startText.getStartText(), color,false);
         } else if (item.getType() == Item.Type.QUIT) {
-            gui.drawTextImage(item.getPosition(), quitText.getExitText(), color);
+            gui.drawTextImage(item.getPosition(), quitText.getExitText(), color,false);
         } else if (item.getType() == Item.Type.RESUME) {
-            gui.drawTextImage(item.getPosition(), resumeText.getResumeText(), color);
+            gui.drawTextImage(item.getPosition(), resumeText.getResumeText(), color,false);
         }
     }
 

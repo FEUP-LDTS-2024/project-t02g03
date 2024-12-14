@@ -1,6 +1,7 @@
 package jumpking.view.screens;
 
 import jumpking.gui.GUI;
+import jumpking.model.credits.Credits;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.MainMenu;
 import jumpking.model.menu.Menu;
@@ -27,6 +28,9 @@ public abstract class ScreenViewer<T> {
         }else if(model instanceof Menu){
             Menu menu = (Menu) model;
             gui.drawImage(menu.getBackgroundImage());
+        }else if(model instanceof Credits){
+            Credits credits = (Credits) model;
+            gui.drawImage(credits.getBackgroundImage());
         }
     }
 }
