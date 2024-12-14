@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e89492c1-bc95-4f4b-b94a-973d8ec214f6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/jumpking/control/SceneControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/jumpking/control/SceneControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
     "git-widget-placeholder": "blocos",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/jumpking/control",
-    "last_opened_file_path": "C:/Users/joana/IdeaProjects/jumpking/out/production/resources/backgrounds",
+    "last_opened_file_path": "C:/Users/joana/IdeaProjects/jumpking/out/test/resources/backgrounds",
     "onboarding.tips.debug.path": "C:/Users/joana/IdeaProjects/jumpking/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
@@ -74,6 +73,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\joana\IdeaProjects\jumpking\out\test\resources\backgrounds" />
       <recent name="C:\Users\joana\IdeaProjects\jumpking\out\production\resources\backgrounds" />
       <recent name="C:\Users\joana\IdeaProjects\jumpking\src" />
     </key>
