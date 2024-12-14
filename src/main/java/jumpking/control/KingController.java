@@ -32,6 +32,7 @@ public class KingController extends Controller {
                         upKeyPressed = true;
                         keyPressStartTime = Instant.now();
                         king.setIsJumping(true);
+                        king.increaseJumps();
                     } else {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
