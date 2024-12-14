@@ -7,10 +7,7 @@ import jumpking.gui.GUI;
 import jumpking.model.Position;
 import jumpking.model.credits.Credits;
 import jumpking.view.ViewProvider;
-import jumpking.view.images.jumpsText;
-import jumpking.view.images.namesText;
-import jumpking.view.images.numberstext;
-import jumpking.view.images.timeText;
+import jumpking.view.images.*;
 import jumpking.view.menu.LogoViewer;
 
 import java.io.IOException;
@@ -41,7 +38,7 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
 
     //valores provisórios
     public void drawMessages(GUI gui){
-
+        gui.drawTextImage(new Position(20,40), gameOverText.getgameOverText(), TextColor.Factory.fromString("#FFFFFF"));
     }
 
     public void drawNames(GUI gui){
