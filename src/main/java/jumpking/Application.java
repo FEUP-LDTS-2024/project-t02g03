@@ -25,8 +25,13 @@ import jumpking.view.IngameSpriteLoader;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
 import jumpking.view.screens.MenuViewer;
+import jumpking.sound.BackgroundSoundPlayer;
+import jumpking.sound.SoundLoader;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.FloatControl;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Application {
 
@@ -35,6 +40,8 @@ public class Application {
     private final LanternaGUI gui;
     private State<?> state;
     private final SpriteLoader spriteLoader;
+    private final BackgroundSoundPlayer backgroundSoundPlayer;
+
     private Boolean running = true;
 
     public Application() throws Exception {
@@ -45,6 +52,7 @@ public class Application {
         this.gui = new LanternaGUI(screenCreator, "Jump King");
         this.spriteLoader = new IngameSpriteLoader();
         this.state = new MainMenuState(new MainMenu(), spriteLoader);
+        this.backgroundSoundPlayer = new BackgroundSoundPlayer(new SoundLoader().loadSound(AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/demo.wav"))), AudioSystem.getClip()));
 
 
     }
@@ -56,10 +64,12 @@ public class Application {
 
     public void run() throws Exception {
         long time = System.currentTimeMillis();
+        backgroundSoundPlayer.start();
         while (running) {
             state.step(this, gui, time);
             time = System.currentTimeMillis();
         }
+        backgroundSoundPlayer.stop();
         gui.close();
     }
 
