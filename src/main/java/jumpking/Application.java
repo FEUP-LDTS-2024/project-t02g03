@@ -52,7 +52,7 @@ public class Application {
         this.gui = new LanternaGUI(screenCreator, "Jump King");
         this.spriteLoader = new IngameSpriteLoader();
         this.state = new MainMenuState(new MainMenu(), spriteLoader);
-        this.backgroundSoundPlayer = new BackgroundSoundPlayer(new SoundLoader().loadSound(AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/demo.wav"))), AudioSystem.getClip()));
+        this.backgroundSoundPlayer = new BackgroundSoundPlayer(new SoundLoader().loadSound(AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/jump-king-theme.wav"))), AudioSystem.getClip()));
 
 
     }
