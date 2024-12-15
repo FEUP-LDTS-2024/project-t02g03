@@ -193,7 +193,7 @@ public class King extends Element{
             double y = a * Math.pow(x - h, 2) + k;
             Position newPosition = new Position(position.getX() + (int) Math.round(x * direction), position.getY() - (int) Math.round(y));
 
-            if (lastPosition == null || Math.abs(newPosition.getX() - lastPosition.getX()) >= 2 || Math.abs(newPosition.getY() - lastPosition.getY()) >= 2) {
+            if (lastPosition == null || Math.abs(newPosition.getX() - lastPosition.getX()) >= 3 || Math.abs(newPosition.getY() - lastPosition.getY()) >= 3) {
                 points.add(newPosition);
                 lastPosition = newPosition;
             }

@@ -7,6 +7,7 @@ import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;
 
 import java.util.List;
+import java.util.Queue;
 
 public class Scene {
 
@@ -66,9 +67,19 @@ public class Scene {
     }
 
     public boolean canKingMove(Position position) {
+        // Define the boundaries
+        int minX = 1;
+        int maxX = 332; // Adjust according to your game's width
+        int minY = 0;
+        int maxY = 250; // Adjust according to your game's height
+
         Position bottomRight = new Position(position.getX() + king.getWidth(), position.getY());
         Position topLeft = new Position(position.getX(), position.getY() - king.getHeight());
         Position topRight = new Position(position.getX() + king.getWidth(), position.getY() - king.getHeight());
+
+        if (bottomRight.getX() > maxX || bottomRight.getY() > maxY || topLeft.getX() < minX || topLeft.getY() < minY) {
+            return false;
+        }
 
         for (Block block : blocks) {
             Position blockPosition = block.getPosition();
@@ -80,7 +91,6 @@ public class Scene {
             }
         }
         return true;
-
     }
 
     public boolean isKingFalling() {
@@ -154,23 +164,20 @@ public class Scene {
         }
     }
 
-    public void jump(int jumpHeight, int direction) {
-        int maxX = (int) (230 * (jumpHeight / 100.0));
-        List<Position> trajectory = king.projectileMotion(jumpHeight, direction, maxX);
-        for (Position position : trajectory) {
-            if (canKingMove(position)) {
-                king.setPosition(position);
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                break;
-            }
-        }
+    public List<Position> jump(int jumpHeight, int direction) {
+        int maxX = (int) (200 * (jumpHeight / 100.0));
+        return king.projectileMotion(jumpHeight, direction, maxX);
     }
 
-
+    public boolean updateKingPosition(Queue<Position> jumpPositions) {
+        if (!jumpPositions.isEmpty()) {
+            Position nextPosition = jumpPositions.poll();
+            if (canKingMove(nextPosition)) {
+                getKing().setPosition(nextPosition);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

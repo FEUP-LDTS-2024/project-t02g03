@@ -2,6 +2,7 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.Position;
 import jumpking.model.game.scene.Scene;
 import jumpking.model.credits.Credits;
 import jumpking.model.game.elements.King;
@@ -14,6 +15,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.stream.Collectors;
+
 public class KingController extends Controller {
 
     private boolean upKeyPressed = false;
@@ -22,6 +27,7 @@ public class KingController extends Controller {
     public static final int MAX_JUMP_HEIGHT = 230;
     private static final int refreshRate = 5;
     private int noneCount = 0;
+    private Queue<Position> jumpPositions = new LinkedList<>();
 
     public KingController(Scene scene) {
         super(scene);
@@ -31,6 +37,15 @@ public class KingController extends Controller {
     public void step(Application app, GUI.Act act, long time) throws IOException {
         Scene scene = (Scene) getModel();
         King king = scene.getKing();
+
+        if (!scene.updateKingPosition(jumpPositions)) {
+            jumpPositions.clear(); // Clear the queue if the king can't move to the new position
+        }
+
+        if (!jumpPositions.isEmpty()) {
+            return;
+        }
+
         try {
             switch (act) {
                 case UP:
@@ -45,6 +60,7 @@ public class KingController extends Controller {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
+                        //jumpPositions.addAll(scene.jump(jumpHeight, 0));
                         scene.moveUp(jumpHeight);
                         upKeyPressed = false;
                         king.setIsJumping(false);
@@ -57,7 +73,7 @@ public class KingController extends Controller {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
-                        scene.jump(jumpHeight, -1);
+                        jumpPositions.addAll(scene.jump(jumpHeight, -1));
                         upKeyPressed = false;
                         king.setFacingRight(false);
                         king.setIsJumping(false);
@@ -75,7 +91,7 @@ public class KingController extends Controller {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
-                        scene.jump(jumpHeight, 1);
+                        jumpPositions.addAll(scene.jump(jumpHeight, 1));
                         upKeyPressed = false;
                         king.setFacingRight(true);
                         king.setIsJumping(false);
@@ -90,7 +106,7 @@ public class KingController extends Controller {
                     app.setState(new PauseState(new PauseMenu(king.getX(), king.getY(), scene.getSceneCode()), app.getSpriteLoader()));
                     break;
                 case QUIT:
-                    app.setState(new CreditsState(new Credits(king),app.getSpriteLoader()));
+                    app.setState(new CreditsState(new Credits(king), app.getSpriteLoader()));
                     break;
                 case NONE:
                     if (noneCount == 1) {
@@ -100,7 +116,6 @@ public class KingController extends Controller {
                     noneCount++;
                     break;
                 default:
-                    //king.setIsIdle(true);
                     break;
             }
         } catch (InterruptedException e) {
@@ -108,4 +123,7 @@ public class KingController extends Controller {
         }
     }
 
+    public Queue<Position> getJumpPositions() {
+        return jumpPositions;
+    }
 }

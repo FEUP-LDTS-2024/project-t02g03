@@ -22,7 +22,11 @@ public class SceneController extends Controller<Scene> {
         kingController.step(app, act, time);
         Scene scene = (Scene) getModel();
         try {
-            handleFalling(app.getGui());
+            if (kingController.getJumpPositions().isEmpty()) {
+                handleFalling(app.getGui());
+            } else {
+                app.getGui().draw(); // Ensure the GUI is updated to show all jump positions
+            }
             if (scene.isKingOnPrincess()) {
                 app.setState(new CreditsState(new Credits(scene.getKing()),app.getSpriteLoader()));
             }
