@@ -14,6 +14,7 @@ public abstract class MenuController<T extends Menu> extends Controller<T> {
         this.itemController = itemController;
     }
 
+    // Não para de rodar
     @Override
     public void step(Application app, GUI.Act act, long time) throws Exception {
         if (act == GUI.Act.UP) {

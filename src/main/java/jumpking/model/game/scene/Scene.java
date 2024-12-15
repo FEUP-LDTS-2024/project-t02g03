@@ -5,24 +5,30 @@ import jumpking.model.Position;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;
+import jumpking.states.GameState;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Scene {
 
-    private final int sceneCode;
+    private int sceneCode;
 
     private King king;
-    private Block[] blocks;;
+    private Block[] blocks;
     private Princess princess;
     private BasicTextImage backgroundImage;
 
-
+    //bugado
     public Scene(int sceneCode) {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
-        this.king = new King(100, 100);
-        this.princess = new Princess(100, 200);
+        //this.king = new King(100, 100);
+        //this.princess = new Princess(100, 200);
+    }
+
+    public void setSceneCode(int sceneCode) {
+        this.sceneCode = sceneCode;
     }
 
     public int getSceneCode() {
@@ -171,6 +177,17 @@ public class Scene {
         }
     }
 
-
-
+    //ter cuidado com os pixeis do king
+    public Scene changeScene() throws IOException{
+        int y = king.getPosition().getY();
+        System.out.println(y);
+        if(y<140){
+            System.out.println("next");
+            return new SceneBuilder(1).buildScene(new King(168, 228));
+        } else if(y>249){
+            System.out.println("previous");
+            return new SceneBuilder(getSceneCode()-1).buildScene(new King(168, 228));
+        }
+        return this;
+    }
 }

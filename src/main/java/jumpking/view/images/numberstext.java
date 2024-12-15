@@ -71,8 +71,8 @@ public class numberstext {
             "██████ ",
             "    ██ ",
             "    ██ ",
-            " █████ ",
-            " █████ ",
+            "██████ ",
+            "██████ ",
     };
     public static String[] getFive() {
         return five;

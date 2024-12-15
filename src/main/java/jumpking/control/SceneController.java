@@ -21,6 +21,8 @@ public class SceneController extends Controller<Scene> {
     public void step(Application app, GUI.Act act, long time) throws IOException {
         kingController.step(app, act, time);
         Scene scene = (Scene) getModel();
+        scene = scene.changeScene();
+        System.out.println(scene.getSceneCode());
         try {
             handleFalling(app.getGui());
             if (scene.isKingOnPrincess()) {
