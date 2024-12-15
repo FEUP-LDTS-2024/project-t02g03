@@ -171,8 +171,7 @@ public class Scene {
                 else if (position.getX()<0) position = new Position(0, position.getY());
                 else if (position.getX()>317) position = new Position(317, position.getY());
                 king.setPosition(position);
-                System.out.println(position.getX() + " " + position.getY());
-                //changeScene(app);
+                //changeScene(getapp());
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
