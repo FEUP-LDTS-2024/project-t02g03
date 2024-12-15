@@ -21,6 +21,7 @@ public class KingController extends Controller {
     public static final int MIN_JUMP_HEIGHT = 10;
     public static final int MAX_JUMP_HEIGHT = 230;
     private static final int refreshRate = 5;
+    private int noneCount = 0;
 
     public KingController(Scene scene) {
         super(scene);
@@ -33,6 +34,8 @@ public class KingController extends Controller {
         try {
             switch (act) {
                 case UP:
+                    noneCount = 0;
+                    king.setIsIdle(true);
                     if (!upKeyPressed) {
                         upKeyPressed = true;
                         keyPressStartTime = Instant.now();
@@ -48,6 +51,8 @@ public class KingController extends Controller {
                     }
                     break;
                 case LEFT:
+                    noneCount = 0;
+                    king.setIsIdle(false);
                     if (upKeyPressed) {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
@@ -56,6 +61,7 @@ public class KingController extends Controller {
                         upKeyPressed = false;
                         king.setFacingRight(false);
                         king.setIsJumping(false);
+                        king.setIsIdle(true);
                     } else {
                         scene.moveLeft(5);
                         king.setFacingRight(false);
@@ -63,6 +69,8 @@ public class KingController extends Controller {
                     }
                     break;
                 case RIGHT:
+                    noneCount = 0;
+                    king.setIsIdle(false);
                     if (upKeyPressed) {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
@@ -71,6 +79,7 @@ public class KingController extends Controller {
                         upKeyPressed = false;
                         king.setFacingRight(true);
                         king.setIsJumping(false);
+                        king.setIsIdle(true);
                     } else {
                         scene.moveRight(5);
                         king.setFacingRight(true);
@@ -82,6 +91,13 @@ public class KingController extends Controller {
                     break;
                 case QUIT:
                     app.setState(new CreditsState(new Credits(king),app.getSpriteLoader()));
+                    break;
+                case NONE:
+                    if (noneCount == 1) {
+                        noneCount = 0;
+                        king.setIsIdle(true);
+                    }
+                    noneCount++;
                     break;
                 default:
                     //king.setIsIdle(true);
