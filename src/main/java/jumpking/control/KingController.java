@@ -41,7 +41,7 @@ public class KingController extends Controller {
         if (!scene.updateKingPosition(jumpPositions)) {
             jumpPositions.clear(); // Clear the queue if the king can't move to the new position
         }
-
+        System.out.println(king.getY());
         if (!jumpPositions.isEmpty()) {
             return;
         }
@@ -60,8 +60,8 @@ public class KingController extends Controller {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
-                        //jumpPositions.addAll(scene.jump(jumpHeight, 0));
-                        scene.moveUp(jumpHeight);
+                        jumpPositions.addAll(scene.jump(jumpHeight, 0));
+                        //scene.moveUp(jumpHeight);
                         upKeyPressed = false;
                         king.setIsJumping(false);
                     }

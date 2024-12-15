@@ -188,14 +188,24 @@ public class King extends Element{
         // Calculate "a" for the parabola equation y = a * (x - h)^2 + k
         double a = -4.0 * height / (maxX * maxX);
 
-        // Generate points along the arc
-        for (double x = 0; x <= maxX; x += 0.1) {
-            double y = a * Math.pow(x - h, 2) + k;
-            Position newPosition = new Position(position.getX() + (int) Math.round(x * direction), position.getY() - (int) Math.round(y));
-
-            if (lastPosition == null || Math.abs(newPosition.getX() - lastPosition.getX()) >= 3 || Math.abs(newPosition.getY() - lastPosition.getY()) >= 3) {
-                points.add(newPosition);
-                lastPosition = newPosition;
+        if (direction == 0) {
+            // Handle straight up jump
+            for (double y = 0; y <= height; y += 0.1) {
+                Position newPosition = new Position(position.getX(), position.getY() - (int) Math.round(y));
+                if (lastPosition == null || Math.abs(newPosition.getY() - lastPosition.getY()) >= 3) {
+                    points.add(newPosition);
+                    lastPosition = newPosition;
+                }
+            }
+        } else {
+            // Generate points along the arc
+            for (double x = 0; x <= maxX; x += 0.1) {
+                double y = a * Math.pow(x - h, 2) + k;
+                Position newPosition = new Position(position.getX() + (int) Math.round(x * direction), position.getY() - (int) Math.round(y));
+                if (lastPosition == null || Math.abs(newPosition.getX() - lastPosition.getX()) >= 3 || Math.abs(newPosition.getY() - lastPosition.getY()) >= 3) {
+                    points.add(newPosition);
+                    lastPosition = newPosition;
+                }
             }
         }
 

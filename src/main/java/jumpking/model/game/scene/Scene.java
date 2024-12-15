@@ -6,6 +6,7 @@ import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -123,18 +124,15 @@ public class Scene {
         return intersects;
     }
 
-    public void moveUp(int steps) {
+    public List<Position> moveUp(int steps) {
+        List<Position> positions = new ArrayList<>();
         for (int i = 0; i < steps; i++) {
             Position newPosition = king.moveUp();
             if (canKingMove(newPosition)) {
-                king.setPosition(newPosition);
-            }
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                positions.add(newPosition);
             }
         }
+        return positions;
     }
 
     public void moveDown() {
