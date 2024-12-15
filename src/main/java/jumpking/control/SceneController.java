@@ -21,8 +21,7 @@ public class SceneController extends Controller<Scene> {
     public void step(Application app, GUI.Act act, long time) throws IOException {
         kingController.step(app, act, time);
         Scene scene = (Scene) getModel();
-        scene = scene.changeScene();
-        System.out.println(scene.getSceneCode());
+        //scene.changeScene(app);
         try {
             handleFalling(app.getGui());
             if (scene.isKingOnPrincess()) {
@@ -38,7 +37,9 @@ public class SceneController extends Controller<Scene> {
         int step = 0;
         Scene scene = (Scene) getModel();
         while (scene.isKingFalling()) {
+            if(scene.getKing().getPosition().getY()>250) break;
             scene.moveDown();
+            System.out.println("x: " + scene.getKing().getPosition().getX() +" y:" +scene.getKing().getPosition().getY()); // Log da posição do rei
             if (step % refreshRate == 0) {
                 gui.draw();
             }
@@ -52,5 +53,6 @@ public class SceneController extends Controller<Scene> {
         // Ensure the final position is drawn
         gui.draw();
     }
+
 
 }

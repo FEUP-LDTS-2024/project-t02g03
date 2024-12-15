@@ -43,9 +43,9 @@ public class GameViewer extends ScreenViewer<Scene> {
     }
 
 //for visual testing purposes
-    public void drawBlocks(GUI gui) {
-        for (Block block : getModel().getBlocks()) {
-            gui.drawPixel(block.getPosition(), TextColor.Factory.fromString("#00FF00"));
-        }
-    }
+//    public void drawBlocks(GUI gui) {
+//        for (Block block : getModel().getBlocks()) {
+//            gui.drawPixel(block.getPosition(), TextColor.Factory.fromString("#00FF00"));
+//        }
+//    }
 }

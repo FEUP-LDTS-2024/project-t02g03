@@ -1,6 +1,7 @@
 package jumpking.model.game.scene;
 
 import com.googlecode.lanterna.graphics.BasicTextImage;
+import jumpking.Application;
 import jumpking.model.Position;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
@@ -165,6 +166,7 @@ public class Scene {
         List<Position> trajectory = king.projectileMotion(jumpHeight, direction, maxX);
         for (Position position : trajectory) {
             if (canKingMove(position)) {
+                if (position.getY()<0) king.setPosition(new Position(position.getX(),250-position.getX()));
                 king.setPosition(position);
                 try {
                     Thread.sleep(1);
@@ -177,17 +179,18 @@ public class Scene {
         }
     }
 
-    //ter cuidado com os pixeis do king
-    public Scene changeScene() throws IOException{
-        int y = king.getPosition().getY();
-        System.out.println(y);
-        if(y<140){
-            System.out.println("next");
-            return new SceneBuilder(1).buildScene(new King(168, 228));
-        } else if(y>249){
-            System.out.println("previous");
-            return new SceneBuilder(getSceneCode()-1).buildScene(new King(168, 228));
-        }
-        return this;
-    }
+//    public void changeScene(Application app) throws IOException{
+//        int y = king.getPosition().getY();
+//        System.out.println(sceneCode);
+//        if(y<0){
+//            king.setPosition(new Position( king.getX(), 250));
+//            Scene scene =  new SceneBuilder(getSceneCode()+1).buildScene(king);
+//            app.setState(new GameState(scene, app.getSpriteLoader()));
+//        } else if(y>250){
+//            System.out.println("entrou");
+//            king.setPosition(new Position(king.getX(), 0));
+//            Scene scene =  new SceneBuilder(getSceneCode()-1).buildScene(king);
+//            app.setState(new GameState(scene, app.getSpriteLoader()));
+//        }
+//    }
 }
