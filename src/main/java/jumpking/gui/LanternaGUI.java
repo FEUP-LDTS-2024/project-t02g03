@@ -1,15 +1,13 @@
 package jumpking.gui;
-
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import jumpking.model.Position;
-
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.util.List;
 import java.awt.*;
 import java.io.IOException;
@@ -23,8 +21,7 @@ public class LanternaGUI implements GUI {
     private final String title;
     private Screen screen;
     private KeyAdapter keyAdapter;
-    private static final List<Integer> SPAM_KEYS = List.of(VK_LEFT, VK_RIGHT);
-    private boolean keySpam;
+    private static final List<Integer> SPAM_KEYS = Arrays.asList(VK_LEFT, VK_RIGHT);
     private KeyEvent priorityKeyPressed;
     private KeyEvent keyPressed;
 
@@ -32,22 +29,17 @@ public class LanternaGUI implements GUI {
     public LanternaGUI(ScreenCreator screenCreator, String title) throws IOException, URISyntaxException, FontFormatException {
         this.screenCreator = screenCreator;
         this.title = title;
-        this.screen = screenCreator.createScreen(title, null);
-        this.screen.startScreen();
-        this.keySpam = false;
         this.keyAdapter = createKeyAdapter();
+        this.screen = screenCreator.createScreen(title, keyAdapter);
+        this.screen.startScreen();
         this.keyPressed = null;
         this.priorityKeyPressed = null;
-        JFrame frame = new JFrame(title);
-        frame.addKeyListener(keyAdapter);
-        frame.setVisible(true);
-
     }
     private KeyAdapter createKeyAdapter() {
         return new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
+                if (SPAM_KEYS.contains(e.getKeyCode()))
                     keyPressed = priorityKeyPressed = e;
                 else
                     keyPressed = e;
@@ -55,7 +47,7 @@ public class LanternaGUI implements GUI {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if (keySpam && SPAM_KEYS.contains(e.getKeyCode()))
+                if (SPAM_KEYS.contains(e.getKeyCode()))
                     keyPressed = priorityKeyPressed = null;
                 else
                     keyPressed = priorityKeyPressed;
