@@ -179,18 +179,18 @@ public class Scene {
         }
     }
 
-//    public void changeScene(Application app) throws IOException{
-//        int y = king.getPosition().getY();
-//        System.out.println(sceneCode);
-//        if(y<0){
-//            king.setPosition(new Position( king.getX(), 250));
-//            Scene scene =  new SceneBuilder(getSceneCode()+1).buildScene(king);
-//            app.setState(new GameState(scene, app.getSpriteLoader()));
-//        } else if(y>250){
-//            System.out.println("entrou");
-//            king.setPosition(new Position(king.getX(), 0));
-//            Scene scene =  new SceneBuilder(getSceneCode()-1).buildScene(king);
-//            app.setState(new GameState(scene, app.getSpriteLoader()));
-//        }
-//    }
+    public void changeScene(Application app) throws IOException{
+        int y = king.getPosition().getY();
+        System.out.println(sceneCode);
+        if(y<0){
+            king.setPosition(new Position( king.getX(), 250));
+            Scene scene =  new SceneBuilder(getSceneCode()+1).buildScene(king);
+            app.setState(new GameState(scene, app.getSpriteLoader()));
+        } else if(y>250){
+            System.out.println("entrou");
+            king.setPosition(new Position(king.getX(), 0));
+            Scene scene =  new SceneBuilder(getSceneCode()-1).buildScene(king);
+            app.setState(new GameState(scene, app.getSpriteLoader()));
+        }
+    }
 }
