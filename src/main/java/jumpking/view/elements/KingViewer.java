@@ -44,6 +44,7 @@ public class KingViewer implements ElementViewer<King> {
 
     @Override
     public void draw(King king, GUI gui, long time) {
+        System.out.println(king.getPosition().getX() + " " + king.getPosition().getY());
         String state = king.getState();
         Sprite[] sprites = spritesMap.get(state);
         if (sprites != null) {

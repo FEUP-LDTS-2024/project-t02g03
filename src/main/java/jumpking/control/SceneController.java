@@ -39,7 +39,6 @@ public class SceneController extends Controller<Scene> {
         while (scene.isKingFalling()) {
             if(scene.getKing().getPosition().getY()>250) break;
             scene.moveDown();
-            System.out.println("x: " + scene.getKing().getPosition().getX() +" y:" +scene.getKing().getPosition().getY()); // Log da posição do rei
             if (step % refreshRate == 0) {
                 gui.draw();
             }

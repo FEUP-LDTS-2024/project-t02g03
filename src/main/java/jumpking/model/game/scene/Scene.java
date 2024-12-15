@@ -24,8 +24,8 @@ public class Scene {
     public Scene(int sceneCode) {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
-        //this.king = new King(100, 100);
-        //this.princess = new Princess(100, 200);
+        this.king = new King(100, 100);
+        this.princess = new Princess(100, 200);
     }
 
     public void setSceneCode(int sceneCode) {
@@ -166,8 +166,13 @@ public class Scene {
         List<Position> trajectory = king.projectileMotion(jumpHeight, direction, maxX);
         for (Position position : trajectory) {
             if (canKingMove(position)) {
-                if (position.getY()<0) king.setPosition(new Position(position.getX(),250-position.getX()));
+                if (position.getY()<0) position = (new Position(position.getX(),250+position.getY()));
+                else if(position.getY()>250) position = (new Position(position.getX(),position.getY()-250));
+                else if (position.getX()<0) position = new Position(0, position.getY());
+                else if (position.getX()>317) position = new Position(317, position.getY());
                 king.setPosition(position);
+                System.out.println(position.getX() + " " + position.getY());
+                //changeScene(app);
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
@@ -181,13 +186,11 @@ public class Scene {
 
     public void changeScene(Application app) throws IOException{
         int y = king.getPosition().getY();
-        System.out.println(sceneCode);
         if(y<0){
             king.setPosition(new Position( king.getX(), 250));
             Scene scene =  new SceneBuilder(getSceneCode()+1).buildScene(king);
             app.setState(new GameState(scene, app.getSpriteLoader()));
         } else if(y>250){
-            System.out.println("entrou");
             king.setPosition(new Position(king.getX(), 0));
             Scene scene =  new SceneBuilder(getSceneCode()-1).buildScene(king);
             app.setState(new GameState(scene, app.getSpriteLoader()));
