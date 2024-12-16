@@ -189,13 +189,15 @@ public class Scene {
     public void changeScene(Application app) throws IOException{
         int y = king.getPosition().getY();
         if(y<0){
-            king.setPosition(new Position( king.getX(), 250));
+            king.setPosition(new Position( king.getX(), 245));
             Scene scene =  new SceneBuilder(getSceneCode()+1).buildScene(king);
             app.setState(new GameState(scene, app.getSpriteLoader()));
+            king.updateJumpPositions(250);
         } else if(y>250){
-            king.setPosition(new Position(king.getX(), 0));
+            king.setPosition(new Position(king.getX(), 5));
             Scene scene =  new SceneBuilder(getSceneCode()-1).buildScene(king);
             app.setState(new GameState(scene, app.getSpriteLoader()));
+            king.updateJumpPositions(-250);
         }
     }
 }
