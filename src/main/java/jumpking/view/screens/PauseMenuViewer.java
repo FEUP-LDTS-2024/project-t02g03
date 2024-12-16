@@ -1,15 +1,9 @@
 package jumpking.view.screens;
 
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import jumpking.gui.GUI;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.Menu;
 import jumpking.view.ViewProvider;
-import jumpking.view.images.quitText;
-import jumpking.view.images.resumeText;
-import jumpking.view.images.startText;
 import jumpking.view.menu.DrawViewer;
 import jumpking.view.menu.LogoViewer;
 
@@ -17,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
+
     private final LogoViewer logoViewer;
     private final DrawViewer drawViewer;
 
@@ -40,5 +35,4 @@ public class PauseMenuViewer<T extends Menu> extends ScreenViewer<T> {
             drawViewer.draw(item, gui, getModel().getCurrentItem());
         }
     }
-
 }

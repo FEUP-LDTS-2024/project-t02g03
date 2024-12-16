@@ -48,7 +48,7 @@ public class Sprite {
                 for (int j = 0; j < sprite.getHeight(); j++) {
                     int color = sprite.getRGB(i, j);
                     int alpha = (color >> 24) & 0xff;
-                    if (alpha > 0) { // Only draw pixels that are not fully transparent
+                    if (alpha > 0) {
                         Position p = new Position(position.getX() + (width - 1 - i), position.getY() + j - 14);
                         gui.drawPixel(p, TextColor.Factory.fromString(String.format("#%06X", (0xFFFFFF & color))));
                     }
@@ -56,5 +56,4 @@ public class Sprite {
             }
         }
     }
-
 }

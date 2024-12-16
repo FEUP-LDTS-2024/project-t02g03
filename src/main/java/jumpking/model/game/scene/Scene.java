@@ -16,12 +16,10 @@ import java.util.Queue;
 public class Scene {
 
     private int sceneCode;
-
     private King king;
     private Block[] blocks;
     private Princess princess;
     private BasicTextImage backgroundImage;
-
 
     public Scene(int sceneCode) {
         this.sceneCode = sceneCode;
@@ -75,11 +73,8 @@ public class Scene {
     }
 
     public boolean canKingMove(Position position) {
-        // Define the boundaries
         int minX = 1;
-        int maxX = 332; // Adjust according to your game's width
-        //int minY = 0;
-        //int maxY = 250; // Adjust according to your game's height
+        int maxX = 332;
 
         Position bottomRight = new Position(position.getX() + king.getWidth(), position.getY());
         Position topLeft = new Position(position.getX(), position.getY() - king.getHeight());

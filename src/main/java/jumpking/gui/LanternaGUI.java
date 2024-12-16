@@ -1,4 +1,5 @@
 package jumpking.gui;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.BasicTextImage;
@@ -25,7 +26,6 @@ public class LanternaGUI implements GUI {
     private KeyEvent priorityKeyPressed;
     private KeyEvent keyPressed;
 
-
     public LanternaGUI(ScreenCreator screenCreator, String title) throws IOException, URISyntaxException, FontFormatException {
         this.screenCreator = screenCreator;
         this.title = title;
@@ -35,6 +35,7 @@ public class LanternaGUI implements GUI {
         this.keyPressed = null;
         this.priorityKeyPressed = null;
     }
+
     private KeyAdapter createKeyAdapter() {
         return new KeyAdapter() {
             @Override
@@ -68,7 +69,6 @@ public class LanternaGUI implements GUI {
         tg.setCharacter(position.getX(), position.getY(), ' ');
     }
 
-    //renomear
     @Override
     public void drawTextImage(Position position, String[] image, TextColor color,boolean isCredits) {
         TextGraphics tg = screen.newTextGraphics();
@@ -135,5 +135,4 @@ public class LanternaGUI implements GUI {
     public void draw() throws IOException {
         screen.refresh();
     }
-
 }

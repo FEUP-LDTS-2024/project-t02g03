@@ -1,6 +1,5 @@
 package jumpking.view.screens;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.gui.GUI;
 import jumpking.model.menu.Item;
 import jumpking.model.menu.Menu;
@@ -14,14 +13,12 @@ import java.util.List;
 public class MenuViewer<T extends Menu> extends ScreenViewer<T> {
     private final DrawViewer drawViewer;
     private final LogoViewer logoViewer;
-    private BasicTextImage backgroundImage;
 
     public MenuViewer(T model, ViewProvider viewProvider) {
         super(model);
         this.drawViewer = viewProvider.getDrawViewer();
         this.logoViewer = viewProvider.getLogoViewer();
     }
-
 
     @Override
     public void draw(GUI gui, long time) throws IOException {
@@ -31,7 +28,6 @@ public class MenuViewer<T extends Menu> extends ScreenViewer<T> {
         logoViewer.draw(gui, 70, 40);
         gui.refresh();
     }
-
 
     public void drawItems(GUI gui, List<Item>items) {
         for(Item item: items){

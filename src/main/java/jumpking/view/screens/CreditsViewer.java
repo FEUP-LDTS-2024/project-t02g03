@@ -1,8 +1,6 @@
 package jumpking.view.screens;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import jumpking.gui.GUI;
 import jumpking.model.Position;
 import jumpking.model.credits.Credits;
@@ -11,13 +9,11 @@ import jumpking.view.images.*;
 import jumpking.view.menu.LogoViewer;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-
 public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
+
     private final LogoViewer logoViewer;
 
     public CreditsViewer(T model, ViewProvider viewProvider){
@@ -29,7 +25,6 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     public void draw(GUI gui, long time) throws IOException {
         gui.clear();
         drawBackground(gui);
-        //logoViewer.draw(gui, 70, 20);
         drawStatistics(gui);
         drawNames(gui);
         drawMessages(gui);
@@ -44,10 +39,6 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
         gui.drawTextImage(new Position(230,225), namesText.getnamesText(), TextColor.Factory.fromString("#000000"),true);
     }
 
-    //posicoes com valores provisorios
-    //imagem desfocada e muito forte
-    //grande gap entre : e numeros
-    //algo como press q to go to mainmenu idk
     public void drawStatistics(GUI gui){
         gui.drawTextImage(new Position(256,117), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
         gui.drawTextImage(new Position(262,148), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
@@ -70,13 +61,11 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
         }
     }
 
-    //ignorar zeros
     List<Integer> getDigitsJumps(){
         int jumps = getModel().getJumps();
         return Arrays.asList(jumps/1000, jumps/100%10, jumps/10%10, jumps%10);
     }
 
-    //ignorar zeros
     List<Integer> getDigitsTime(){
         int minutes = getModel().getMinutes();
         int seconds = getModel().getSeconds();

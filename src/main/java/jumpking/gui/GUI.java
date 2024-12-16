@@ -2,9 +2,7 @@ package jumpking.gui;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.BasicTextImage;
-import com.googlecode.lanterna.screen.Screen;
 import jumpking.model.Position;
-import jumpking.view.screens.ScreenViewer;
 
 import java.io.IOException;
 
@@ -19,5 +17,4 @@ public interface GUI {
     void refresh() throws IOException;
     void close() throws IOException;
     void draw() throws IOException;
-
 }

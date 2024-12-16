@@ -5,6 +5,7 @@ import jumpking.gui.GUI;
 import jumpking.model.menu.PauseMenu;
 
 public class PauseMenuController extends MenuController<PauseMenu> {
+
     public PauseMenuController(PauseMenu pauseMenu, ItemController itemController) {
         super(pauseMenu, itemController);
     }

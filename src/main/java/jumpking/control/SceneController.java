@@ -20,7 +20,7 @@ public class SceneController extends Controller<Scene> {
     @Override
     public void step(Application app, GUI.Act act, long time) throws IOException {
         kingController.step(app, act, time);
-        Scene scene = (Scene) getModel();
+        Scene scene = getModel();
         scene.changeScene(app);
         try {
             if (kingController.getJumpPositions().isEmpty()) {
@@ -35,5 +35,4 @@ public class SceneController extends Controller<Scene> {
             Thread.currentThread().interrupt();
         }
     }
-
 }

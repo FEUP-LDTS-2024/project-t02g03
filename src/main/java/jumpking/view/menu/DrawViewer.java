@@ -1,14 +1,11 @@
 package jumpking.view.menu;
 
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 import jumpking.gui.GUI;
 import jumpking.model.menu.Item;
 import jumpking.view.images.quitText;
 import jumpking.view.images.resumeText;
 import jumpking.view.images.startText;
-
 
 public class DrawViewer {
 
@@ -27,5 +24,4 @@ public class DrawViewer {
             gui.drawTextImage(item.getPosition(), resumeText.getResumeText(), color,false);
         }
     }
-
 }
