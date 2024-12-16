@@ -17,6 +17,7 @@ import java.util.List;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class KingController extends Controller {
@@ -41,8 +42,15 @@ public class KingController extends Controller {
         if (!scene.updateKingPosition(jumpPositions)) {
             jumpPositions.clear(); // Clear the queue if the king can't move to the new position
         }
-        System.out.println(king.getY());
+
         if (!jumpPositions.isEmpty()) {
+            Position currentPosition = king.getPosition();
+            Position nextPosition = jumpPositions.peek();
+            if (nextPosition.getY() < currentPosition.getY()) {
+                king.setState(King.PlayerState.JUMPING);
+            } else {
+                king.setState(King.PlayerState.FALLING);
+            }
             return;
         }
 
@@ -50,25 +58,23 @@ public class KingController extends Controller {
             switch (act) {
                 case UP:
                     noneCount = 0;
-                    king.setIsIdle(true);
+                    king.setState(King.PlayerState.IDLE);
                     if (!upKeyPressed) {
                         upKeyPressed = true;
                         keyPressStartTime = Instant.now();
-                        king.setIsJumping(true);
+                        king.setState(King.PlayerState.CROUCHING);
                         king.increaseJumps();
                     } else {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
                         jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));
                         jumpPositions.addAll(scene.jump(jumpHeight, 0));
-                        //scene.moveUp(jumpHeight);
                         upKeyPressed = false;
-                        king.setIsJumping(false);
+                        king.setState(King.PlayerState.JUMPING);
                     }
                     break;
                 case LEFT:
                     noneCount = 0;
-                    king.setIsIdle(false);
                     if (upKeyPressed) {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
@@ -76,17 +82,15 @@ public class KingController extends Controller {
                         jumpPositions.addAll(scene.jump(jumpHeight, -1));
                         upKeyPressed = false;
                         king.setFacingRight(false);
-                        king.setIsJumping(false);
-                        king.setIsIdle(true);
+                        king.setState(King.PlayerState.IDLE);
                     } else {
                         scene.moveLeft(5);
                         king.setFacingRight(false);
-                        king.setIsRunning(true);
+                        king.setState(King.PlayerState.RUNNING);
                     }
                     break;
                 case RIGHT:
                     noneCount = 0;
-                    king.setIsIdle(false);
                     if (upKeyPressed) {
                         Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());
                         int jumpHeight = (int) keyPressDuration.toMillis() / 20;
@@ -94,12 +98,11 @@ public class KingController extends Controller {
                         jumpPositions.addAll(scene.jump(jumpHeight, 1));
                         upKeyPressed = false;
                         king.setFacingRight(true);
-                        king.setIsJumping(false);
-                        king.setIsIdle(true);
+                        king.setState(King.PlayerState.IDLE);
                     } else {
                         scene.moveRight(5);
                         king.setFacingRight(true);
-                        king.setIsRunning(true);
+                        king.setState(King.PlayerState.RUNNING);
                     }
                     break;
                 case PAUSE:
@@ -111,7 +114,9 @@ public class KingController extends Controller {
                 case NONE:
                     if (noneCount == 1) {
                         noneCount = 0;
-                        king.setIsIdle(true);
+                        if (king.getState() == King.PlayerState.RUNNING || king.getState() == King.PlayerState.FALLING) {
+                            king.setState(King.PlayerState.IDLE);
+                        }
                     }
                     noneCount++;
                     break;
@@ -125,5 +130,16 @@ public class KingController extends Controller {
 
     public Queue<Position> getJumpPositions() {
         return jumpPositions;
+    }
+
+    public void handleFalling(GUI gui) throws IOException, InterruptedException {
+        int refreshRate = 15; // Adjust this value to control how often the screen is refreshed
+        Scene scene = (Scene) getModel();
+        if (scene.isKingFalling()) {
+            scene.getKing().setState(King.PlayerState.FALLING);
+            scene.moveDown();
+        }
+        // Ensure the final position is drawn
+        gui.draw();
     }
 }

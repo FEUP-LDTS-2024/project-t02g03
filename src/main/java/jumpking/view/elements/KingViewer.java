@@ -12,39 +12,38 @@ import java.util.Map;
 public class KingViewer implements ElementViewer<King> {
     private final Map<String, Sprite[]> spritesMap;
     private int animationFrame = 0;
-    private int runningFrameCounter = 0;
 
     public KingViewer(SpriteLoader spriteLoader) throws IOException {
         spritesMap = new HashMap<>();
-        spritesMap.put("idle", new Sprite[]{
+        spritesMap.put("IDLE", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-idle.png")
         });
-        spritesMap.put("fallen", new Sprite[]{
+        spritesMap.put("FALLEN", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-fallen.png")
         });
-        spritesMap.put("crouching", new Sprite[]{
+        spritesMap.put("CROUCHING", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-crouching.png")
         });
-        spritesMap.put("jumping", new Sprite[]{
+        spritesMap.put("JUMPING", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-jumping.png")
         });
-        spritesMap.put("falling", new Sprite[]{
+        spritesMap.put("FALLING", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-falling.png")
         });
-        spritesMap.put("running", new Sprite[]{
+        spritesMap.put("RUNNING", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-running-1.png"),
                 spriteLoader.getSprite("sprites/king-running-2.png"),
                 spriteLoader.getSprite("sprites/king-running-3.png"),
                 spriteLoader.getSprite("sprites/king-running-2.png")
         });
-        spritesMap.put("rebound", new Sprite[]{
+        spritesMap.put("REBOUND", new Sprite[]{
                 spriteLoader.getSprite("sprites/king-rebound.png")
         });
     }
 
     @Override
     public void draw(King king, GUI gui, long time) {
-        String state = king.getState();
+        String state = king.getState().name();
         Sprite[] sprites = spritesMap.get(state);
         if (sprites != null) {
             Sprite sprite = getCurrentSprite(sprites);
