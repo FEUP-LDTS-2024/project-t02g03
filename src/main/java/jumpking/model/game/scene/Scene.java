@@ -8,8 +8,10 @@ import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;
 import jumpking.states.GameState;
 
+import java.util.ArrayList;
 import java.io.IOException;
 import java.util.List;
+import java.util.Queue;
 
 public class Scene {
 
@@ -20,7 +22,7 @@ public class Scene {
     private Princess princess;
     private BasicTextImage backgroundImage;
 
-    //bugado
+
     public Scene(int sceneCode) {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
@@ -73,9 +75,19 @@ public class Scene {
     }
 
     public boolean canKingMove(Position position) {
+        // Define the boundaries
+        int minX = 1;
+        int maxX = 332; // Adjust according to your game's width
+        //int minY = 0;
+        //int maxY = 250; // Adjust according to your game's height
+
         Position bottomRight = new Position(position.getX() + king.getWidth(), position.getY());
         Position topLeft = new Position(position.getX(), position.getY() - king.getHeight());
         Position topRight = new Position(position.getX() + king.getWidth(), position.getY() - king.getHeight());
+
+        if (bottomRight.getX() > maxX || topLeft.getX() < minX) {
+            return false;
+        }
 
         for (Block block : blocks) {
             Position blockPosition = block.getPosition();
@@ -87,7 +99,6 @@ public class Scene {
             }
         }
         return true;
-
     }
 
     public boolean isKingFalling() {
@@ -120,18 +131,15 @@ public class Scene {
         return intersects;
     }
 
-    public void moveUp(int steps) {
+    public List<Position> moveUp(int steps) {
+        List<Position> positions = new ArrayList<>();
         for (int i = 0; i < steps; i++) {
             Position newPosition = king.moveUp();
             if (canKingMove(newPosition)) {
-                king.setPosition(newPosition);
-            }
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                positions.add(newPosition);
             }
         }
+        return positions;
     }
 
     public void moveDown() {
@@ -161,27 +169,22 @@ public class Scene {
         }
     }
 
-    public void jump(int jumpHeight, int direction) {
-        int maxX = (int) (230 * (jumpHeight / 100.0));
-        List<Position> trajectory = king.projectileMotion(jumpHeight, direction, maxX);
-        for (Position position : trajectory) {
-            if (canKingMove(position)) {
-                if (position.getY()<0) position = (new Position(position.getX(),250+position.getY()));
-                else if(position.getY()>250) position = (new Position(position.getX(),position.getY()-250));
-                else if (position.getX()<0) position = new Position(0, position.getY());
-                else if (position.getX()>317) position = new Position(317, position.getY());
-                king.setPosition(position);
-                //changeScene(getapp());
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                break;
+    public List<Position> jump(int jumpHeight, int direction) {
+        int maxX = (int) (200 * (jumpHeight / 100.0));
+        return king.projectileMotion(jumpHeight, direction, maxX);
+    }
+
+    public boolean updateKingPosition(Queue<Position> jumpPositions) {
+        if (!jumpPositions.isEmpty()) {
+            Position nextPosition = jumpPositions.poll();
+            if (canKingMove(nextPosition)) {
+                getKing().setPosition(nextPosition);
+                return true;
             }
         }
+        return false;
     }
+
 
     public void changeScene(Application app) throws IOException{
         int y = king.getPosition().getY();

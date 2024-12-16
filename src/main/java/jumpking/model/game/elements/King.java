@@ -8,6 +8,16 @@ import java.util.List;
 
 public class King extends Element{
 
+    public enum PlayerState {
+        IDLE,
+        CROUCHING,
+        JUMPING,
+        FALLING,
+        REBOUNDING,
+        RUNNING,
+        FALLEN
+    }
+
     private static final int width = 14;
     private static final int height = 15;
 
@@ -15,16 +25,12 @@ public class King extends Element{
     private Position topLeft;
     private Position topRight;
 
-    private boolean isJumping = false;
-    private boolean isFalling = false;
-    private boolean isRebounding = false;
-    private boolean isRunning = false;
-    private boolean isFallen = false;
     private boolean facingRight = true;
-    private boolean isIdle = false;
     private Scene scene;
     private int jumps;
     private long startTime;
+
+    private PlayerState state;
 
     public King(int x, int y) {
         super(x, y);
@@ -33,6 +39,7 @@ public class King extends Element{
         this.topRight = new Position(x + width, y - height);
         this.jumps = 0;
         this.startTime = System.currentTimeMillis();
+        this.state = PlayerState.IDLE;
     }
 
     @Override
@@ -61,54 +68,6 @@ public class King extends Element{
 
     public int getHeight() {
         return height;
-    }
-
-    public void setIsJumping(boolean isJumping) {
-        this.isJumping = isJumping;
-    }
-
-    public boolean isJumping() {
-        return isJumping;
-    }
-
-    public void setIsFalling(boolean isFalling) {
-        this.isFalling = isFalling;
-    }
-
-    public boolean isFalling() {
-        return isFalling;
-    }
-
-    public void setIsRebounding(boolean isRebounding) {
-        this.isRebounding = isRebounding;
-    }
-
-    public boolean isRebounding() {
-        return isRebounding;
-    }
-
-    public void setIsRunning(boolean isRunning) {
-        this.isRunning = isRunning;
-    }
-
-    public boolean isRunning() {
-        return isRunning;
-    }
-
-    public void setIsFallen(boolean isFallen) {
-        this.isFallen = isFallen;
-    }
-
-    public boolean isFallen() {
-        return isFallen;
-    }
-
-    public void setIsIdle(boolean isIdle) {
-        this.isIdle = isIdle;
-    }
-
-    public boolean isIdle() {
-        return isIdle;
     }
 
     public boolean isFacingRight() {
@@ -159,22 +118,12 @@ public class King extends Element{
         this.startTime = startTime;
     }
 
-    public String getState() {
-        if (isJumping) {
-            return "crouching";
-        } else if (isIdle){
-            return "idle";
-        } else if (isFalling) {
-            return "falling";
-        } else if (isRebounding) {
-            return "rebound";
-        } else if (isRunning) {
-            return "running";
-        } else if (isFallen) {
-            return "fallen";
-        } else {
-            return "idle";
-        }
+    public PlayerState getState() {
+        return state;
+    }
+
+    public void setState(PlayerState state) {
+        this.state = state;
     }
 
     public List<Position> projectileMotion(double height, int direction, int maxX) {
@@ -188,14 +137,24 @@ public class King extends Element{
         // Calculate "a" for the parabola equation y = a * (x - h)^2 + k
         double a = -4.0 * height / (maxX * maxX);
 
-        // Generate points along the arc
-        for (double x = 0; x <= maxX; x += 0.1) {
-            double y = a * Math.pow(x - h, 2) + k;
-            Position newPosition = new Position(position.getX() + (int) Math.round(x * direction), position.getY() - (int) Math.round(y));
-
-            if (lastPosition == null || Math.abs(newPosition.getX() - lastPosition.getX()) >= 2 || Math.abs(newPosition.getY() - lastPosition.getY()) >= 2) {
-                points.add(newPosition);
-                lastPosition = newPosition;
+        if (direction == 0) {
+            // Handle straight up jump
+            for (double y = 0; y <= height; y += 0.1) {
+                Position newPosition = new Position(position.getX(), position.getY() - (int) Math.round(y));
+                if (lastPosition == null || Math.abs(newPosition.getY() - lastPosition.getY()) >= 3) {
+                    points.add(newPosition);
+                    lastPosition = newPosition;
+                }
+            }
+        } else {
+            // Generate points along the arc
+            for (double x = 0; x <= maxX; x += 0.1) {
+                double y = a * Math.pow(x - h, 2) + k;
+                Position newPosition = new Position(position.getX() + (int) Math.round(x * direction), position.getY() - (int) Math.round(y));
+                if (lastPosition == null || Math.abs(newPosition.getX() - lastPosition.getX()) >= 3 || Math.abs(newPosition.getY() - lastPosition.getY()) >= 3) {
+                    points.add(newPosition);
+                    lastPosition = newPosition;
+                }
             }
         }
 

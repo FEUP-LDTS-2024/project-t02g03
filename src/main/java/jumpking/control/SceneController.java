@@ -23,7 +23,11 @@ public class SceneController extends Controller<Scene> {
         Scene scene = (Scene) getModel();
         scene.changeScene(app);
         try {
-            handleFalling(app.getGui());
+            if (kingController.getJumpPositions().isEmpty()) {
+                kingController.handleFalling(app.getGui());
+            } else {
+                app.getGui().draw(); // Ensure the GUI is updated to show all jump positions
+            }
             if (scene.isKingOnPrincess()) {
                 app.setState(new CreditsState(new Credits(scene.getKing()),app.getSpriteLoader()));
             }
@@ -31,27 +35,5 @@ public class SceneController extends Controller<Scene> {
             Thread.currentThread().interrupt();
         }
     }
-
-    private void handleFalling(GUI gui) throws IOException, InterruptedException {
-        int refreshRate = 15; // Adjust this value to control how often the screen is refreshed
-        int step = 0;
-        Scene scene = (Scene) getModel();
-        while (scene.isKingFalling()) {
-            if(scene.getKing().getPosition().getY()>250) break;
-            scene.moveDown();
-            if (step % refreshRate == 0) {
-                gui.draw();
-            }
-            step++;
-            try {
-                Thread.sleep(1); // Adjust the speed of falling as needed
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        // Ensure the final position is drawn
-        gui.draw();
-    }
-
 
 }
