@@ -62,6 +62,7 @@ public class Application {
         app.run();
     }
 
+
     public void run() throws Exception {
         long time = System.currentTimeMillis();
         backgroundSoundPlayer.start();

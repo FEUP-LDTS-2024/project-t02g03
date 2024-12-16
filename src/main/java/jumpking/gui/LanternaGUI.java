@@ -1,34 +1,58 @@
 package jumpking.gui;
-
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import jumpking.model.Position;
-
-import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import java.util.List;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import static java.awt.event.KeyEvent.*;
 
 public class LanternaGUI implements GUI {
 
     private final ScreenCreator screenCreator;
     private final String title;
     private Screen screen;
-    private KeyStroke keyPressed;
+    private KeyAdapter keyAdapter;
+    private static final List<Integer> SPAM_KEYS = Arrays.asList(VK_LEFT, VK_RIGHT);
+    private KeyEvent priorityKeyPressed;
+    private KeyEvent keyPressed;
+
 
     public LanternaGUI(ScreenCreator screenCreator, String title) throws IOException, URISyntaxException, FontFormatException {
         this.screenCreator = screenCreator;
         this.title = title;
-        this.screen = screenCreator.createScreen(title, null);
+        this.keyAdapter = createKeyAdapter();
+        this.screen = screenCreator.createScreen(title, keyAdapter);
         this.screen.startScreen();
         this.keyPressed = null;
+        this.priorityKeyPressed = null;
+    }
+    private KeyAdapter createKeyAdapter() {
+        return new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (SPAM_KEYS.contains(e.getKeyCode()))
+                    keyPressed = priorityKeyPressed = e;
+                else
+                    keyPressed = e;
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (SPAM_KEYS.contains(e.getKeyCode()))
+                    keyPressed = priorityKeyPressed = null;
+                else
+                    keyPressed = priorityKeyPressed;
+            }
+        };
     }
 
     @Override
@@ -86,35 +110,22 @@ public class LanternaGUI implements GUI {
 
     @Override
     public Act getNextAction() {
-        try {
-            keyPressed = screen.pollInput();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         if (keyPressed == null){
             return Act.NONE;
         }
-        KeyType keyType = keyPressed.getKeyType();
-        return switch (keyType) {
-            case ArrowLeft -> Act.LEFT;
-            case ArrowUp -> Act.UP;
-            case ArrowRight -> Act.RIGHT;
-            case ArrowDown -> Act.DOWN;
-            case Enter -> Act.SELECT;
-            case EOF -> Act.QUIT;
-            case Character -> {
-                if (keyPressed.getCharacter() == 'q') {
-                    yield Act.QUIT;
-                }else if(keyPressed.getCharacter()== 'p'){
-                    yield Act.PAUSE;
-                } else {
-                    yield Act.NONE;
-                }
-            }
+        int keyCode = keyPressed.getKeyCode();
+        keyPressed = priorityKeyPressed;
+        return switch (keyCode) {
+            case VK_LEFT -> Act.LEFT;
+            case VK_RIGHT -> Act.RIGHT;
+            case VK_UP -> Act.UP;
+            case VK_DOWN -> Act.DOWN;
+            case VK_ENTER -> Act.SELECT;
+            case VK_Q -> Act.QUIT;
+            case VK_P -> Act.PAUSE;
             default -> Act.NONE;
         };
     }
-
     @Override
     public void close() throws IOException {
         screen.close();

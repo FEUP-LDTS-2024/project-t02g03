@@ -39,11 +39,14 @@ public class SceneBuilder {
         return lines;
     }
 
+    //ha aqui um bug com a princess- ha duas
     public Scene buildScene(King king) {
         Scene scene = new Scene(sceneCode);
         scene.setKing(createKing(scene, king));
         scene.setBlocks(buildBlocks());
-        scene.setPrincess(createPrincess());
+        if (sceneCode == 4) {
+            scene.setPrincess(createPrincess());
+        }
         scene.setStartingPosition(scene.getKing().getPosition());
         scene.setBackgroundImage(backgroundImage);
         return scene;
@@ -74,9 +77,7 @@ public class SceneBuilder {
     }
 
     private Princess createPrincess() {
-        return new Princess(100, 228);
+        return new Princess(115, 33);
     }
-
-
 
 }

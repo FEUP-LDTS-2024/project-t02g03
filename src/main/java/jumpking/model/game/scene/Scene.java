@@ -1,21 +1,24 @@
 package jumpking.model.game.scene;
 
 import com.googlecode.lanterna.graphics.BasicTextImage;
+import jumpking.Application;
 import jumpking.model.Position;
 import jumpking.model.game.elements.Block;
 import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;
+import jumpking.states.GameState;
 
 import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.Queue;
 
 public class Scene {
 
-    private final int sceneCode;
+    private int sceneCode;
 
     private King king;
-    private Block[] blocks;;
+    private Block[] blocks;
     private Princess princess;
     private BasicTextImage backgroundImage;
 
@@ -24,7 +27,11 @@ public class Scene {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
         this.king = new King(100, 100);
-        this.princess = new Princess(100, 200);
+        this.princess = null;
+    }
+
+    public void setSceneCode(int sceneCode) {
+        this.sceneCode = sceneCode;
     }
 
     public int getSceneCode() {
@@ -71,14 +78,14 @@ public class Scene {
         // Define the boundaries
         int minX = 1;
         int maxX = 332; // Adjust according to your game's width
-        int minY = 0;
-        int maxY = 250; // Adjust according to your game's height
+        //int minY = 0;
+        //int maxY = 250; // Adjust according to your game's height
 
         Position bottomRight = new Position(position.getX() + king.getWidth(), position.getY());
         Position topLeft = new Position(position.getX(), position.getY() - king.getHeight());
         Position topRight = new Position(position.getX() + king.getWidth(), position.getY() - king.getHeight());
 
-        if (bottomRight.getX() > maxX || bottomRight.getY() > maxY || topLeft.getX() < minX || topLeft.getY() < minY) {
+        if (bottomRight.getX() > maxX || topLeft.getX() < minX) {
             return false;
         }
 
@@ -108,6 +115,10 @@ public class Scene {
     }
 
     public boolean isKingOnPrincess() {
+        if (princess == null) {
+            return false;
+        }
+
         Position kingBottomRight = king.getBottomRight();
         Position kingTopLeft = king.getTopLeft();
         Position kingTopRight = king.getTopRight();
@@ -178,4 +189,19 @@ public class Scene {
         return false;
     }
 
+
+    public void changeScene(Application app) throws IOException{
+        int y = king.getPosition().getY();
+        if(y<0){
+            king.setPosition(new Position( king.getX(), 245));
+            Scene scene =  new SceneBuilder(getSceneCode()+1).buildScene(king);
+            app.setState(new GameState(scene, app.getSpriteLoader()));
+            king.updateJumpPositions(250);
+        } else if(y>250){
+            king.setPosition(new Position(king.getX(), 5));
+            Scene scene =  new SceneBuilder(getSceneCode()-1).buildScene(king);
+            app.setState(new GameState(scene, app.getSpriteLoader()));
+            king.updateJumpPositions(-250);
+        }
+    }
 }

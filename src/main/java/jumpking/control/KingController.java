@@ -13,12 +13,7 @@ import jumpking.states.PauseState;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.List;
-
-import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class KingController extends Controller {
 
@@ -28,7 +23,6 @@ public class KingController extends Controller {
     public static final int MAX_JUMP_HEIGHT = 230;
     private static final int refreshRate = 5;
     private int noneCount = 0;
-    private Queue<Position> jumpPositions = new LinkedList<>();
 
     public KingController(Scene scene) {
         super(scene);
@@ -38,6 +32,7 @@ public class KingController extends Controller {
     public void step(Application app, GUI.Act act, long time) throws IOException {
         Scene scene = (Scene) getModel();
         King king = scene.getKing();
+        Queue<Position> jumpPositions = king.getJumpPositions();
 
         if (!scene.updateKingPosition(jumpPositions)) {
             jumpPositions.clear(); // Clear the queue if the king can't move to the new position
@@ -129,7 +124,7 @@ public class KingController extends Controller {
     }
 
     public Queue<Position> getJumpPositions() {
-        return jumpPositions;
+        return ((Scene) getModel()).getKing().getJumpPositions();
     }
 
     public void handleFalling(GUI gui) throws IOException, InterruptedException {

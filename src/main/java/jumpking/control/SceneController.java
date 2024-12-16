@@ -21,6 +21,7 @@ public class SceneController extends Controller<Scene> {
     public void step(Application app, GUI.Act act, long time) throws IOException {
         kingController.step(app, act, time);
         Scene scene = (Scene) getModel();
+        scene.changeScene(app);
         try {
             if (kingController.getJumpPositions().isEmpty()) {
                 kingController.handleFalling(app.getGui());
