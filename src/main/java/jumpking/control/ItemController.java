@@ -27,6 +27,8 @@ public class ItemController extends Controller<Menu> {
             } else if (this.getModel().getCurrentItem().getType()== Item.Type.RESUME){
                 PauseMenu pauseMenu = (PauseMenu) this.getModel();
                 Scene scene = new SceneBuilder(pauseMenu.getSceneCode()).buildScene(new King(pauseMenu.getKingX(), pauseMenu.getKingY()));
+                scene.getKing().setStartTime(pauseMenu.getKingStartTime());
+                scene.getKing().setJumps(pauseMenu.getKingJumps());
                 app.setState(new GameState(scene, app.getSpriteLoader()));
             }
         }

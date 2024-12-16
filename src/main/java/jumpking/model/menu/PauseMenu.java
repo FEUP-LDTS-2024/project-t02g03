@@ -7,11 +7,15 @@ public class PauseMenu extends Menu {
     private int kingX;
     private int kingY;
     private int sceneCode;
+    private int kingJumps;
+    private long kingStartTime;
 
-    public PauseMenu(int kingX,int kingY,int sceneCode){
+    public PauseMenu(int kingX, int kingY,int sceneCode, int kingJumps, long kingStartTime) {
         this.kingX = kingX;
         this.kingY = kingY;
         this.sceneCode = sceneCode;
+        this.kingJumps = kingJumps;
+        this.kingStartTime = kingStartTime;
     }
     @Override
     protected List<Item> createItems() {
@@ -33,5 +37,13 @@ public class PauseMenu extends Menu {
 
     public int getSceneCode() {
         return sceneCode;
+    }
+
+    public int getKingJumps() {
+        return kingJumps;
+    }
+
+    public long getKingStartTime() {
+        return kingStartTime;
     }
 }

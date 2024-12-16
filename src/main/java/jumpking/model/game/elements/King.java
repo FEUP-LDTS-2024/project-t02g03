@@ -122,6 +122,10 @@ public class King extends Element{
         jumps++;
     }
 
+    public void setJumps(int jumps) {
+        this.jumps = jumps;
+    }
+
     public int getJumps() {
         return jumps;
     }
