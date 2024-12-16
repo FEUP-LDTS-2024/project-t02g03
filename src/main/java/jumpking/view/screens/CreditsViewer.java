@@ -37,11 +37,11 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     }
 
     public void drawMessages(GUI gui){
-        gui.drawTextImage(new Position(120,10), gameOverText.getgameOverText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(47,10), gameOverText.getgameOverText(), TextColor.Factory.fromString("#000000"),true);
     }
 
     public void drawNames(GUI gui){
-        gui.drawTextImage(new Position(10,200), namesText.getnamesText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(230,225), namesText.getnamesText(), TextColor.Factory.fromString("#000000"),true);
     }
 
     //posicoes com valores provisorios
@@ -49,18 +49,18 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     //grande gap entre : e numeros
     //algo como press q to go to mainmenu idk
     public void drawStatistics(GUI gui){
-        gui.drawTextImage(new Position(150,130), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
-        gui.drawTextImage(new Position(150,150), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(256,117), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(262,148), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
         List<Integer>digitsjumps = getDigitsJumps();
         List<Integer>digitstime = getDigitsTime();
 
-        Position position = new Position(205,130);
+        Position position = new Position(261,130);
         int space = 10;
         for(int digitjump : digitsjumps){
             drawdigit(digitjump,position,gui);
             position.setPosition(position.getX()+space, position.getY());
         }
-        position.setPosition(190,150);
+        position.setPosition(258,161);
         for(int digittime : digitstime){
             drawdigit(digittime,position,gui);
             if(digittime!=10)
