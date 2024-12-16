@@ -27,7 +27,7 @@ public class Scene {
         this.sceneCode = sceneCode;
         this.blocks = new Block[0];
         this.king = new King(100, 100);
-        this.princess = new Princess(100, 200);
+        this.princess = null;
     }
 
     public void setSceneCode(int sceneCode) {
@@ -115,6 +115,10 @@ public class Scene {
     }
 
     public boolean isKingOnPrincess() {
+        if (princess == null) {
+            return false;
+        }
+
         Position kingBottomRight = king.getBottomRight();
         Position kingTopLeft = king.getTopLeft();
         Position kingTopRight = king.getTopRight();

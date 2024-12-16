@@ -16,6 +16,9 @@ public class PrincessViewer implements ElementViewer<Princess>{
 
     @Override
     public void draw(Princess princess, GUI gui, long time) {
+        if (princess == null) {
+            return; // Do not attempt to draw if princess is null
+        }
         if (sprite != null) {
             sprite.draw(gui, princess.getPosition());
         }
