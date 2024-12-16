@@ -39,7 +39,6 @@ public class SceneBuilder {
         return lines;
     }
 
-    //ha aqui um bug com a princess- ha duas
     public Scene buildScene(King king) {
         Scene scene = new Scene(sceneCode);
         scene.setKing(createKing(scene, king));

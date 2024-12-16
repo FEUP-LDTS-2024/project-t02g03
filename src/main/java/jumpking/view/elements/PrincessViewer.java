@@ -8,6 +8,7 @@ import jumpking.view.SpriteLoader;
 import java.io.IOException;
 
 public class PrincessViewer implements ElementViewer<Princess>{
+
     Sprite sprite;
 
     public PrincessViewer(SpriteLoader spriteLoader) throws IOException {

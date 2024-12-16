@@ -1,12 +1,8 @@
 package jumpking.states;
 
-import jumpking.Application;
 import jumpking.control.Controller;
 import jumpking.control.ItemController;
 import jumpking.control.PauseMenuController;
-import jumpking.gui.GUI;
-import jumpking.model.game.elements.King;
-import jumpking.model.game.scene.Scene;
 import jumpking.model.menu.PauseMenu;
 import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;

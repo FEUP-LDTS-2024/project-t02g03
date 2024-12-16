@@ -1,9 +1,5 @@
 package jumpking.model.menu;
 
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.BasicTextImage;
-
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,5 +14,4 @@ public class MainMenu extends Menu {
         Item exit = new Item(screenWidth / 2 -30, screenHeight / 2 +5 , Item.Type.QUIT);
         return Arrays.asList(start, exit);
     }
-
 }

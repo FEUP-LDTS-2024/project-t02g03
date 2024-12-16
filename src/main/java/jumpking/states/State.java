@@ -33,5 +33,4 @@ public abstract class State<T> {
         controller.step(app, act, time);
         screenViewer.draw(gui, time);
     }
-
 }

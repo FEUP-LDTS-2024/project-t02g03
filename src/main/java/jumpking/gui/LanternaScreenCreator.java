@@ -6,9 +6,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +26,6 @@ public class LanternaScreenCreator implements ScreenCreator {
         terminalFactory.setForceAWTOverSwing(true);
     }
 
-
     @Override
     public Screen createScreen(String title, KeyListener keyListener) throws IOException, URISyntaxException, FontFormatException {
         int fontSize = 3;
@@ -47,5 +44,4 @@ public class LanternaScreenCreator implements ScreenCreator {
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.PLAIN, fontSize);
         return AWTTerminalFontConfiguration.newInstance(font);
     }
-
 }

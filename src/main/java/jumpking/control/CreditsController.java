@@ -6,9 +6,7 @@ import jumpking.model.credits.Credits;
 import jumpking.model.menu.MainMenu;
 import jumpking.states.MainMenuState;
 
-//verificar com timeless odysey
 public class CreditsController<T extends Credits> extends Controller<Credits> {
-
 
     public CreditsController(Credits credits) {
         super(credits);

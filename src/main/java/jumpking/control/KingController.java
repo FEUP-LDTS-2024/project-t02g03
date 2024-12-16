@@ -35,7 +35,7 @@ public class KingController extends Controller {
         Queue<Position> jumpPositions = king.getJumpPositions();
 
         if (!scene.updateKingPosition(jumpPositions)) {
-            jumpPositions.clear(); // Clear the queue if the king can't move to the new position
+            jumpPositions.clear();
         }
 
         if (!jumpPositions.isEmpty()) {
@@ -128,14 +128,12 @@ public class KingController extends Controller {
     }
 
     public void handleFalling(GUI gui) throws IOException, InterruptedException {
-        int refreshRate = 15; // Adjust this value to control how often the screen is refreshed
         Scene scene = (Scene) getModel();
         if (scene.isKingFalling()) {
             scene.getKing().setState(King.PlayerState.FALLING);
             scene.moveDown();
             scene.moveDown();
         }
-        // Ensure the final position is drawn
         gui.draw();
     }
 }

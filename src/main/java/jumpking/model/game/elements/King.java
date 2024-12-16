@@ -173,8 +173,6 @@ public class King extends Element{
                 }
             }
         }
-
         return points;
     }
-
 }

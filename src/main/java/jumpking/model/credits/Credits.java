@@ -1,17 +1,17 @@
 package jumpking.model.credits;
 
-import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.model.BackgroundImageLoader;
 import jumpking.model.game.elements.King;
 
+import com.googlecode.lanterna.graphics.BasicTextImage;
 import java.io.IOException;
 
 public class Credits {
+
     private int jumps;
     private final int minutes;
     private final int seconds;
     private BasicTextImage backgroundImage;
-
 
     public Credits(King king) {
         this.jumps = king.getJumps();
@@ -40,6 +40,7 @@ public class Credits {
     public BasicTextImage getBackgroundImage() {
         return backgroundImage;
     }
+
     private void loadBackground() {
         BackgroundImageLoader loader = new BackgroundImageLoader();
         try {

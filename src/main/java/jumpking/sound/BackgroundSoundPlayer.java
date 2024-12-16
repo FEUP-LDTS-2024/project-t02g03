@@ -3,6 +3,7 @@ package jumpking.sound;
 import javax.sound.sampled.Clip;
 
 public class BackgroundSoundPlayer implements SoundPlayer {
+
     private Clip sound;
 
     public BackgroundSoundPlayer(Clip sound) {

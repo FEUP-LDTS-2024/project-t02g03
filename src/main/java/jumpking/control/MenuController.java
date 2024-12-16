@@ -2,7 +2,6 @@ package jumpking.control;
 
 import jumpking.Application;
 import jumpking.gui.GUI;
-import jumpking.model.menu.Item;
 import jumpking.model.menu.Menu;
 
 public abstract class MenuController<T extends Menu> extends Controller<T> {
@@ -14,16 +13,15 @@ public abstract class MenuController<T extends Menu> extends Controller<T> {
         this.itemController = itemController;
     }
 
-    // Não para de rodar
     @Override
     public void step(Application app, GUI.Act act, long time) throws Exception {
         if (act == GUI.Act.UP) {
             this.getModel().moveUp();
         } else if (act == GUI.Act.DOWN) {
             this.getModel().moveDown();
-        }else if(act == GUI.Act.QUIT){
+        } else if(act == GUI.Act.QUIT){
             app.setRunning(false);
-        }else{
+        } else{
             itemController.step(app,act,time);
         }
     }

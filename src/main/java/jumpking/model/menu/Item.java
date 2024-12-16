@@ -9,7 +9,6 @@ public class Item {
     private final Position position;
     private final Type type;
 
-
     public Item(int x, int y, Type type) {
         this.position = new Position(x, y);
         this.type = type;
@@ -22,5 +21,4 @@ public class Item {
     public Type getType() {
         return type;
     }
-
 }

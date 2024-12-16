@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KingViewer implements ElementViewer<King> {
+
     private final Map<String, Sprite[]> spritesMap;
     private int animationFrame = 0;
 
@@ -60,5 +61,4 @@ public class KingViewer implements ElementViewer<King> {
         animationFrame++;
         return sprite;
     }
-
 }

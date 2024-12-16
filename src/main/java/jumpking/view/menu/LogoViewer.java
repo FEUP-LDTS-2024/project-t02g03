@@ -6,7 +6,9 @@ import jumpking.view.Sprite;
 import jumpking.view.SpriteLoader;
 
 import java.io.IOException;
+
 public class LogoViewer {
+
     private final Sprite sprite;
 
     public LogoViewer(SpriteLoader spriteLoader) throws IOException {
