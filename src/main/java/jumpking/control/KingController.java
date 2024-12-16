@@ -101,7 +101,7 @@ public class KingController extends Controller {
                     }
                     break;
                 case PAUSE:
-                    app.setState(new PauseState(new PauseMenu(king.getX(), king.getY(), scene.getSceneCode()), app.getSpriteLoader()));
+                    app.setState(new PauseState(new PauseMenu(king.getX(), king.getY(), scene.getSceneCode(), king.getJumps(), king.getStartTime()), app.getSpriteLoader()));
                     break;
                 case QUIT:
                     app.setState(new CreditsState(new Credits(king), app.getSpriteLoader()));
