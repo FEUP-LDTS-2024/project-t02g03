@@ -134,7 +134,7 @@ public class King extends Element{
         return startTime;
     }
 
-    public void setStartTime(long birthTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
