@@ -133,6 +133,7 @@ public class KingController extends Controller {
         if (scene.isKingFalling()) {
             scene.getKing().setState(King.PlayerState.FALLING);
             scene.moveDown();
+            scene.moveDown();
         }
         // Ensure the final position is drawn
         gui.draw();
