@@ -1,15 +1,8 @@
 package jumpking.model.game.elements;
 
 public class Block extends Element {
-    private final char symbol;
 
-    public Block(int x, int y, char symbol) {
+    public Block(int x, int y) {
         super(x, y);
-        this.symbol = symbol;
     }
-
-    public char getSymbol() {
-        return symbol;
-    }
-
 }
