@@ -42,19 +42,19 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     public void drawStatistics(GUI gui){
         gui.drawTextImage(new Position(256,117), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
         gui.drawTextImage(new Position(262,148), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
-        List<Integer>digitsjumps = getDigitsJumps();
-        List<Integer>digitstime = getDigitsTime();
+        List<Integer>digitsJumps = getDigitsJumps();
+        List<Integer>digitsTime = getDigitsTime();
 
         Position position = new Position(261,130);
         int space = 10;
-        for(int digitjump : digitsjumps){
+        for(int digitjump : digitsJumps){
             drawDigit(digitjump,position,gui);
             position.setPosition(position.getX()+space, position.getY());
         }
         position.setPosition(258,161);
-        for(int digittime : digitstime){
-            drawDigit(digittime,position,gui);
-            if(digittime!=10)
+        for(int digitTime : digitsTime){
+            drawDigit(digitTime,position,gui);
+            if(digitTime != 10)
             position.setPosition(position.getX()+space, position.getY());
             else
             position.setPosition(position.getX()+6, position.getY());
