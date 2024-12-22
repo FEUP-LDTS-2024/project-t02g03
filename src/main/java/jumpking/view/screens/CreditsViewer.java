@@ -72,7 +72,7 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
         return Arrays.asList(minutes/10, minutes%10,10,seconds/10, seconds%10);
     }
 
-    public void drawDigit(int digit,Position position,GUI gui){
+    public void drawDigit(int digit, Position position, GUI gui){
         switch(digit){
             case 0:
                 gui.drawTextImage(position, numberstext.getZero(), TextColor.Factory.fromString("#000000"),true);
