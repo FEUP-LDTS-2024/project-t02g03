@@ -14,12 +14,11 @@ public class CreditsState extends State<Credits> {
 
     public CreditsState(Credits model, SpriteLoader spriteLoader) throws IOException {
         super(model, spriteLoader);
-
     }
 
     @Override
     protected Controller<Credits> createController() {
-        return new CreditsController<Credits>(getModel());
+        return new CreditsController(getModel());
     }
 
     @Override
