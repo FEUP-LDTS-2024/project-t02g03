@@ -21,10 +21,6 @@ public class Credits {
         loadBackground();
     }
 
-    public void setJumps(int jumps) {
-        this.jumps = jumps;
-    }
-
     public int getJumps() {
         return jumps;
     }

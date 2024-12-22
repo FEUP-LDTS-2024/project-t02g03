@@ -1,4 +1,4 @@
-package jumpking.model.game.scene;
+package jumpking.model.game;
 
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.model.BackgroundImageLoader;

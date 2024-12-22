@@ -16,7 +16,7 @@ public class SpriteTest {
 
     @BeforeEach
     public void setUp() {
-        this.gui = Mockito.mock(GUI.class);
+        gui = Mockito.mock(GUI.class);
     }
 
     @Test

@@ -1,5 +1,4 @@
 package jumpking.control;
-
 import jumpking.Application;
 import jumpking.gui.GUI;
 import jumpking.model.game.scene.Scene;

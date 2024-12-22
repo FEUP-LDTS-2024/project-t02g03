@@ -74,13 +74,13 @@ public class LanternaGUI implements GUI {
         TextGraphics tg = screen.newTextGraphics();
         int y = position.getY();
         for (String imageline : image) {
-            drawLine(new Position(position.getX(), y), imageline,color,isCredits);
+            drawLineTextImage(new Position(position.getX(), y), imageline,color,isCredits);
             y++;
         }
     }
 
     @Override
-    public void drawLine(Position position, String imageline, TextColor color,boolean isCredits) {
+    public void drawLineTextImage(Position position, String imageline, TextColor color, boolean isCredits) {
         TextGraphics tg = screen.newTextGraphics();
         if(!isCredits){
             tg.putString(position.getX(), position.getY(), imageline);

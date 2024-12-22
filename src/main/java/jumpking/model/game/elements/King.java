@@ -15,9 +15,7 @@ public class King extends Element{
         CROUCHING,
         JUMPING,
         FALLING,
-        REBOUNDING,
         RUNNING,
-        FALLEN
     }
 
     private Queue<Position> jumpPositions = new LinkedList<>();
