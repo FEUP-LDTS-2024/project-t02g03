@@ -48,12 +48,12 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
         Position position = new Position(261,130);
         int space = 10;
         for(int digitjump : digitsjumps){
-            drawdigit(digitjump,position,gui);
+            drawDigit(digitjump,position,gui);
             position.setPosition(position.getX()+space, position.getY());
         }
         position.setPosition(258,161);
         for(int digittime : digitstime){
-            drawdigit(digittime,position,gui);
+            drawDigit(digittime,position,gui);
             if(digittime!=10)
             position.setPosition(position.getX()+space, position.getY());
             else
@@ -72,7 +72,7 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
         return Arrays.asList(minutes/10, minutes%10,10,seconds/10, seconds%10);
     }
 
-    public void drawdigit(int digit,Position position,GUI gui){
+    public void drawDigit(int digit,Position position,GUI gui){
         switch(digit){
             case 0:
                 gui.drawTextImage(position, numberstext.getZero(), TextColor.Factory.fromString("#000000"),true);
