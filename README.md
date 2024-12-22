@@ -1,7 +1,7 @@
 <h1 align="center"> LDTS_T02G03 - Jump King </h1>
 
 <p align="center">
-    <img src="documents/resources/Jump King Title Logo.png" alt="logo">
+    <img src="documents/resources/images/Jump King Title%20Logo.png" alt="logo">
 </p>
 
 ## GAME DESCRIPTION
@@ -35,18 +35,18 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
 ## GAME SCREENSHOTS AND MOCKUPS
 **Starting Point**
 <p align="center">
-    <img src="documents/mockups/starting.png" alt="starting point">
+    <img src="documents/resources/screenshots/starting.png" alt="starting point">
 </p>
 
 **Whole Map Preview**
 <p align="center">
-    <img src="documents/mockups/Redcrown_woods.png" alt="whole map">
+    <img src="documents/resources/mockups/Redcrown_woods.png" alt="whole map">
 </p>
 
 
 ## Sprite Sheet
 <p align="center">
-    <img src="documents/mockups/Jump King pixel sheet.png" alt="Sprite Sheet">
+    <img src="documents/resources/mockups/Jump King pixel sheet.png" alt="Sprite Sheet">
 </p>
 
 ## Design Patterns and Architecure
@@ -56,7 +56,7 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
     - **Consequences**: Can lead to a more complex code structure. It requires careful planning and understanding of the pattern to implement correctly.
 
 <p align="center">
-    <img src="documents/uml/MVC Diagram.png" alt="MVC">
+    <img src="documents/resources/uml/MVC Diagram.png" alt="MVC">
 </p>
 
 - **Builder Pattern**:
@@ -73,14 +73,14 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
   - **Consequences**: Can lead to a large number of classes and increased complexity. However, it makes the code more flexible and easier to maintain.
 
 <p align="center">
-    <img src="documents/uml/State Diagram.png" alt="Design Patterns">
+    <img src="documents/resources/uml/State Diagram.png" alt="Design Patterns">
 </p>
 
 <p>
 Here is the state machine for the game:
 </p>
 <p align="center">
-    <img src="documents/uml/Game State Machine.png" alt="State Machine">
+    <img src="documents/resources/uml/Game State Machine.png" alt="State Machine">
 </p>
 
 ### Problems/Features and Consequences:
@@ -91,7 +91,7 @@ Here is the state machine for the game:
 
 ## UML CLASS STRUCTURES AND OVERVIEW
 <p align="center">
-    <img src="documents/uml/Structure%20UML.png" alt="UML">
+    <img src="documents/resources/uml/Structure%20UML.png" alt="UML">
 </p>
 
 ## Testing
@@ -99,8 +99,8 @@ Here is the state machine for the game:
 - **Mock Testing** - We used Mockito to mock dependencies in our tests, such as the Lanterna library. This allowed us to test our code without relying on external dependencies.
   - Test results:
 <p>
-    <img src="documents/tests/Tests Pass Rate.png" alt="Tests">
+    <img src="documents/resources/tests/Tests Pass Rate.png" alt="Tests">
 </p>
 <p>
-  <img src="documents/tests/Test Coverage.png" alt="Tests">
+  <img src="documents/resources/tests/Test Coverage.png" alt="Tests">
 </p>
