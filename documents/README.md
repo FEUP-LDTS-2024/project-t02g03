@@ -5,7 +5,7 @@
 </p>
 
 ## GAME DESCRIPTION
-<p>Jump King is a 2D platformer game where the main objective is to reach the top of the map. However, if you make a mistake, you risk falling and losing a significant part of your progress.
+<p>Jump King is a 2D platformer game where the main objective is to reach the top of the map in the fewest jumps possible. However, if you make a mistake, you risk falling and losing a significant part of your progress.
 </p>
 
 <p>This game was developed for the hardcore players that are patient, 
@@ -20,17 +20,17 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
 ## Table of Contents
 
 - [List of Features](#list-of-features)
-- [Game Controls](#game-controls)
 - [Notes About Features](#notes-about-features)
+- [Game Controls](#game-controls)
+- [Game Screenshots and Mockups](#game-screenshots-and-mockups)
 - [General Structure](#general-structure)
 - [Code Design](#design)
   - [Model-View-Controller](#code-structure)
   - [Game Loop](#game-loop)
-  - [(Game) State Pattern](#multiple-game-states)
+  - [State Pattern](#multiple-game-states)
+  - [Adapter Pattern](#adapter-pattern)
   - [Builder Pattern](#builder-pattern)
   - [Factory Pattern](#factory-pattern)
-  - [State Pattern](#state-pattern)
-  - [Singleton](#singleton)
 - [Code Smells](#known-code-smells)
 - [Code Testing](#testing)
 - [Self Evaluation](#self-evaluation)
@@ -47,33 +47,67 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
 - **Credits** - When finishing the game, either by quitting or reaching the `Princess` the user is presented with an ending screen, where he can visualize the number of jumps and the total time of taken. Once done, the user can return to the main menu using the `q` button.
 
 ## Notes About Features
-
 Initially, we aimed to expand the player's movement options through the implementation of a rebounding mechanic, where, when the player would collide with a wall he would bounce back and fall down.
 However, as we progressed through the development of the game and as time passed, we ended up abandoning this feature in favor of allowing for other inputs to be processed while the `King` is falling including jumping. As a result, this initialially planned feature was discarded and we have no plans of implementing it in the future as we're very satisfied with the result of our efforts.
 
 ## GAME CONTROLS
 - **Movement** - The player can move left and right using the `←` and `→` keys, respectively.
-- **Jump** - The player can jump using the `↑` key. After pressing it once the `King` will prepare to jump, the longer the key is left, the higher the player will jump. The `King`jumps after a second key input is placed, jumping either upwards, towards the left or towards the right.
+- **Jump** - The player can jump using the `↑` key. After paressing it once the `King` will prepare to jump, the longer the key is left, the higher the player will jump. The `King`jumps after a second key input is placed, jumping either upwards, towards the left or towards the right.
 - **Pause** - The player can pause the game by pressing the `p` key. This will bring up the `pause menu`, where the player can choose to resume the game, or exit the application.
 - **Quit** - The player can quit the game at any time by pressing the `q` key. This will bring up the `credits`, which will then lead to the `main menu`, where the player can choose to start a new game or quit the application.
 
-## General Structure
-
 ## GAME SCREENSHOTS AND MOCKUPS
-**Starting Point**
+<h4 align="center">
+  King Character Design
+</h4>
 <p align="center">
-    <img src="resources/screenshots/starting.png" alt="starting point">
+    <img src="resources/mockups/king.gif" alt="starting point">
 </p>
 
-**Whole Map Preview**
+<h4 align="center">
+  Sprite Sheet
+</h4>
+<p align="center">
+    <img src="resources/mockups/Jump King pixel sheet.png" alt="Sprite Sheet">
+</p>
+
+<h4 align="center">
+  Start Menu
+</h4>
+<p align="center">
+    <img src="resources/screenshots/main-menu.png" alt="main menu">
+</p>
+
+<h4 align="center">
+  Credits
+</h4>
+<p align="center">
+    <img src="resources/screenshots/credits.png" alt="main menu">
+</p>
+
+<h4 align="center">
+  Level and Gameplay Showcase
+</h4>
+<p align="center">
+    <img src="resources/screenshots/level-showcase-1.gif" alt="level showcase 1">
+</p>
+<p align="center">
+    <img src="resources/screenshots/level-showcase-2.gif" alt="level showcase 2">
+</p>
+<p align="center">
+    <img src="resources/screenshots/level-showcase-3.gif" alt="level showcase 3">
+</p>
+
+<h4 align="center">
+  Map Preview
+</h4>
 <p align="center">
     <img src="resources/mockups/Redcrown_woods.png" alt="whole map">
 </p>
 
-
-## Sprite Sheet
+## General Structure
 <p align="center">
-    <img src="resources/mockups/Jump King pixel sheet.png" alt="Sprite Sheet">
+    <img src="resources/uml/Structure%20UML.png" alt="UML">
 </p>
 
 ## Design Patterns and Architecure
@@ -115,11 +149,6 @@ Here is the state machine for the game:
 - **Builder Pattern**: It makes the construction of complex objects more manageable and readable. However, it can add unnecessary complexity if the objects being constructed are simple.
 - **Factory Pattern**: It provides flexibility in object creation and decouples the client code from the concrete classes. However, it can make the code harder to follow due to the added layer of abstraction.
 - **State Pattern**: It makes the code more flexible and easier to maintain by encapsulating state-specific behavior. However, it can lead to an increase in the number of classes and overall complexity.
-
-## UML CLASS STRUCTURES AND OVERVIEW
-<p align="center">
-    <img src="resources/uml/Structure%20UML.png" alt="UML">
-</p>
 
 ## Known Code Smells
 
