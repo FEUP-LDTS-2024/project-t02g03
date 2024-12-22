@@ -32,16 +32,16 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     }
 
     public void drawMessages(GUI gui){
-        gui.drawTextImage(new Position(47,10), gameOverText.getgameOverText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(47,10), gameOverText.getGameOverText(), TextColor.Factory.fromString("#000000"),true);
     }
 
     public void drawNames(GUI gui){
-        gui.drawTextImage(new Position(230,225), namesText.getnamesText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(230,225), namesText.getNamesText(), TextColor.Factory.fromString("#000000"),true);
     }
 
     public void drawStatistics(GUI gui){
-        gui.drawTextImage(new Position(256,117), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
-        gui.drawTextImage(new Position(262,148), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(256,117), jumpsText.getJumpsText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(262,148), timeText.getTimeText(), TextColor.Factory.fromString("#000000"),true);
         List<Integer>digitsJumps = getDigitsJumps();
         List<Integer>digitsTime = getDigitsTime();
 
