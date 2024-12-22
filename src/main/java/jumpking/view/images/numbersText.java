@@ -1,6 +1,6 @@
 package jumpking.view.images;
 
-public class numberstext {
+public class numbersText {
     private static final String[] one = {
             "  ██",
             "  ██",
