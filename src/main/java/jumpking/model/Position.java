@@ -1,5 +1,7 @@
 package jumpking.model;
 
+import java.util.Objects;
+
 public class Position {
 
     private int x;
@@ -34,8 +36,12 @@ public class Position {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Position position = (Position) obj;
+        if (!(obj instanceof Position position)) return false;
         return x == position.x && y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

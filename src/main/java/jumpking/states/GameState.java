@@ -10,6 +10,7 @@ import jumpking.view.SpriteLoader;
 import jumpking.view.ViewProvider;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 public class GameState extends State<Scene> {
 
@@ -27,8 +28,7 @@ public class GameState extends State<Scene> {
         try {
             return new SceneController(getModel(), new KingController(getModel()));
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            throw new UncheckedIOException(e);
         }
     }
 

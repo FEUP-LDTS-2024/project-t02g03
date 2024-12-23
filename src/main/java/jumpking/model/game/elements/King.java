@@ -3,10 +3,7 @@ package jumpking.model.game.elements;
 import jumpking.model.Position;
 import jumpking.model.game.scene.Scene;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class King extends Element{
 
@@ -15,19 +12,17 @@ public class King extends Element{
         CROUCHING,
         JUMPING,
         FALLING,
-        REBOUNDING,
         RUNNING,
-        FALLEN
     }
 
-    private Queue<Position> jumpPositions = new LinkedList<>();
+    private Queue<Position> jumpPositions = new ArrayDeque<>();
 
     public Queue<Position> getJumpPositions() {
         return jumpPositions;
     }
 
     public void updateJumpPositions(int yOffset) {
-        Queue<Position> updatedPositions = new LinkedList<>();
+        Queue<Position> updatedPositions = new ArrayDeque<>();
         for (Position pos : jumpPositions) {
             updatedPositions.add(new Position(pos.getX(), pos.getY() + yOffset));
         }

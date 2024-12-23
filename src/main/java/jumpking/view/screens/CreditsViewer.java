@@ -6,19 +6,18 @@ import jumpking.model.Position;
 import jumpking.model.credits.Credits;
 import jumpking.view.ViewProvider;
 import jumpking.view.images.*;
-import jumpking.view.menu.LogoViewer;
-
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
 
-    private final LogoViewer logoViewer;
+    private HashMap<Integer,String[]> digitTexts;
 
     public CreditsViewer(T model, ViewProvider viewProvider){
         super(model);
-        this.logoViewer = viewProvider.getLogoViewer();
+        initializeDigitTexts();
     }
 
     @Override
@@ -47,17 +46,18 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
 
         Position position = new Position(261,130);
         int space = 10;
-        for(int digitjump : digitsJumps){
-            drawDigit(digitjump,position,gui);
+        for(int digitJump : digitsJumps){
+            drawDigit(digitJump,position,gui);
             position.setPosition(position.getX()+space, position.getY());
         }
         position.setPosition(258,161);
         for(int digitTime : digitsTime){
             drawDigit(digitTime,position,gui);
-            if(digitTime != 10)
-            position.setPosition(position.getX()+space, position.getY());
-            else
-            position.setPosition(position.getX()+6, position.getY());
+            if(digitTime!=10){
+                position.setPosition(position.getX()+space, position.getY());
+            } else{
+                position.setPosition(position.getX()+6, position.getY());
+            }
         }
     }
 
@@ -71,42 +71,25 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
         int seconds = getModel().getSeconds();
         return Arrays.asList(minutes/10, minutes%10,10,seconds/10, seconds%10);
     }
+    public void initializeDigitTexts() {
+        digitTexts = new HashMap<>();
+        digitTexts.put(0, numbersText.getZero());
+        digitTexts.put(1, numbersText.getOne());
+        digitTexts.put(2, numbersText.getTwo());
+        digitTexts.put(3, numbersText.getThree());
+        digitTexts.put(4, numbersText.getFour());
+        digitTexts.put(5, numbersText.getFive());
+        digitTexts.put(6, numbersText.getSix());
+        digitTexts.put(7, numbersText.getSeven());
+        digitTexts.put(8, numbersText.getEight());
+        digitTexts.put(9, numbersText.getNine());
+        digitTexts.put(10, numbersText.getColon());
+    }
 
-    public void drawDigit(int digit, Position position, GUI gui){
-        switch(digit){
-            case 0:
-                gui.drawTextImage(position, numbersText.getZero(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 1:
-                gui.drawTextImage(position, numbersText.getOne(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 2:
-                gui.drawTextImage(position, numbersText.getTwo(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 3:
-                gui.drawTextImage(position, numbersText.getThree(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 4:
-                gui.drawTextImage(position, numbersText.getFour(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 5:
-                gui.drawTextImage(position, numbersText.getFive(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 6:
-                gui.drawTextImage(position, numbersText.getSix(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 7:
-                gui.drawTextImage(position, numbersText.getSeven(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 8:
-                gui.drawTextImage(position, numbersText.getEight(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 9:
-                gui.drawTextImage(position, numbersText.getNine(), TextColor.Factory.fromString("#000000"),true);
-                break;
-            case 10:
-                gui.drawTextImage(position, numbersText.getColon(), TextColor.Factory.fromString("#000000"),true);
-                break;
+    public void drawDigit(int digit, Position position, GUI gui) {
+        String[] text = digitTexts.get(digit);
+        if (text != null) {
+            gui.drawTextImage(position, text, TextColor.Factory.fromString("#000000"), true);
         }
     }
 }

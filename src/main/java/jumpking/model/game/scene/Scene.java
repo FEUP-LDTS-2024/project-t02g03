@@ -15,7 +15,7 @@ import java.util.Queue;
 
 public class Scene {
 
-    private int sceneCode;
+    private final int sceneCode;
     private King king;
     private Block[] blocks;
     private Princess princess;
@@ -28,10 +28,6 @@ public class Scene {
         this.princess = null;
     }
 
-    public void setSceneCode(int sceneCode) {
-        this.sceneCode = sceneCode;
-    }
-
     public int getSceneCode() {
         return sceneCode;
     }
@@ -42,10 +38,6 @@ public class Scene {
 
     public void setKing(King king) {
         this.king = king;
-    }
-
-    public Block[] getBlocks() {
-        return blocks;
     }
 
     public void setBlocks(Block[] blocks) {
@@ -116,11 +108,8 @@ public class Scene {
 
         Position kingBottomRight = king.getBottomRight();
         Position kingTopLeft = king.getTopLeft();
-        Position kingTopRight = king.getTopRight();
-
         Position princessBottomRight = princess.getBottomRight();
         Position princessTopLeft = princess.getTopLeft();
-        Position princessTopRight = princess.getTopRight();
 
         boolean intersects = kingTopLeft.getX() < princessBottomRight.getX() &&
                 kingBottomRight.getX() > princessTopLeft.getX() &&

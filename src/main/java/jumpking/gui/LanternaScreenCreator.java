@@ -17,11 +17,9 @@ import java.util.Objects;
 public class LanternaScreenCreator implements ScreenCreator {
 
     private final DefaultTerminalFactory terminalFactory;
-    private final TerminalSize terminalSize;
 
     public LanternaScreenCreator(DefaultTerminalFactory terminalFactory, TerminalSize terminalSize) {
         this.terminalFactory = terminalFactory;
-        this.terminalSize = terminalSize;
         terminalFactory.setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
     }

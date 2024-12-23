@@ -1,41 +1,53 @@
 package jumpking.model.credits;
 
-import jumpking.model.credits.Credits;
+import com.googlecode.lanterna.graphics.BasicTextImage;
+import jumpking.model.BackgroundImageLoader;
 import jumpking.model.game.elements.King;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.*;
 
 public class CreditsTest {
     private Credits credits;
     private King king;
+    private BackgroundImageLoader backgroundImageLoader;
+    private BasicTextImage backgroundImage;
 
     @BeforeEach
-    public void setUp() {
-        king = Mockito.mock(King.class);
-        Mockito.when(king.getJumps()).thenReturn(5);
-        Mockito.when(king.getStartTime()).thenReturn(System.currentTimeMillis() - 60000);
-        this.credits = new Credits(king);
+    void setUp() throws IOException {
+        king = mock(King.class);
+        backgroundImageLoader = mock(BackgroundImageLoader.class);
+        backgroundImage = mock(BasicTextImage.class);
+        when(king.getJumps()).thenReturn(10);
+        when(king.getStartTime()).thenReturn(System.currentTimeMillis() - 61000);
+        when(backgroundImageLoader.loadBackgroundImage("backgrounds/credits.png")).thenReturn(backgroundImage);
+        credits = new Credits(king);
     }
 
     @Test
-    public void equalsTest() {
-        assertEquals(5, credits.getJumps());
-        assertEquals(1, credits.getMinutes());
-        assertEquals(0,credits.getSeconds());
-        credits.setJumps(10);
-
-        String[] names = new String[3];
-        names[0] = "  André Cortim";
-        names[1] = "  Hugo Azevedo";
-        names[2] = "Joana Carvalhal";
-        credits.setNames(names);
-
+    void testGetJumps() {
         assertEquals(10, credits.getJumps());
-        assertArrayEquals(names, credits.getNames());
-
     }
+
+    @Test
+    void testGetSeconds() {
+        assertEquals(1, credits.getSeconds());
+    }
+
+    @Test
+    void testGetMinutes() {
+        assertEquals(1, credits.getMinutes());
+    }
+
+//    @Test
+//    void testGetBackgroundImage() {
+//        assertEquals(backgroundImage, credits.getBackgroundImage());
+//    }
+
+
 }

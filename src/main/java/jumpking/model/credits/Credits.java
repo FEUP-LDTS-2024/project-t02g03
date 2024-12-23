@@ -5,10 +5,11 @@ import jumpking.model.game.elements.King;
 
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 public class Credits {
 
-    private int jumps;
+    private final int jumps;
     private final int minutes;
     private final int seconds;
     private BasicTextImage backgroundImage;
@@ -19,10 +20,6 @@ public class Credits {
         this.seconds = (int) ((duration / 1000) % 60);
         this.minutes = (int) ((duration / 1000) / 60);
         loadBackground();
-    }
-
-    public void setJumps(int jumps) {
-        this.jumps = jumps;
     }
 
     public int getJumps() {
@@ -46,7 +43,7 @@ public class Credits {
         try {
             this.backgroundImage = loader.loadBackgroundImage("backgrounds/credits.png");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
     }
 }

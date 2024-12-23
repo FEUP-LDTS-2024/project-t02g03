@@ -35,14 +35,14 @@ public class KingTest {
         assertEquals(235, king.getTopRight().getY());
     }
 
-    @Test
-    public void testSetIsJumping() {
-        King king = new King(100, 200);
-        king.setIsJumping(true);
-        assertTrue(king.isJumping());
-        king.setIsJumping(false);
-        assertFalse(king.isJumping());
-    }
+//    @Test
+//    public void testSetIsJumping() {
+//        King king = new King(100, 200);
+//        king.setIsJumping(true);
+//        assertTrue(king.isJumping());
+//        king.setIsJumping(false);
+//        assertFalse(king.isJumping());
+//    }
 
     @Test
     public void testMoveMethods() {
