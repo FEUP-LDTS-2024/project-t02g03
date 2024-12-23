@@ -79,13 +79,6 @@ However, as we progressed through the development of the game and as time passed
 </p>
 
 <h4 align="center">
-  Credits
-</h4>
-<p align="center">
-    <img src="resources/screenshots/credits.png" alt="main menu">
-</p>
-
-<h4 align="center">
   Level and Gameplay Showcase
 </h4>
 <p align="center">
@@ -96,6 +89,13 @@ However, as we progressed through the development of the game and as time passed
 </p>
 <p align="center">
     <img src="resources/screenshots/level-showcase-3.gif" alt="level showcase 3">
+</p>
+
+<h4 align="center">
+  Credits
+</h4>
+<p align="center">
+    <img src="resources/screenshots/credits.png" alt="credits">
 </p>
 
 <h4 align="center">
