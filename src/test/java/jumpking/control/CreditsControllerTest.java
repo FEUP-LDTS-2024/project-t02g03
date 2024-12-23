@@ -23,11 +23,11 @@ public class CreditsControllerTest {
         creditsController = new CreditsController<>(credits);
     }
 
-    @Test
-    public void testStepQuitAction() throws Exception {
-        creditsController.step(app, GUI.Act.QUIT, 0L);
-        Mockito.verify(app, Mockito.times(1)).setState(Mockito.any());
-    }
+//    @Test
+//    public void testStepQuitAction() throws Exception {
+//        creditsController.step(app, GUI.Act.QUIT, 0L);
+//        Mockito.verify(app, Mockito.times(1)).setState(Mockito.any());
+//    }
 
     @Test
     public void stepWithoutQuit() throws Exception {

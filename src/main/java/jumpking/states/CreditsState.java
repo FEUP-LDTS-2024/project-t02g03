@@ -19,7 +19,7 @@ public class CreditsState extends State<Credits> {
 
     @Override
     protected Controller<Credits> createController() {
-        return new CreditsController<Credits>(getModel());
+        return new CreditsController<>(getModel());
     }
 
     @Override

@@ -8,8 +8,4 @@ public class Block extends Element {
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
-        return symbol;
-    }
-
 }

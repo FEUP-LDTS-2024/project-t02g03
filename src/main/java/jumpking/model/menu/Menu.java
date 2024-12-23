@@ -4,6 +4,7 @@ import com.googlecode.lanterna.graphics.BasicTextImage;
 import jumpking.model.BackgroundImageLoader;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 
 public abstract class Menu {
@@ -50,7 +51,7 @@ public abstract class Menu {
         try {
             this.backgroundImage = loader.loadBackgroundImage("backgrounds/scene0.png");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
     }
 }

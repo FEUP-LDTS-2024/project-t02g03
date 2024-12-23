@@ -7,6 +7,7 @@ import jumpking.model.game.elements.Princess;
 import jumpking.model.game.elements.King;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class SceneBuilder {
         if (resource == null){
             throw new FileNotFoundException("Level file not found!");
         }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(resource));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8));
         lines = readLines(reader);
         loadBackgroundImage();
     }
@@ -41,7 +42,7 @@ public class SceneBuilder {
 
     public Scene buildScene(King king) {
         Scene scene = new Scene(sceneCode);
-        scene.setKing(createKing(scene, king));
+        scene.setKing(createKing(king));
         scene.setBlocks(buildBlocks());
         if (sceneCode == 4) {
             scene.setPrincess(createPrincess());
@@ -71,7 +72,7 @@ public class SceneBuilder {
         return blocks.toArray(new Block[0]);
     }
 
-    private King createKing(Scene scene, King king) {
+    private King createKing(King king) {
         return king;
     }
 

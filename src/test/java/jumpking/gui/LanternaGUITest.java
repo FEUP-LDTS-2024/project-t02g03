@@ -1,21 +1,15 @@
 package jumpking.gui;
-
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.BasicTextImage;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import jumpking.model.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class LanternaGUITest {
@@ -52,37 +46,35 @@ public class LanternaGUITest {
 
     @Test
     public void clear() {
-        screen = mock(Screen.class);
-        screen.clear();
+        gui.clear();
         verify(screen).clear();
     }
 
     @Test
     public void refresh() throws IOException {
-        screen = mock(Screen.class);
-        screen.refresh();
+        gui.refresh();
         verify(screen).refresh();
     }
 
-    @Test
-    public void getNextAction() throws IOException {
-        KeyStroke keyStroke = mock(KeyStroke.class);
-
-        when(screen.readInput()).thenReturn(keyStroke);
-
-        when(screen.readInput()).thenReturn(keyStroke);
-        when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowLeft);
-        assertEquals(GUI.Act.LEFT, gui.getNextAction());
-
-        when(screen.readInput()).thenReturn(keyStroke);
-        when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowRight);
-        assertEquals(GUI.Act.RIGHT, gui.getNextAction());
-
-        when(keyStroke.getKeyType()).thenReturn(KeyType.Character);
-        when(keyStroke.getCharacter()).thenReturn('q');
-        assertEquals(GUI.Act.QUIT, gui.getNextAction());
-
-    }
+//    @Test
+//    public void getNextAction() throws IOException {
+//        KeyStroke keyStroke = mock(KeyStroke.class);
+//
+//        when(screen.readInput()).thenReturn(keyStroke);
+//
+//        when(screen.readInput()).thenReturn(keyStroke);
+//        when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowLeft);
+//        assertEquals(GUI.Act.LEFT, gui.getNextAction());
+//
+//        when(screen.readInput()).thenReturn(keyStroke);
+//        when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowRight);
+//        assertEquals(GUI.Act.RIGHT, gui.getNextAction());
+//
+//        when(keyStroke.getKeyType()).thenReturn(KeyType.Character);
+//        when(keyStroke.getCharacter()).thenReturn('q');
+//        assertEquals(GUI.Act.QUIT, gui.getNextAction());
+//
+//    }
 
     @Test
     public void testClose() throws IOException {

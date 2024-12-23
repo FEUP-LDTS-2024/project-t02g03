@@ -18,18 +18,13 @@ import static java.awt.event.KeyEvent.*;
 
 public class LanternaGUI implements GUI {
 
-    private final ScreenCreator screenCreator;
-    private final String title;
-    private Screen screen;
-    private KeyAdapter keyAdapter;
+    private final Screen screen;
     private static final List<Integer> SPAM_KEYS = Arrays.asList(VK_LEFT, VK_RIGHT);
     private KeyEvent priorityKeyPressed;
     private KeyEvent keyPressed;
 
     public LanternaGUI(ScreenCreator screenCreator, String title) throws IOException, URISyntaxException, FontFormatException {
-        this.screenCreator = screenCreator;
-        this.title = title;
-        this.keyAdapter = createKeyAdapter();
+        KeyAdapter keyAdapter = createKeyAdapter();
         this.screen = screenCreator.createScreen(title, keyAdapter);
         this.screen.startScreen();
         this.keyPressed = null;
@@ -71,24 +66,23 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawTextImage(Position position, String[] image, TextColor color,boolean isCredits) {
-        TextGraphics tg = screen.newTextGraphics();
         int y = position.getY();
-        for (String imageline : image) {
-            drawLineTextImage(new Position(position.getX(), y), imageline,color,isCredits);
+        for (String imageLine : image) {
+            drawLineTextImage(new Position(position.getX(), y), imageLine,color,isCredits);
             y++;
         }
     }
 
     @Override
-    public void drawLineTextImage(Position position, String imageline, TextColor color, boolean isCredits) {
+    public void drawLineTextImage(Position position, String imageLine, TextColor color, boolean isCredits) {
         TextGraphics tg = screen.newTextGraphics();
         if(!isCredits){
-            tg.putString(position.getX(), position.getY(), imageline);
+            tg.putString(position.getX(), position.getY(), imageLine);
         }
         int x = position.getX();
         int y = position.getY();
-        for (int i = 0; i < imageline.length(); i++) {
-            char character = imageline.charAt(i);
+        for (int i = 0; i < imageLine.length(); i++) {
+            char character = imageLine.charAt(i);
             if (character != ' ') {
                 tg.setForegroundColor(color);
                 tg.setBackgroundColor(color);

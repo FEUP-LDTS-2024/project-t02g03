@@ -80,7 +80,7 @@ public class CreditsViewerTest {
     @Test
     void testDrawDigit(){
         Position position = new Position(0, 0);
-        creditsViewer.drawdigit(1, position, gui);
+        creditsViewer.drawDigit(1, position, gui);
         verify(gui, times(1)).drawTextImage(eq(position), any(String[].class), any(TextColor.class), eq(true));
     }
 }

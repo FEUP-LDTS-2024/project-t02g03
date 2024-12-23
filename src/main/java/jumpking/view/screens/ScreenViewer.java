@@ -22,14 +22,11 @@ public abstract class ScreenViewer<T> {
     public abstract void draw(GUI gui, long time) throws IOException;
 
     protected void drawBackground(GUI gui) {
-        if (model instanceof Scene) {
-            Scene scene = (Scene) model;
+        if (model instanceof Scene scene) {
             gui.drawImage(scene.getBackgroundImage());
-        }else if(model instanceof Menu){
-            Menu menu = (Menu) model;
+        }else if(model instanceof Menu menu){
             gui.drawImage(menu.getBackgroundImage());
-        }else if(model instanceof Credits){
-            Credits credits = (Credits) model;
+        }else if(model instanceof Credits credits){
             gui.drawImage(credits.getBackgroundImage());
         }
     }
