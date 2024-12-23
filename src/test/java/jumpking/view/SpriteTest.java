@@ -24,15 +24,14 @@ public class SpriteTest {
     }
 
     @Test
-    public void testSpriteInitialization() throws IOException {
+    public void testSpriteInitialization() {
         assertNotNull(sprite.getSprite());
     }
 
     @Test
-    public void testDraw() throws IOException {
+    public void testDraw()  {
         Position position = new Position(0, 0);
         sprite.draw(gui, position);
-        // Verify that drawPixel is called with the correct parameters
         BufferedImage image = sprite.getSprite();
         for (int i = 0; i < image.getWidth(); i++) {
             for (int j = 0; j < image.getHeight(); j++) {
@@ -47,10 +46,9 @@ public class SpriteTest {
     }
 
     @Test
-    public void testDrawFlipped() throws IOException {
+    public void testDrawFlipped() {
         Position position = new Position(0, 0);
         sprite.drawFlipped(gui, position);
-        // Verify that drawPixel is called with the correct parameters
         BufferedImage image = sprite.getSprite();
         int width = image.getWidth();
         for (int i = 0; i < width; i++) {
@@ -74,10 +72,19 @@ public class SpriteTest {
     }
 
     @Test
-    public void testMockDrawFlipped() throws IOException {
+    public void testMockDrawFlipped()  {
         Sprite mockSprite = Mockito.mock(Sprite.class);
         Position position = new Position(0, 0);
         mockSprite.drawFlipped(gui, position);
         verify(mockSprite, times(1)).drawFlipped(gui, position);
+    }
+
+    @Test
+    public void testDrawWithNullSprite() {
+        Sprite mockSprite = Mockito.mock(Sprite.class);
+        when(mockSprite.getSprite()).thenReturn(null);
+        Position position = new Position(0, 0);
+        mockSprite.draw(gui, position);
+        verify(gui, never()).drawPixel(any(Position.class), any(TextColor.class));
     }
 }

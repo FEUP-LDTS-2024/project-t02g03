@@ -136,4 +136,22 @@ class KingControllerTest {
         assertEquals(expectedJumpPositions, actualJumpPositions);
         verify(king, times(1)).getJumpPositions();
     }
+
+    @Test
+    void testStepUpActionWithDifferentHeights() throws IOException, InterruptedException {
+        when(king.getState()).thenReturn(King.PlayerState.IDLE);
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis());
+        Thread.sleep(50); // Simulate key press duration
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis() + 50);
+        verify(king, times(1)).setState(King.PlayerState.JUMPING);
+        verify(scene, times(1)).jump(anyInt(), eq(0));
+    }
+
+    @Test
+    void testStepNoneActionTwice() throws IOException {
+        when(king.getState()).thenReturn(King.PlayerState.RUNNING);
+        kingController.step(app, GUI.Act.NONE, System.currentTimeMillis());
+        kingController.step(app, GUI.Act.NONE, System.currentTimeMillis() + 100);
+        verify(king, times(1)).setState(King.PlayerState.IDLE);
+    }
 }

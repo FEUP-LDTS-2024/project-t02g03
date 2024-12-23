@@ -22,7 +22,7 @@ public abstract class State<T> {
     }
 
     protected abstract ScreenViewer<T> createScreenViewer(ViewProvider viewProvider);
-    protected abstract Controller<T> createController();
+    protected abstract Controller<T> createController() throws IOException;
 
     public T getModel(){
         return model;
