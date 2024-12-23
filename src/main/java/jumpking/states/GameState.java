@@ -24,12 +24,8 @@ public class GameState extends State<Scene> {
     }
 
     @Override
-    protected Controller<Scene> createController() {
-        try {
-            return new SceneController(getModel(), new KingController(getModel()));
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
+    protected Controller<Scene> createController() throws IOException {
+        return new SceneController(getModel(), new KingController(getModel()));
     }
 
 }

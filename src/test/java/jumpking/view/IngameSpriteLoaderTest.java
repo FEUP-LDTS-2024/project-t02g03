@@ -53,4 +53,23 @@ public class IngameSpriteLoaderTest {
         }
         return true;
     }
+
+    @Test
+    public void getSpriteFromCacheTest() throws IOException {
+        String filePath = "sprites/king-fallen.png";
+        URL source = getClass().getClassLoader().getResource(filePath);
+        assertNotNull(source);
+        BufferedImage image = ImageIO.read(new File(source.getFile()));
+
+        // Load the sprite for the first time
+        Sprite sprite1 = spriteLoader.getSprite(filePath);
+        assertTrue(compareImages(image, sprite1.getSprite()));
+
+        // Load the sprite for the second time (should be from cache)
+        Sprite sprite2 = spriteLoader.getSprite(filePath);
+        assertTrue(compareImages(image, sprite2.getSprite()));
+
+        // Ensure the same instance is returned from the cache
+        assertSame(sprite1, sprite2);
+    }
 }

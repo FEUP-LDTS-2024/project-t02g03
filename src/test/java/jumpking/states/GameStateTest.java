@@ -1,8 +1,6 @@
 package jumpking.states;
 
 import jumpking.control.Controller;
-import jumpking.control.CreditsController;
-import jumpking.control.KingController;
 import jumpking.control.SceneController;
 import jumpking.model.game.scene.Scene;
 import jumpking.view.SpriteLoader;
@@ -11,12 +9,10 @@ import jumpking.view.screens.GameViewer;
 import jumpking.view.screens.ScreenViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class GameStateTest {
@@ -40,11 +36,18 @@ public class GameStateTest {
     }
 
     @Test
-    public void testCreateController() {
+    public void testCreateController() throws IOException {
         Controller<Scene> controller = gameState.createController();
         assertNotNull(controller);
-        System.out.println(controller);
         assertTrue(controller instanceof SceneController);
     }
-    
+
+    @Test
+    public void testCreateControllerFail() {
+        try {
+            gameState = new GameState(scene, null);
+        } catch (Exception e) {
+            assertTrue(e instanceof NullPointerException);
+        }
+    }
 }

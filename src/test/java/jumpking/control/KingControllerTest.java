@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -153,5 +154,23 @@ class KingControllerTest {
         when(king.getState()).thenReturn(King.PlayerState.JUMPING);
         kingController.step(app, GUI.Act.NONE, System.currentTimeMillis());
         assertEquals(King.PlayerState.JUMPING, king.getState());
+    }
+
+    @Test
+    void testStepUpActionWithDifferentHeights() throws IOException, InterruptedException {
+        when(king.getState()).thenReturn(King.PlayerState.IDLE);
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis());
+        Thread.sleep(50); // Simulate key press duration
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis() + 50);
+        verify(king, times(1)).setState(King.PlayerState.JUMPING);
+        verify(scene, times(1)).jump(anyInt(), eq(0));
+    }
+
+    @Test
+    void testStepNoneActionTwice() throws IOException {
+        when(king.getState()).thenReturn(King.PlayerState.RUNNING);
+        kingController.step(app, GUI.Act.NONE, System.currentTimeMillis());
+        kingController.step(app, GUI.Act.NONE, System.currentTimeMillis() + 100);
+        verify(king, times(1)).setState(King.PlayerState.IDLE);
     }
 }
