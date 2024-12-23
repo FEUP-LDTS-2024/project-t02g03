@@ -57,16 +57,16 @@ public class SceneBuilder {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
                 char ch = line.charAt(x);
-                if (ch == '#' || ch == '-') {
-                    blocks.add(new Block(x, y, ch));
+                if (ch == '#') {
+                    blocks.add(new Block(x, y));
                 }
             }
             // Add extra width for the left wall
-            blocks.add(new Block(-1, y, '#'));
-            blocks.add(new Block(-2, y, '#'));
+            blocks.add(new Block(-1, y));
+            blocks.add(new Block(-2, y));
             // Add extra width for the right wall
-            blocks.add(new Block(line.length(), y, '#'));
-            blocks.add(new Block(line.length() + 1, y, '#'));
+            blocks.add(new Block(line.length(), y));
+            blocks.add(new Block(line.length() + 1, y));
         }
         return blocks.toArray(new Block[0]);
     }

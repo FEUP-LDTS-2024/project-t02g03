@@ -12,7 +12,7 @@ public class BlockTest {
 
     @BeforeEach
     public void setUp() {
-        block = new Block(100, 200, 'B');
+        block = new Block(100, 200);
     }
 
     @Test

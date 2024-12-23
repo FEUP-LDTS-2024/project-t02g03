@@ -13,7 +13,7 @@ public class timeText {
             "   ██    ██ ██      ██ ███████    ",
             "   ██    ██ ██      ██ ███████    ",
     };
-    public static String[] gettimeText() {
+    public static String[] getTimeText() {
         return timeText;
     }
 
