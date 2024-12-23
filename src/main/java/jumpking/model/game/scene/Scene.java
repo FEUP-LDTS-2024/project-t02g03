@@ -44,6 +44,10 @@ public class Scene {
         this.blocks = blocks;
     }
 
+    public Block[] getBlocks() {
+        return blocks;
+    }
+
     public Princess getPrincess() {
         return princess;
     }
@@ -119,17 +123,6 @@ public class Scene {
         return intersects;
     }
 
-    public List<Position> moveUp(int steps) {
-        List<Position> positions = new ArrayList<>();
-        for (int i = 0; i < steps; i++) {
-            Position newPosition = king.moveUp();
-            if (canKingMove(newPosition)) {
-                positions.add(newPosition);
-            }
-        }
-        return positions;
-    }
-
     public void moveDown() {
         Position newPosition = king.moveDown();
         if (canKingMove(newPosition)) {
@@ -172,7 +165,6 @@ public class Scene {
         }
         return false;
     }
-
 
     public void changeScene(Application app) throws IOException{
         int y = king.getPosition().getY();

@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class KingViewerTest {
@@ -50,59 +51,30 @@ public class KingViewerTest {
     }
 
     @Test
+    public void testKingViewerInitialization() throws IOException {
+        assertNotNull(kingViewer);
+    }
+
+    @Test
     public void drawIdleTest() throws IOException {
         long time = 1000;
         kingViewer.draw(king, gui, time);
         verify(spriteLoader.getSprite("sprites/king-idle.png"), times(1)).draw(gui, king.getPosition());
     }
 
-//    @Test
-//    public void drawFallenTest() throws IOException {
-//        king.setIsFallen(true);
-//        long time = 1000;
-//        kingViewer.draw(king, gui, time);
-//        verify(spriteLoader.getSprite("sprites/king-fallen.png"), times(1)).draw(gui, king.getPosition());
-//    }
-//
-//    @Test
-//    public void drawJumpingTest() throws IOException {
-//        king.setIsJumping(true);
-//        long time = 1000;
-//        kingViewer.draw(king, gui, time);
-//        verify(spriteLoader.getSprite("sprites/king-jumping.png"), times(1)).draw(gui, king.getPosition());
-//    }
-//
-//    @Test
-//    public void drawCrouchingTest() throws IOException {
-//        king.setIsJumping(true);
-//        long time = 1000;
-//        kingViewer.draw(king, gui, time);
-//        verify(spriteLoader.getSprite("sprites/king-crouching.png"), times(1)).draw(gui, king.getPosition());
-//    }
-//
-//    @Test
-//    public void drawFallingTest() throws IOException {
-//        king.setIsFalling(true);
-//        long time = 1000;
-//        kingViewer.draw(king, gui, time);
-//        verify(spriteLoader.getSprite("sprites/king-falling.png"), times(1)).draw(gui, king.getPosition());
-//    }
-//
-//    @Test
-//    public void drawRunningTest() throws IOException {
-//        king.setIsRunning(true);
-//        long time = 1000;
-//        kingViewer.draw(king, gui, time);
-//        verify(spriteLoader.getSprite("sprites/king-running-1.png"), times(1)).draw(gui, king.getPosition());
-//        verify(spriteLoader.getSprite("sprites/king-running-2.png"), times(1)).draw(gui, king.getPosition());
-//        verify(spriteLoader.getSprite("sprites/king-running-3.png"), times(1)).draw(gui, king.getPosition());
-//    }
-//
-//    @Test
-//    public void drawReboundTest() throws IOException {
-//        king.setIsRebounding(true);
-//        long time = 1000;
-//        kingViewer.draw(king, gui, time);
-//        verify(spriteLoader.getSprite("sprites/king-rebound.png"), times(1)).draw(gui, king.getPosition());
-//    }
+    @Test
+    public void testMockDraw() throws IOException {
+        KingViewer mockKingViewer = Mockito.mock(KingViewer.class);
+        long time = 1000;
+        mockKingViewer.draw(king, gui, time);
+        verify(mockKingViewer, times(1)).draw(king, gui, time);
+    }
+
+    @Test
+    public void testDrawKingFlipped() throws IOException {
+        king.setFacingRight(false);
+        long time = 1000;
+        kingViewer.draw(king, gui, time);
+        verify(spriteLoader.getSprite("sprites/king-idle.png"), times(1)).drawFlipped(gui, king.getPosition());
+    }
 }

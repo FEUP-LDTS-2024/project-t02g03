@@ -24,4 +24,12 @@ public class Princess extends Element {
         return topLeft;
     }
 
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(position);
+        this.bottomRight.setX(position.getX() + width);
+        this.bottomRight.setY(position.getY());
+        this.topLeft.setX(position.getX());
+        this.topLeft.setY(position.getY() - height);
+    }
 }

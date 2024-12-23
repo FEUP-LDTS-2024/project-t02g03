@@ -8,24 +8,25 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import java.io.UncheckedIOException;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class CreditsTest {
     private Credits credits;
     private King king;
-    private BackgroundImageLoader backgroundImageLoader;
     private BasicTextImage backgroundImage;
 
     @BeforeEach
     void setUp() throws IOException {
         king = mock(King.class);
-        backgroundImageLoader = mock(BackgroundImageLoader.class);
+        BackgroundImageLoader loader = mock(BackgroundImageLoader.class);
         backgroundImage = mock(BasicTextImage.class);
+        when(loader.loadBackgroundImage("backgrounds/credits.png")).thenReturn(backgroundImage);
         when(king.getJumps()).thenReturn(10);
         when(king.getStartTime()).thenReturn(System.currentTimeMillis() - 61000);
-        when(backgroundImageLoader.loadBackgroundImage("backgrounds/credits.png")).thenReturn(backgroundImage);
+
         credits = new Credits(king);
     }
 
@@ -44,10 +45,8 @@ public class CreditsTest {
         assertEquals(1, credits.getMinutes());
     }
 
-//    @Test
-//    void testGetBackgroundImage() {
-//        assertEquals(backgroundImage, credits.getBackgroundImage());
-//    }
-
-
+    @Test
+    void testGetBackgroundImage() {
+        assertNotNull(credits.getBackgroundImage(), "Background image should not be null");
+    }
 }

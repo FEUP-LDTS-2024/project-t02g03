@@ -1,0 +1,207 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > KingViewer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jumpking.view.elements</a>
+</div>
+
+<h1>Coverage Summary for Class: KingViewer (jumpking.view.elements)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">KingViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/30)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">KingViewer$MockitoMock$336831511</td>
+  </tr>
+  <tr>
+    <td class="name">KingViewer$MockitoMock$336831511$auxiliary$dvw8n998</td>
+  </tr>
+  <tr>
+    <td class="name">KingViewer$MockitoMock$336831511$auxiliary$SNREp8SW</td>
+  </tr>
+  <tr>
+    <td class="name">KingViewer$MockitoMock$336831511$auxiliary$W5doxJw8</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/30)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jumpking.view.elements;
+&nbsp;
+&nbsp;import jumpking.gui.GUI;
+&nbsp;import jumpking.model.game.elements.King;
+&nbsp;import jumpking.view.Sprite;
+&nbsp;import jumpking.view.SpriteLoader;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;public class KingViewer implements ElementViewer&lt;King&gt; {
+&nbsp;
+&nbsp;    private final Map&lt;String, Sprite[]&gt; spritesMap;
+<b class="fc">&nbsp;    private int animationFrame = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;    public KingViewer(SpriteLoader spriteLoader) throws IOException {</b>
+<b class="fc">&nbsp;        spritesMap = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        spritesMap.put(&quot;IDLE&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-idle.png&quot;)</b>
+&nbsp;        });
+<b class="fc">&nbsp;        spritesMap.put(&quot;FALLEN&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-fallen.png&quot;)</b>
+&nbsp;        });
+<b class="fc">&nbsp;        spritesMap.put(&quot;CROUCHING&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-crouching.png&quot;)</b>
+&nbsp;        });
+<b class="fc">&nbsp;        spritesMap.put(&quot;JUMPING&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-jumping.png&quot;)</b>
+&nbsp;        });
+<b class="fc">&nbsp;        spritesMap.put(&quot;FALLING&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-falling.png&quot;)</b>
+&nbsp;        });
+<b class="fc">&nbsp;        spritesMap.put(&quot;RUNNING&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-running-1.png&quot;),</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-running-2.png&quot;),</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-running-3.png&quot;),</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-running-2.png&quot;)</b>
+&nbsp;        });
+<b class="fc">&nbsp;        spritesMap.put(&quot;REBOUND&quot;, new Sprite[]{</b>
+<b class="fc">&nbsp;                spriteLoader.getSprite(&quot;sprites/king-rebound.png&quot;)</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void draw(King king, GUI gui, long time) {
+<b class="fc">&nbsp;        String state = king.getState().name();</b>
+<b class="fc">&nbsp;        Sprite[] sprites = spritesMap.get(state);</b>
+<b class="pc">&nbsp;        if (sprites != null) {</b>
+<b class="fc">&nbsp;            Sprite sprite = getCurrentSprite(sprites);</b>
+<b class="fc">&nbsp;            if (king.isFacingRight()) {</b>
+<b class="fc">&nbsp;                sprite.draw(gui, king.getPosition());</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                sprite.drawFlipped(gui, king.getPosition());</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private Sprite getCurrentSprite(Sprite[] sprites) {
+<b class="fc">&nbsp;        Sprite sprite = sprites[animationFrame % sprites.length];</b>
+<b class="fc">&nbsp;        animationFrame++;</b>
+<b class="fc">&nbsp;        return sprite;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-23 15:50</div>
+</div>
+</body>
+</html>

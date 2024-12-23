@@ -14,23 +14,24 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class MainMenuControllerTest{
 
     private MainMenuController mainMenuController;
     private MainMenu mainMenu;
     private Application app;
-    private Item item;
     private ItemController itemController;
+    private Item currentItem;
 
     @BeforeEach
     public void setUp() {
         mainMenu = mock(MainMenu.class);
         app = mock(Application.class);
-        item = mock(Item.class);
-        itemController =  new ItemController(mainMenu);
+        currentItem = mock(Item.class);
+        when(mainMenu.getCurrentItem()).thenReturn(currentItem);
+        itemController =  mock(ItemController.class);
         mainMenuController = new MainMenuController(mainMenu,itemController);
     }
 
@@ -44,6 +45,18 @@ public class MainMenuControllerTest{
     public void actionUpItem() throws Exception{
         mainMenuController.step(app, GUI.Act.UP, 0);
         Mockito.verify(mainMenu, Mockito.times(1)).moveUp();
+    }
+
+    @Test
+    public void actionQuit() throws Exception {
+        mainMenuController.step(app, GUI.Act.QUIT, 0);
+        verify(app, times(1)).setRunning(false);
+    }
+
+    @Test
+    public void actionOther() throws Exception {
+        mainMenuController.step(app, GUI.Act.SELECT, 0);
+        verify(itemController, times(1)).step(app, GUI.Act.SELECT, 0);
     }
 
 }

@@ -8,6 +8,7 @@ import com.googlecode.lanterna.screen.Screen;
 import jumpking.model.Position;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Arrays;
 import java.util.List;
 import java.awt.*;
@@ -128,5 +129,9 @@ public class LanternaGUI implements GUI {
     @Override
     public void draw() throws IOException {
         screen.refresh();
+    }
+
+    public KeyListener getKeyAdapter() {
+        return createKeyAdapter();
     }
 }
