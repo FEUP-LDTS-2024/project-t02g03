@@ -268,13 +268,19 @@ This pattern is exemplified in the LanternaScreenCreator class, which creates GU
 
 ## Known Code Smells
 
+
 ## Testing
 - **Unit Testing** - We used JUnit to test the individual components of the game, such as the collision logic, player movement, and map loading. This helped ensure that each component worked as expected in isolation.
 - **Mock Testing** - We used Mockito to mock dependencies in our tests, such as the Lanterna library. This allowed us to test our code without relying on external dependencies.
+
+<p align="center">
+    <img src="resources/tests/Tests.png" alt="Tests">
+</p>
+
 - **Test Coverage** - We aimed to achieve a high test coverage to ensure that our code was well-tested and reliable.
-    - Instruction Coverage: 92%
-    - Branch Coverage: 81.4%
-    - [Coverage Report Summary](resources/htmlReport/index.html)
+    - Instruction Coverage ≈ 95%
+    - Branch Coverage ≈ 82%
+    - [Coverage Report Summary](resources/tests/Coverage Report Summary.png)
     
 <p align="center">
     <img src="resources/tests/Coverage Report Summary.png" alt="Tests">
@@ -283,8 +289,7 @@ This pattern is exemplified in the LanternaScreenCreator class, which creates GU
 - **Mutation Testing** - We used PITest to perform mutation testing on our code. This helped us identify areas of our code that were not adequately tested and improve our test coverage.
     - Line Coverage:
     - Mutation Coverage:
-    - Test Strength: 
-
+    - Test Strength:
 
 >## Self Evaluation
  >- **André Cortim:** 30%

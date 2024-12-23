@@ -14,10 +14,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GameStateTest {
     private GameState gameState;
@@ -40,10 +41,18 @@ public class GameStateTest {
     }
 
     @Test
-    public void testCreateController() {
+    public void testCreateController() throws IOException {
         Controller<Scene> controller = gameState.createController();
         assertNotNull(controller);
-        System.out.println(controller);
         assertTrue(controller instanceof SceneController);
+    }
+
+    @Test
+    public void testCreateControllerFail() {
+        try {
+            gameState = new GameState(scene, null);
+        } catch (Exception e) {
+            assertTrue(e instanceof NullPointerException);
+        }
     }
 }
