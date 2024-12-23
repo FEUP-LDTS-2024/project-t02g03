@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'net.ltgt.errorprone' version '3.0.1'
     id 'jacoco'
+    id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 group = 'org.example'
@@ -31,4 +32,10 @@ jacocoTestReport {
 
 application {
     mainClass.set("jumpking.Application")
+}
+
+pitest {
+    junit5PluginVersion = '1.2.1'
+    targetClasses = ['jumpking.*']
+    jvmArgs = ['-Xmx1024m']
 }
