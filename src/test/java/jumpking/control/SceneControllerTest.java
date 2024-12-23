@@ -1,50 +1,86 @@
 package jumpking.control;
+
 import jumpking.Application;
 import jumpking.gui.GUI;
+import jumpking.model.Position;
+import jumpking.model.credits.Credits;
+import jumpking.model.game.elements.King;
 import jumpking.model.game.scene.Scene;
-import java.io.IOException;
-
-
+import jumpking.states.CreditsState;
+import jumpking.view.SpriteLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static org.mockito.Mockito.*;
 
-//public class SceneControllerTest {
-//    private Scene scene;
-//    private Application app;
-//    private KingController kingController;
-//    private GUI gui;
-//    private SceneController sceneController;
-//
-//    @BeforeEach
-//    void setUp() throws IOException {
-//        this.scene = Mockito.mock(Scene.class);
-//        this.app = Mockito.mock(Application.class);
-//        this.kingController = Mockito.mock(KingController.class);
-//        this.gui = Mockito.mock(GUI.class);
-//        sceneController = new SceneController(scene, kingController);
-//    }
-//
-//    @Test
-//    void stepTest() throws IOException {
-//        GUI.Act act = Mockito.mock(GUI.Act.class);
-//        long time = 1000;
-//        sceneController.step(app, act, time);
-//        verify(kingController).step(app, act, time);
-//    }
-//
-//    @Test
-//    void handleFallingTest() throws IOException {
-//        Mockito.when(scene.isKingFalling()).thenReturn(true);
-//        sceneController.step(app, Mockito.mock(GUI.Act.class), 1000);
-//        verify(scene, times(1)).moveDown();
-//        verify(gui, atLeastOnce()).draw();
-//
-//        Mockito.reset(scene);
-//        Mockito.when(scene.isKingFalling()).thenReturn(false);
-//        sceneController.step(app, Mockito.mock(GUI.Act.class), 1000);
-//        verify(scene, times(1)).moveDown();
-//        verify(gui, atLeast(2)).draw();
-//    }
-//}
+public class SceneControllerTest {
+    private Scene scene;
+    private Application app;
+    private KingController kingController;
+    private GUI gui;
+    private SceneController sceneController;
+
+    @BeforeEach
+    void setUp() throws IOException {
+        scene = mock(Scene.class);
+        app = mock(Application.class);
+        kingController = mock(KingController.class);
+        gui = mock(GUI.class);
+        sceneController = new SceneController(scene, kingController);
+
+        when(app.getGui()).thenReturn(gui);
+    }
+
+    @Test
+    void stepTest() throws IOException {
+        GUI.Act act = GUI.Act.NONE;
+        long time = 1000L;
+        Queue<Position> jumpPositions = new LinkedList<>();
+
+        when(kingController.getJumpPositions()).thenReturn(jumpPositions);
+
+        sceneController.step(app, act, time);
+
+        verify(kingController).step(app, act, time);
+        verify(scene).changeScene(app);
+        verify(gui, never()).draw();
+    }
+
+    @Test
+    void handleFallingTest() throws IOException, InterruptedException {
+        when(scene.isKingFalling()).thenReturn(true);
+        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+
+        sceneController.step(app, GUI.Act.NONE, 1000L);
+
+        verify(kingController).handleFalling(gui);
+        verify(gui, never()).draw();
+
+        reset(scene);
+        when(scene.isKingFalling()).thenReturn(false);
+        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+
+        sceneController.step(app, GUI.Act.NONE, 1000L);
+
+        verify(gui, never()).draw();
+    }
+
+    @Test
+    void kingOnPrincessTest() throws IOException {
+        King king = mock(King.class);
+        SpriteLoader spriteLoader = mock(SpriteLoader.class);
+        when(app.getSpriteLoader()).thenReturn(spriteLoader);
+        when(scene.isKingOnPrincess()).thenReturn(true);
+        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(scene.getKing()).thenReturn(king);
+
+        sceneController.step(app, GUI.Act.NONE, 1000L);
+
+        verify(app).setState(any(CreditsState.class));
+    }
+}
