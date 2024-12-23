@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import javax.sound.sampled.AudioInputStream;
@@ -30,6 +29,14 @@ public class SoundLoaderTest {
 
         verify(musicClip, Mockito.times(1)).open(audioInput);
         assertEquals(sound, backgroundSoundPlayer.getSound());
+    }
+
+    @Test
+    public void loadSoundReturnNotNull() throws Exception {
+        SoundLoader soundLoader = new SoundLoader();
+        Clip result = soundLoader.loadSound(audioInput, musicClip);
+
+        assertNotNull(result, "The loadSound method should not return null.");
     }
 
     @Test

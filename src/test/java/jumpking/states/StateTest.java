@@ -3,15 +3,16 @@ package jumpking.states;
 import jumpking.Application;
 import jumpking.control.Controller;
 import jumpking.gui.GUI;
+import jumpking.sound.SoundLoader;
 import jumpking.view.SpriteLoader;
 import jumpking.view.screens.ScreenViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.sound.sampled.Clip;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class StateTest {
@@ -39,6 +40,11 @@ public class StateTest {
 
         verify(controller).step(app, GUI.Act.NONE, 100L);
         verify(screenViewer).draw(gui, 100L);
+    }
+
+    @Test
+    public void getModelNotNull() {
+        assertNotNull(testState.getModel(), "The getModel method should not return null.");
     }
 
     @Test
