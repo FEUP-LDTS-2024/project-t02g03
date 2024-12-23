@@ -46,4 +46,5 @@ public class GameStateTest {
         System.out.println(controller);
         assertTrue(controller instanceof SceneController);
     }
+    
 }

@@ -77,4 +77,5 @@ public class KingViewerTest {
         kingViewer.draw(king, gui, time);
         verify(spriteLoader.getSprite("sprites/king-idle.png"), times(1)).drawFlipped(gui, king.getPosition());
     }
+
 }

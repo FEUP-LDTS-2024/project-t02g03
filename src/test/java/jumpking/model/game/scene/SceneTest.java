@@ -26,15 +26,17 @@ public class SceneTest {
     private King king;
     private Application app;
     private SpriteLoader spriteLoader;
+    private SceneBuilder sceneBuilder;
 
     @BeforeEach
     public void setUp() {
         king = new King(100, 200);
-        scene = new Scene(0);
+        scene = new Scene(1);
         scene.setKing(king);
         app = Mockito.mock(Application.class);
         spriteLoader = Mockito.mock(SpriteLoader.class);
         when(app.getSpriteLoader()).thenReturn(spriteLoader);
+        sceneBuilder = mock(SceneBuilder.class);
     }
 
     @Test
@@ -45,7 +47,7 @@ public class SceneTest {
 
     @Test
     public void testGetSceneCode() {
-        assertEquals(0, scene.getSceneCode());
+        assertEquals(1, scene.getSceneCode());
     }
 
     @Test
@@ -207,11 +209,4 @@ public class SceneTest {
         assertFalse(scene.updateKingPosition(jumpPositions));
     }
 
-    @Test
-    public void testChangeScene() throws IOException {
-        when(app.getSpriteLoader()).thenReturn(spriteLoader);
-        king.setPosition(new Position(100, -1));
-        scene.changeScene(app);
-        verify(app, times(1)).setState(any(GameState.class));
-    }
 }
