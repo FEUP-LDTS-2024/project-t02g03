@@ -1,8 +1,6 @@
 package jumpking.states;
 
 import jumpking.control.Controller;
-import jumpking.control.CreditsController;
-import jumpking.control.KingController;
 import jumpking.control.SceneController;
 import jumpking.model.game.scene.Scene;
 import jumpking.view.SpriteLoader;
@@ -11,14 +9,11 @@ import jumpking.view.screens.GameViewer;
 import jumpking.view.screens.ScreenViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class GameStateTest {
     private GameState gameState;

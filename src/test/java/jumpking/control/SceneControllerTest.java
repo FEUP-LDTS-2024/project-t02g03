@@ -13,7 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayDeque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import static org.mockito.Mockito.*;
@@ -40,7 +43,7 @@ public class SceneControllerTest {
     void stepTest() throws IOException {
         GUI.Act act = GUI.Act.NONE;
         long time = 1000L;
-        Queue<Position> jumpPositions = new LinkedList<>();
+        Queue<Position> jumpPositions = new ArrayDeque<>();
 
         when(kingController.getJumpPositions()).thenReturn(jumpPositions);
 
@@ -54,7 +57,7 @@ public class SceneControllerTest {
     @Test
     void handleFallingTest() throws IOException, InterruptedException {
         when(scene.isKingFalling()).thenReturn(true);
-        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(kingController.getJumpPositions()).thenReturn(new ArrayDeque<>());
 
         sceneController.step(app, GUI.Act.NONE, 1000L);
 
@@ -63,7 +66,7 @@ public class SceneControllerTest {
 
         reset(scene);
         when(scene.isKingFalling()).thenReturn(false);
-        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(kingController.getJumpPositions()).thenReturn(new ArrayDeque<>());
 
         sceneController.step(app, GUI.Act.NONE, 1000L);
 
@@ -76,7 +79,7 @@ public class SceneControllerTest {
         SpriteLoader spriteLoader = mock(SpriteLoader.class);
         when(app.getSpriteLoader()).thenReturn(spriteLoader);
         when(scene.isKingOnPrincess()).thenReturn(true);
-        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(kingController.getJumpPositions()).thenReturn(new ArrayDeque<>());
         when(scene.getKing()).thenReturn(king);
 
         sceneController.step(app, GUI.Act.NONE, 1000L);
@@ -86,7 +89,7 @@ public class SceneControllerTest {
 
     @Test
     void testStepWithEmptyJumpPositions() throws IOException, InterruptedException {
-        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(kingController.getJumpPositions()).thenReturn(new ArrayDeque<>());
         when(scene.isKingOnPrincess()).thenReturn(false);
 
         sceneController.step(app, GUI.Act.NONE, 1000L);
@@ -98,7 +101,7 @@ public class SceneControllerTest {
 
     @Test
     void testStepWithNonEmptyJumpPositions() throws IOException, InterruptedException {
-        Queue<Position> jumpPositions = new LinkedList<>();
+        Queue<Position> jumpPositions = new ArrayDeque<>();
         jumpPositions.add(new Position(0, 0));
         when(kingController.getJumpPositions()).thenReturn(jumpPositions);
         when(scene.isKingOnPrincess()).thenReturn(false);
@@ -112,7 +115,7 @@ public class SceneControllerTest {
 
     @Test
     void testStepKingOnPrincess() throws IOException, InterruptedException {
-        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(kingController.getJumpPositions()).thenReturn(new ArrayDeque<>());
         when(scene.isKingOnPrincess()).thenReturn(true);
         King king = mock(King.class);
         when(scene.getKing()).thenReturn(king);

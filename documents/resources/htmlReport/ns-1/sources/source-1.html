@@ -1,0 +1,237 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Application</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jumpking</a>
+</div>
+
+<h1>Coverage Summary for Class: Application (jumpking)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Application</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$5ravjrA0</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$ELHKKymB</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$gdBGqQCe</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$hO91gWI9</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$tIAzvfGC</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$WcLgS4I2</td>
+  </tr>
+  <tr>
+    <td class="name">Application$MockitoMock$830374698$auxiliary$WddPK4kg</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jumpking;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.TerminalSize;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import jumpking.gui.GUI;
+&nbsp;import jumpking.gui.LanternaGUI;
+&nbsp;import jumpking.gui.LanternaScreenCreator;
+&nbsp;import jumpking.gui.ScreenCreator;
+&nbsp;import jumpking.model.menu.MainMenu;
+&nbsp;import jumpking.states.MainMenuState;
+&nbsp;import jumpking.states.State;
+&nbsp;import jumpking.view.IngameSpriteLoader;
+&nbsp;import jumpking.view.SpriteLoader;
+&nbsp;import jumpking.sound.BackgroundSoundPlayer;
+&nbsp;import jumpking.sound.SoundLoader;
+&nbsp;
+&nbsp;import javax.sound.sampled.AudioSystem;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public class Application {
+&nbsp;
+&nbsp;    public static final int PIXEL_WIDTH = 333;
+&nbsp;    public static final int PIXEL_HEIGHT = 250;
+&nbsp;
+&nbsp;    private final LanternaGUI gui;
+&nbsp;    private final SpriteLoader spriteLoader;
+&nbsp;    private final BackgroundSoundPlayer backgroundSoundPlayer;
+&nbsp;    private State&lt;?&gt; state;
+<b class="nc">&nbsp;    private Boolean running = true;</b>
+&nbsp;
+<b class="nc">&nbsp;    public Application() throws Exception {</b>
+<b class="nc">&nbsp;        ScreenCreator screenCreator = new LanternaScreenCreator(</b>
+&nbsp;                new DefaultTerminalFactory(),
+&nbsp;                new TerminalSize(PIXEL_WIDTH, PIXEL_HEIGHT)
+&nbsp;        );
+<b class="nc">&nbsp;        this.gui = new LanternaGUI(screenCreator, &quot;Jump King&quot;);</b>
+<b class="nc">&nbsp;        this.spriteLoader = new IngameSpriteLoader();</b>
+<b class="nc">&nbsp;        this.state = new MainMenuState(new MainMenu(), spriteLoader);</b>
+<b class="nc">&nbsp;        this.backgroundSoundPlayer = new BackgroundSoundPlayer(</b>
+<b class="nc">&nbsp;                new SoundLoader().loadSound(</b>
+<b class="nc">&nbsp;                        AudioSystem.getAudioInputStream(</b>
+<b class="nc">&nbsp;                                Objects.requireNonNull(</b>
+<b class="nc">&nbsp;                                        getClass().getClassLoader().getResource(&quot;sounds/jump-king-theme.wav&quot;)</b>
+&nbsp;                                )
+&nbsp;                        ),
+<b class="nc">&nbsp;                        AudioSystem.getClip()</b>
+&nbsp;                )
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void main(String[] args) throws Exception {
+<b class="nc">&nbsp;        Application app = new Application();</b>
+<b class="nc">&nbsp;        app.run();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void run() throws Exception {
+<b class="nc">&nbsp;        long time = System.currentTimeMillis();</b>
+<b class="nc">&nbsp;        backgroundSoundPlayer.start();</b>
+<b class="nc">&nbsp;        while (running) {</b>
+<b class="nc">&nbsp;            state.step(this, gui, time);</b>
+<b class="nc">&nbsp;            time = System.currentTimeMillis();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        backgroundSoundPlayer.stop();</b>
+<b class="nc">&nbsp;        gui.close();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setState(State&lt;?&gt; state) {
+<b class="nc">&nbsp;        this.state = state;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public SpriteLoader getSpriteLoader() {
+<b class="nc">&nbsp;        return spriteLoader;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setRunning(Boolean running) {
+<b class="nc">&nbsp;        this.running = running;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public GUI getGui() {
+<b class="nc">&nbsp;        return gui;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-23 15:50</div>
+</div>
+</body>
+</html>

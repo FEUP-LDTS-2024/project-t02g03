@@ -14,14 +14,12 @@ public class PauseMenuControllerTest {
     private PauseMenuController pauseMenuController;
     private PauseMenu pauseMenu;
     private Application app;
-    private Item item;
     private ItemController itemController;
 
     @BeforeEach
     public void setUp() {
         pauseMenu = mock(PauseMenu.class);
         app = mock(Application.class);
-        item = mock(Item.class);
         itemController = new ItemController(pauseMenu);
         pauseMenuController = new PauseMenuController(pauseMenu, itemController);
     }

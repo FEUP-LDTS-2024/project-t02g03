@@ -16,14 +16,12 @@ public class CreditsControllerTest {
     private CreditsController<Credits> creditsController;
     private Credits credits;
     private Application app;
-    private GUI gui;
     private SpriteLoader spriteLoader;
 
     @BeforeEach
     public void setUp() throws IOException {
         credits = mock(Credits.class);
         app = mock(Application.class);
-        gui = mock(GUI.class);
         spriteLoader = mock(SpriteLoader.class);
         creditsController = new CreditsController<>(credits);
         when(app.getSpriteLoader()).thenReturn(spriteLoader);
