@@ -23,7 +23,7 @@ public class namesText {
             " ███   ████  █   █ █    ██ █   █      █████ █   █ █    █   ██   █   █ ██████ █   █ █   █ ██████",
     };
 
-    public static String[] getnamesText() {
+    public static String[] getNamesText() {
         return namesText;
     }
 }

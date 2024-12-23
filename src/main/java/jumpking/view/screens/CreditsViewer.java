@@ -31,16 +31,16 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     }
 
     public void drawMessages(GUI gui){
-        gui.drawTextImage(new Position(47,10), gameOverText.getgameOverText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(47,10), gameOverText.getGameOverText(), TextColor.Factory.fromString("#000000"),true);
     }
 
     public void drawNames(GUI gui){
-        gui.drawTextImage(new Position(230,225), namesText.getnamesText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(230,225), namesText.getNamesText(), TextColor.Factory.fromString("#000000"),true);
     }
 
     public void drawStatistics(GUI gui){
-        gui.drawTextImage(new Position(256,117), jumpsText.getjumpsText(), TextColor.Factory.fromString("#000000"),true);
-        gui.drawTextImage(new Position(262,148), timeText.gettimeText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(256,117), jumpsText.getJumpsText(), TextColor.Factory.fromString("#000000"),true);
+        gui.drawTextImage(new Position(262,148), timeText.getTimeText(), TextColor.Factory.fromString("#000000"),true);
         List<Integer>digitsJumps = getDigitsJumps();
         List<Integer>digitsTime = getDigitsTime();
 
@@ -73,17 +73,17 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
     }
     public void initializeDigitTexts() {
         digitTexts = new HashMap<>();
-        digitTexts.put(0, numberstext.getZero());
-        digitTexts.put(1, numberstext.getOne());
-        digitTexts.put(2, numberstext.getTwo());
-        digitTexts.put(3, numberstext.getThree());
-        digitTexts.put(4, numberstext.getFour());
-        digitTexts.put(5, numberstext.getFive());
-        digitTexts.put(6, numberstext.getSix());
-        digitTexts.put(7, numberstext.getSeven());
-        digitTexts.put(8, numberstext.getEight());
-        digitTexts.put(9, numberstext.getNine());
-        digitTexts.put(10, numberstext.getColon());
+        digitTexts.put(0, numbersText.getZero());
+        digitTexts.put(1, numbersText.getOne());
+        digitTexts.put(2, numbersText.getTwo());
+        digitTexts.put(3, numbersText.getThree());
+        digitTexts.put(4, numbersText.getFour());
+        digitTexts.put(5, numbersText.getFive());
+        digitTexts.put(6, numbersText.getSix());
+        digitTexts.put(7, numbersText.getSeven());
+        digitTexts.put(8, numbersText.getEight());
+        digitTexts.put(9, numbersText.getNine());
+        digitTexts.put(10, numbersText.getColon());
     }
 
     public void drawDigit(int digit, Position position, GUI gui) {
@@ -92,5 +92,4 @@ public class CreditsViewer<T extends Credits> extends ScreenViewer<T> {
             gui.drawTextImage(position, text, TextColor.Factory.fromString("#000000"), true);
         }
     }
-
 }

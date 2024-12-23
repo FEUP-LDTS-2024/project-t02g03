@@ -14,7 +14,6 @@ public class CreditsState extends State<Credits> {
 
     public CreditsState(Credits model, SpriteLoader spriteLoader) throws IOException {
         super(model, spriteLoader);
-
     }
 
     @Override

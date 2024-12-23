@@ -13,7 +13,7 @@ public class jumpsText {
         " █████   ██████  ██      ██ ██      ███████    ",
         " █████   ██████  ██      ██ ██      ███████    ",
     };
-    public static String[] getjumpsText() {
+    public static String[] getJumpsText() {
         return jumpsText;
     }
 }
