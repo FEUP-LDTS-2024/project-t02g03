@@ -27,4 +27,10 @@ public class SceneBuilderTest {
         assertNotNull(scene);
         assertEquals(king, scene.getKing());
     }
+
+    @Test
+    public void testBackgroundImageIsLoaded() {
+        Scene scene = sceneBuilder.buildScene(king);
+        assertNotNull(scene.getBackgroundImage());
+    }
 }

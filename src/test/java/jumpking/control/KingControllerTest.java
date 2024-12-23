@@ -43,10 +43,6 @@ class KingControllerTest {
         when(king.getJumpPositions()).thenReturn(new LinkedList<>());
         when(app.getSpriteLoader()).thenReturn(spriteLoader);
 
-        // Inject the mocked SpriteLoader into the ViewProvider and KingViewer
-        ViewProvider viewProvider = new ViewProvider(spriteLoader);
-        KingViewer kingViewer = new KingViewer(spriteLoader);
-
         kingController = new KingController(scene);
     }
 
@@ -91,6 +87,7 @@ class KingControllerTest {
     void testStepNoneAction() throws IOException {
         when(king.getState()).thenReturn(King.PlayerState.RUNNING);
         kingController.step(app, GUI.Act.NONE, System.currentTimeMillis());
+        kingController.step(app, GUI.Act.NONE, System.currentTimeMillis());
         verify(king, times(1)).setState(King.PlayerState.IDLE);
     }
 
@@ -101,5 +98,42 @@ class KingControllerTest {
         verify(scene, times(2)).moveDown();
         verify(king, times(1)).setState(King.PlayerState.FALLING);
         verify(gui, times(1)).draw();
+    }
+
+    @Test
+    void testStepUpActionRelease() throws IOException, InterruptedException {
+        when(king.getState()).thenReturn(King.PlayerState.CROUCHING);
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis());
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis() + 100);
+        verify(king, times(1)).setState(King.PlayerState.JUMPING);
+    }
+
+    @Test
+    void testStepLeftJump() throws IOException, InterruptedException {
+        when(king.getState()).thenReturn(King.PlayerState.CROUCHING);
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis());
+        kingController.step(app, GUI.Act.LEFT, System.currentTimeMillis() + 100);
+        verify(king, times(1)).setFacingRight(false);
+        verify(king, times(2)).setState(King.PlayerState.IDLE);
+    }
+
+    @Test
+    void testStepRightJump() throws IOException, InterruptedException {
+        when(king.getState()).thenReturn(King.PlayerState.CROUCHING);
+        kingController.step(app, GUI.Act.UP, System.currentTimeMillis());
+        kingController.step(app, GUI.Act.RIGHT, System.currentTimeMillis() + 100);
+        verify(king, times(1)).setFacingRight(true);
+        verify(king, times(2)).setState(King.PlayerState.IDLE);
+    }
+
+    @Test
+    void testGetJumpPositions() {
+        Queue<Position> expectedJumpPositions = new LinkedList<>();
+        when(king.getJumpPositions()).thenReturn(expectedJumpPositions);
+
+        Queue<Position> actualJumpPositions = kingController.getJumpPositions();
+
+        assertEquals(expectedJumpPositions, actualJumpPositions);
+        verify(king, times(1)).getJumpPositions();
     }
 }

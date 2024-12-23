@@ -83,4 +83,44 @@ public class SceneControllerTest {
 
         verify(app).setState(any(CreditsState.class));
     }
+
+    @Test
+    void testStepWithEmptyJumpPositions() throws IOException, InterruptedException {
+        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(scene.isKingOnPrincess()).thenReturn(false);
+
+        sceneController.step(app, GUI.Act.NONE, 1000L);
+
+        verify(kingController).handleFalling(gui);
+        verify(gui, never()).draw();
+        verify(app, never()).setState(any(CreditsState.class));
+    }
+
+    @Test
+    void testStepWithNonEmptyJumpPositions() throws IOException, InterruptedException {
+        Queue<Position> jumpPositions = new LinkedList<>();
+        jumpPositions.add(new Position(0, 0));
+        when(kingController.getJumpPositions()).thenReturn(jumpPositions);
+        when(scene.isKingOnPrincess()).thenReturn(false);
+
+        sceneController.step(app, GUI.Act.NONE, 1000L);
+
+        verify(gui).draw();
+        verify(kingController, never()).handleFalling(gui);
+        verify(app, never()).setState(any(CreditsState.class));
+    }
+
+    @Test
+    void testStepKingOnPrincess() throws IOException, InterruptedException {
+        when(kingController.getJumpPositions()).thenReturn(new LinkedList<>());
+        when(scene.isKingOnPrincess()).thenReturn(true);
+        King king = mock(King.class);
+        when(scene.getKing()).thenReturn(king);
+        SpriteLoader spriteLoader = mock(SpriteLoader.class);
+        when(app.getSpriteLoader()).thenReturn(spriteLoader);
+
+        sceneController.step(app, GUI.Act.NONE, 1000L);
+
+        verify(app).setState(any(CreditsState.class));
+    }
 }

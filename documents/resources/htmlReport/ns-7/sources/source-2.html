@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SceneBuilder</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jumpking.model.game.scene</a>
+</div>
+
+<h1>Coverage Summary for Class: SceneBuilder (jumpking.model.game.scene)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SceneBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (10/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (33/36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jumpking.model.game.scene;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.graphics.BasicTextImage;
+&nbsp;import jumpking.model.BackgroundImageLoader;
+&nbsp;import jumpking.model.game.elements.Block;
+&nbsp;import jumpking.model.game.elements.Princess;
+&nbsp;import jumpking.model.game.elements.King;
+&nbsp;
+&nbsp;import java.io.*;
+&nbsp;import java.nio.charset.StandardCharsets;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class SceneBuilder {
+&nbsp;
+&nbsp;    private final int sceneCode;
+&nbsp;    private final List&lt;String&gt; lines;
+&nbsp;    private BasicTextImage backgroundImage;
+&nbsp;
+<b class="fc">&nbsp;    public SceneBuilder(int sceneCode) throws IOException {</b>
+<b class="fc">&nbsp;        this.sceneCode = sceneCode;</b>
+<b class="fc">&nbsp;        InputStream resource = getClass().getClassLoader().getResourceAsStream(&quot;levels/scene&quot; + sceneCode + &quot;.txt&quot;);</b>
+<b class="pc">&nbsp;        if (resource == null){</b>
+<b class="nc">&nbsp;            throw new FileNotFoundException(&quot;Level file not found!&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        BufferedReader reader = new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8));</b>
+<b class="fc">&nbsp;        lines = readLines(reader);</b>
+<b class="fc">&nbsp;        loadBackgroundImage();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void loadBackgroundImage() throws IOException {
+<b class="fc">&nbsp;        BackgroundImageLoader loader = new BackgroundImageLoader();</b>
+<b class="fc">&nbsp;        this.backgroundImage = loader.loadBackgroundImage(&quot;backgrounds/scene&quot; + sceneCode + &quot;.png&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;String&gt; readLines(BufferedReader bufferedReader) throws IOException {
+<b class="fc">&nbsp;        List&lt;String&gt; lines = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (String line; (line = bufferedReader.readLine()) != null; )</b>
+<b class="fc">&nbsp;            lines.add(line);</b>
+<b class="fc">&nbsp;        return lines;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Scene buildScene(King king) {
+<b class="fc">&nbsp;        Scene scene = new Scene(sceneCode);</b>
+<b class="fc">&nbsp;        scene.setKing(createKing(king));</b>
+<b class="fc">&nbsp;        scene.setBlocks(buildBlocks());</b>
+<b class="pc">&nbsp;        if (sceneCode == 4) {</b>
+<b class="nc">&nbsp;            scene.setPrincess(createPrincess());</b>
+&nbsp;        }
+<b class="fc">&nbsp;        scene.setStartingPosition(scene.getKing().getPosition());</b>
+<b class="fc">&nbsp;        scene.setBackgroundImage(backgroundImage);</b>
+<b class="fc">&nbsp;        return scene;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Block[] buildBlocks() {
+<b class="fc">&nbsp;        List&lt;Block&gt; blocks = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (int y = 0; y &lt; lines.size(); y++) {</b>
+<b class="fc">&nbsp;            String line = lines.get(y);</b>
+<b class="fc">&nbsp;            for (int x = 0; x &lt; line.length(); x++) {</b>
+<b class="fc">&nbsp;                char ch = line.charAt(x);</b>
+<b class="fc">&nbsp;                if (ch == &#39;#&#39;) {</b>
+<b class="fc">&nbsp;                    blocks.add(new Block(x, y));</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;            // Add extra width for the left wall
+<b class="fc">&nbsp;            blocks.add(new Block(-1, y));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(-2, y));</b>
+&nbsp;            // Add extra width for the right wall
+<b class="fc">&nbsp;            blocks.add(new Block(line.length(), y));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(line.length() + 1, y));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return blocks.toArray(new Block[0]);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private King createKing(King king) {
+<b class="fc">&nbsp;        return king;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Princess createPrincess() {
+<b class="nc">&nbsp;        return new Princess(115, 33);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-23 15:50</div>
+</div>
+</body>
+</html>

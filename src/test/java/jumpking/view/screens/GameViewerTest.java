@@ -36,24 +36,24 @@ public class GameViewerTest {
         this.princessViewer = Mockito.mock(PrincessViewer.class);
         this.king = Mockito.mock(King.class);
         this.scene = Mockito.mock(Scene.class);
-        //SpriteLoader spriteLoader = Mockito.mock(SpriteLoader.class);
         ViewProvider viewProvider = Mockito.mock(ViewProvider.class);
 
         Mockito.when(scene.getKing()).thenReturn(king);
+        Mockito.when(scene.getPrincess()).thenReturn(princess);
         Mockito.when(viewProvider.getKingViewer()).thenReturn(kingViewer);
+        Mockito.when(viewProvider.getPrincessViewer()).thenReturn(princessViewer);
 
         gameViewer = new GameViewer(scene, viewProvider);
     }
 
-//    @Test
-//    public void drawTest() {
-//        long time = 1000;
-//        gameViewer.draw(gui, time);
-//        verify(gui, times(1)).clear();
-//        verify(kingViewer, times(1)).draw(king, gui, time);
-//        verify(princessViewer, times(1)).draw(princess, gui, time);
-//
-//    }
+    @Test
+    public void drawTest() {
+        long time = 1000;
+        gameViewer.draw(gui, time);
+        verify(gui, times(1)).clear();
+        verify(kingViewer, times(1)).draw(king, gui, time);
+        verify(princessViewer, times(1)).draw(princess, gui, time);
+    }
 
     @Test
     public void drawKingTest() {

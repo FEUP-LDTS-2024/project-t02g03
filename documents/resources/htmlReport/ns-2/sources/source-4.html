@@ -1,0 +1,309 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > KingController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jumpking.control</a>
+</div>
+
+<h1>Coverage Summary for Class: KingController (jumpking.control)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">KingController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    69.2%
+  </span>
+  <span class="absValue">
+    (18/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.7%
+  </span>
+  <span class="absValue">
+    (61/68)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">KingController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106$auxiliary$8tPBXAZc</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106$auxiliary$9jRyzF6o</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106$auxiliary$Buzb1VXF</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106$auxiliary$mBOhFDMl</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106$auxiliary$tMHT5NzP</td>
+  </tr>
+  <tr>
+    <td class="name">KingController$MockitoMock$1045981106$auxiliary$XBPQjw8N</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    69.2%
+  </span>
+  <span class="absValue">
+    (18/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.9%
+  </span>
+  <span class="absValue">
+    (62/69)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jumpking.control;
+&nbsp;
+&nbsp;import jumpking.Application;
+&nbsp;import jumpking.gui.GUI;
+&nbsp;import jumpking.model.Position;
+&nbsp;import jumpking.model.game.scene.Scene;
+&nbsp;import jumpking.model.credits.Credits;
+&nbsp;import jumpking.model.game.elements.King;
+&nbsp;import jumpking.model.menu.PauseMenu;
+&nbsp;import jumpking.states.CreditsState;
+&nbsp;import jumpking.states.PauseState;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.time.Duration;
+&nbsp;import java.time.Instant;
+&nbsp;import java.util.Queue;
+&nbsp;
+&nbsp;public class KingController extends Controller {
+&nbsp;
+<b class="fc">&nbsp;    private boolean upKeyPressed = false;</b>
+&nbsp;    private Instant keyPressStartTime;
+&nbsp;    public static final int MIN_JUMP_HEIGHT = 10;
+&nbsp;    public static final int MAX_JUMP_HEIGHT = 230;
+<b class="fc">&nbsp;    private int noneCount = 0;</b>
+&nbsp;
+&nbsp;    public KingController(Scene scene) {
+<b class="fc">&nbsp;        super(scene);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(Application app, GUI.Act act, long time) throws IOException {
+<b class="fc">&nbsp;        Scene scene = (Scene) getModel();</b>
+<b class="fc">&nbsp;        King king = scene.getKing();</b>
+<b class="fc">&nbsp;        Queue&lt;Position&gt; jumpPositions = king.getJumpPositions();</b>
+&nbsp;
+<b class="pc">&nbsp;        if (!scene.updateKingPosition(jumpPositions)) {</b>
+<b class="fc">&nbsp;            jumpPositions.clear();</b>
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (!jumpPositions.isEmpty()) {</b>
+<b class="nc">&nbsp;            Position currentPosition = king.getPosition();</b>
+<b class="nc">&nbsp;            Position nextPosition = jumpPositions.peek();</b>
+<b class="nc">&nbsp;            if (nextPosition.getY() &lt; currentPosition.getY()) {</b>
+<b class="nc">&nbsp;                king.setState(King.PlayerState.JUMPING);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                king.setState(King.PlayerState.FALLING);</b>
+&nbsp;            }
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        try {
+<b class="pc">&nbsp;            switch (act) {</b>
+&nbsp;                case UP:
+<b class="fc">&nbsp;                    noneCount = 0;</b>
+<b class="fc">&nbsp;                    king.setState(King.PlayerState.IDLE);</b>
+<b class="fc">&nbsp;                    if (!upKeyPressed) {</b>
+<b class="fc">&nbsp;                        upKeyPressed = true;</b>
+<b class="fc">&nbsp;                        keyPressStartTime = Instant.now();</b>
+<b class="fc">&nbsp;                        king.setState(King.PlayerState.CROUCHING);</b>
+<b class="fc">&nbsp;                        king.increaseJumps();</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                        Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());</b>
+<b class="fc">&nbsp;                        int jumpHeight = (int) keyPressDuration.toMillis() / 20;</b>
+<b class="fc">&nbsp;                        jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));</b>
+<b class="fc">&nbsp;                        jumpPositions.addAll(scene.jump(jumpHeight, 0));</b>
+<b class="fc">&nbsp;                        upKeyPressed = false;</b>
+<b class="fc">&nbsp;                        king.setState(King.PlayerState.JUMPING);</b>
+&nbsp;                    }
+&nbsp;                    break;
+&nbsp;                case LEFT:
+<b class="fc">&nbsp;                    noneCount = 0;</b>
+<b class="fc">&nbsp;                    if (upKeyPressed) {</b>
+<b class="fc">&nbsp;                        Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());</b>
+<b class="fc">&nbsp;                        int jumpHeight = (int) keyPressDuration.toMillis() / 20;</b>
+<b class="fc">&nbsp;                        jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));</b>
+<b class="fc">&nbsp;                        jumpPositions.addAll(scene.jump(jumpHeight, -1));</b>
+<b class="fc">&nbsp;                        upKeyPressed = false;</b>
+<b class="fc">&nbsp;                        king.setFacingRight(false);</b>
+<b class="fc">&nbsp;                        king.setState(King.PlayerState.IDLE);</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                        scene.moveLeft(5);</b>
+<b class="fc">&nbsp;                        king.setFacingRight(false);</b>
+<b class="fc">&nbsp;                        king.setState(King.PlayerState.RUNNING);</b>
+&nbsp;                    }
+&nbsp;                    break;
+&nbsp;                case RIGHT:
+<b class="fc">&nbsp;                    noneCount = 0;</b>
+<b class="fc">&nbsp;                    if (upKeyPressed) {</b>
+<b class="fc">&nbsp;                        Duration keyPressDuration = Duration.between(keyPressStartTime, Instant.now());</b>
+<b class="fc">&nbsp;                        int jumpHeight = (int) keyPressDuration.toMillis() / 20;</b>
+<b class="fc">&nbsp;                        jumpHeight = Math.max(MIN_JUMP_HEIGHT, Math.min(jumpHeight, MAX_JUMP_HEIGHT));</b>
+<b class="fc">&nbsp;                        jumpPositions.addAll(scene.jump(jumpHeight, 1));</b>
+<b class="fc">&nbsp;                        upKeyPressed = false;</b>
+<b class="fc">&nbsp;                        king.setFacingRight(true);</b>
+<b class="fc">&nbsp;                        king.setState(King.PlayerState.IDLE);</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                        scene.moveRight(5);</b>
+<b class="fc">&nbsp;                        king.setFacingRight(true);</b>
+<b class="fc">&nbsp;                        king.setState(King.PlayerState.RUNNING);</b>
+&nbsp;                    }
+&nbsp;                    break;
+&nbsp;                case PAUSE:
+<b class="fc">&nbsp;                    app.setState(new PauseState(new PauseMenu(king.getX(), king.getY(), scene.getSceneCode(), king.getJumps(), king.getStartTime()), app.getSpriteLoader()));</b>
+&nbsp;                    break;
+&nbsp;                case QUIT:
+<b class="fc">&nbsp;                    app.setState(new CreditsState(new Credits(king), app.getSpriteLoader()));</b>
+&nbsp;                    break;
+&nbsp;                case NONE:
+<b class="fc">&nbsp;                    if (noneCount == 1) {</b>
+<b class="fc">&nbsp;                        noneCount = 0;</b>
+<b class="pc">&nbsp;                        if (king.getState() == King.PlayerState.RUNNING || king.getState() == King.PlayerState.FALLING) {</b>
+<b class="fc">&nbsp;                            king.setState(King.PlayerState.IDLE);</b>
+&nbsp;                        }
+&nbsp;                    }
+<b class="fc">&nbsp;                    noneCount++;</b>
+&nbsp;                    break;
+&nbsp;                default:
+&nbsp;                    break;
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (InterruptedException e) {</b>
+<b class="nc">&nbsp;            Thread.currentThread().interrupt();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public Queue&lt;Position&gt; getJumpPositions() {
+<b class="fc">&nbsp;        return ((Scene) getModel()).getKing().getJumpPositions();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void handleFalling(GUI gui) throws IOException, InterruptedException {
+<b class="fc">&nbsp;        Scene scene = (Scene) getModel();</b>
+<b class="pc">&nbsp;        if (scene.isKingFalling()) {</b>
+<b class="fc">&nbsp;            scene.getKing().setState(King.PlayerState.FALLING);</b>
+<b class="fc">&nbsp;            scene.moveDown();</b>
+<b class="fc">&nbsp;            scene.moveDown();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        gui.draw();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-23 15:50</div>
+</div>
+</body>
+</html>

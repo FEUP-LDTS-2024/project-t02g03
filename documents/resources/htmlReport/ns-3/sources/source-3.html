@@ -1,0 +1,149 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > LanternaScreenCreator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jumpking.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: LanternaScreenCreator (jumpking.gui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LanternaScreenCreator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jumpking.gui;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.TerminalSize;
+&nbsp;import com.googlecode.lanterna.screen.Screen;
+&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+&nbsp;import java.awt.*;
+&nbsp;import java.awt.event.KeyListener;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URISyntaxException;
+&nbsp;import java.net.URL;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public class LanternaScreenCreator implements ScreenCreator {
+&nbsp;
+&nbsp;    private final DefaultTerminalFactory terminalFactory;
+&nbsp;
+<b class="fc">&nbsp;    public LanternaScreenCreator(DefaultTerminalFactory terminalFactory, TerminalSize terminalSize) {</b>
+<b class="fc">&nbsp;        this.terminalFactory = terminalFactory;</b>
+<b class="fc">&nbsp;        terminalFactory.setInitialTerminalSize(terminalSize);</b>
+<b class="fc">&nbsp;        terminalFactory.setForceAWTOverSwing(true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Screen createScreen(String title, KeyListener keyListener) throws IOException, URISyntaxException, FontFormatException {
+<b class="fc">&nbsp;        int fontSize = 3;</b>
+<b class="fc">&nbsp;        AWTTerminalFontConfiguration fontConfig = loadFont(fontSize);</b>
+<b class="fc">&nbsp;        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);</b>
+<b class="fc">&nbsp;        TerminalScreen screen = terminalFactory.createScreen();</b>
+<b class="fc">&nbsp;        AWTTerminalFrame terminal = (AWTTerminalFrame) screen.getTerminal();</b>
+<b class="fc">&nbsp;        terminal.getComponent(0).addKeyListener(keyListener);</b>
+<b class="fc">&nbsp;        terminal.setTitle(title);</b>
+<b class="fc">&nbsp;        return screen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private AWTTerminalFontConfiguration loadFont(int fontSize) throws URISyntaxException, IOException, FontFormatException {
+<b class="fc">&nbsp;        URL resource = getClass().getClassLoader().getResource(&quot;fonts/Square.ttf&quot;);</b>
+<b class="fc">&nbsp;        File fontFile = new File(Objects.requireNonNull(resource).toURI());</b>
+<b class="fc">&nbsp;        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.PLAIN, fontSize);</b>
+<b class="fc">&nbsp;        return AWTTerminalFontConfiguration.newInstance(font);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-23 15:50</div>
+</div>
+</body>
+</html>

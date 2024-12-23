@@ -16,6 +16,12 @@ public class ElementTest {
     }
 
     @Test
+    public void testGetters() {
+        assertEquals(100, element.getX());
+        assertEquals(200, element.getY());
+    }
+
+    @Test
     public void testElementInitialization() {
         assertEquals(100, element.getPosition().getX());
         assertEquals(200, element.getPosition().getY());
