@@ -58,6 +58,13 @@ public class SceneTest {
     }
 
     @Test
+    public void testSetStartingPosition() {
+        Position newPosition = new Position(150, 250);
+        scene.setStartingPosition(newPosition);
+        assertEquals(newPosition, king.getPosition());
+    }
+
+    @Test
     public void testSetBlocks() {
         Block[] blocks = {new Block(0, 0), new Block(1, 1)};
         scene.setBlocks(blocks);

@@ -32,7 +32,7 @@ public class PauseMenuTest {
         logoViewer = mock(LogoViewer.class);
         when(viewProvider.getDrawViewer()).thenReturn(drawViewer);
         when(viewProvider.getLogoViewer()).thenReturn(logoViewer);
-        pauseMenuViewer = new PauseMenuViewer<>(menu, viewProvider);
+        pauseMenuViewer = spy(new PauseMenuViewer<>(menu, viewProvider));
     }
 
     @Test
@@ -47,8 +47,8 @@ public class PauseMenuTest {
         verify(drawViewer, times(1)).draw(item1, gui, item1);
         verify(drawViewer, times(1)).draw(item2, gui, item1);
         verify(gui, times(1)).clear();
+        verify(pauseMenuViewer, times(1)).drawBackground(gui);
         verify(gui, times(1)).refresh();
         verify(logoViewer, times(1)).draw(gui, 70, 50);
-
     }
 }

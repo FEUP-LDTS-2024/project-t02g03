@@ -36,13 +36,14 @@ public class MenuViewerTest {
         when(viewProvider.getDrawViewer()).thenReturn(drawViewer);
         when(viewProvider.getLogoViewer()).thenReturn(logoViewer);
 
-        menuViewer = new MenuViewer<>(menu, viewProvider);
+        menuViewer = spy(new MenuViewer<>(menu, viewProvider));
     }
 
     @Test
     void testDraw() throws IOException {
         menuViewer.draw(gui, 0L);
         verify(gui, times(1)).clear();
+        verify(menuViewer,times(1)).drawBackground(gui);
         verify(gui, times(1)).refresh();
         verify(logoViewer, times(1)).draw(gui, 70, 40);
     }

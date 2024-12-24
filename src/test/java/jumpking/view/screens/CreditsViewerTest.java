@@ -28,7 +28,7 @@ public class CreditsViewerTest {
         credits = mock(Credits.class);
         viewProvider = mock(ViewProvider.class);
         gui = mock(GUI.class);
-        creditsViewer = new CreditsViewer<>(credits, viewProvider);
+        creditsViewer = spy(new CreditsViewer<>(credits, viewProvider));
         when(credits.getJumps()).thenReturn(1234);
         when(credits.getMinutes()).thenReturn(12);
         when(credits.getSeconds()).thenReturn(34);
@@ -37,6 +37,7 @@ public class CreditsViewerTest {
     void testDraw() throws IOException {
         creditsViewer.draw(gui, 0L);
         verify(gui, times(1)).clear();
+        verify(creditsViewer, times(1)).drawBackground(gui);
         verify(gui, times(1)).refresh();
         verify(gui, times(1)).drawTextImage(eq(new Position(47, 10)), any(String[].class), eq(TextColor.Factory.fromString("#000000")), eq(true));
         verify(gui, times(1)).drawTextImage(eq(new Position(230, 225)), any(String[].class), eq(TextColor.Factory.fromString("#000000")), eq(true));

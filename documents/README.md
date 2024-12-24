@@ -304,8 +304,8 @@ Although we have made efforts to ensure the reliability and robustness of our co
 </p>
 
 - **Test Coverage** - We aimed to achieve a high test coverage to ensure that our code was well-tested and reliable.
-    - Instruction Coverage ≈ 96%
-    - Branch Coverage ≈ 84%
+    - Instruction Coverage ≈ 95%
+    - Branch Coverage ≈ 83%
     - [Coverage Report Summary](resources/tests/Coverage Report Summary.png)
     
 <p align="center">
@@ -314,8 +314,8 @@ Although we have made efforts to ensure the reliability and robustness of our co
 
 - **Mutation Testing** - We used PITest to perform mutation testing on our code. This helped us identify areas of our code that were not adequately tested and improve our test coverage.
     - Line Coverage ≈ 94%
-    - Mutation Coverage ≈ 78%
-    - Test Strength ≈ 81%
+    - Mutation Coverage ≈ 80%
+    - Test Strength ≈ 82%
 
 <p>
     <img src="resources/tests/Mutation Test Report.png" alt="Tests">
