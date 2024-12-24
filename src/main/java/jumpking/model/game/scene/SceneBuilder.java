@@ -20,7 +20,7 @@ public class SceneBuilder {
     public SceneBuilder(int sceneCode) throws IOException {
         this.sceneCode = sceneCode;
         InputStream resource = getClass().getClassLoader().getResourceAsStream("levels/scene" + sceneCode + ".txt");
-        if (resource == null){
+        if (resource == null) {
             throw new FileNotFoundException("Level file not found!");
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8));
@@ -80,4 +80,7 @@ public class SceneBuilder {
         return new Princess(115, 33);
     }
 
+    public BasicTextImage getBackgroundImage() {
+        return backgroundImage;
+    }
 }
