@@ -31,6 +31,7 @@ public class LanternaGUITest {
         when(screenCreator.createScreen(anyString(), any())).thenReturn(screen);
         when(screen.newTextGraphics()).thenReturn(tg);
         gui = new LanternaGUI(screenCreator, "test");
+        verify(screen).startScreen();
     }
 
     @Test

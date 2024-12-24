@@ -32,7 +32,7 @@ public class GameViewerTest {
     public void setUp() throws IOException {
         this.gui = Mockito.mock(GUI.class);
         this.kingViewer = Mockito.mock(KingViewer.class);
-        princess = Mockito.mock(Princess.class);
+        this.princess = Mockito.mock(Princess.class);
         this.princessViewer = Mockito.mock(PrincessViewer.class);
         this.king = Mockito.mock(King.class);
         this.scene = Mockito.mock(Scene.class);
@@ -43,7 +43,7 @@ public class GameViewerTest {
         Mockito.when(viewProvider.getKingViewer()).thenReturn(kingViewer);
         Mockito.when(viewProvider.getPrincessViewer()).thenReturn(princessViewer);
 
-        gameViewer = new GameViewer(scene, viewProvider);
+        gameViewer = spy(new GameViewer(scene, viewProvider));
     }
 
     @Test
