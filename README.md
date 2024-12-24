@@ -88,6 +88,6 @@ precise and resilient. It has simple controls, no checkpoints and beautiful pixe
 </p>
 
 >## Self Evaluation
->- **André Cortim:** 30%
->- **Hugo Azevedo:** 40%
+>- **André Cotrim:** 33%
+>- **Hugo Azevedo:** 37%
 >- **Joana Carvalhal:** 30%
