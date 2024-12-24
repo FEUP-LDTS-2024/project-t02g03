@@ -267,7 +267,33 @@ This pattern is exemplified in the LanternaScreenCreator class, which creates GU
 
 
 ## Known Code Smells
+### Large Class
 
+A "Large Class" code smell occurs when a class contains too many responsibilities, leading to excessive complexity and reduced maintainability. In this scenario, both your Scene and King classes may be violating the Single Responsibility Principle (SRP) by handling too many tasks, making them harder to understand, test, and modify. Large classes often show symptoms such as having too many methods or fields, duplicated code within the class or across related classes, and difficulties in naming methods due to multiple unrelated behaviors. They may also depend on numerous other classes, leading to tight coupling.
+
+The main issues caused by large classes include maintainability problems, testing challenges, and barriers to reusability. Large classes are harder to navigate and modify without introducing bugs, and their complexity often requires extensive setup, making unit tests more difficult to write. Encapsulating too many behaviors also makes it harder to reuse parts of the class elsewhere.
+
+### Long Method
+
+The "Long Method" code smell occurs when a method becomes too lengthy, making it difficult to read, understand, and maintain. In your case, methods like step in KingController and projectileMotion in King may be handling too many tasks, violating the Single Responsibility Principle (SRP) and reducing code clarity. Long methods often exhibit symptoms such as excessive lines of code, complex logic, nested loops, conditionals, and comments explaining different sections of the code. These methods tend to obscure the intended behavior and make the code harder to maintain.
+
+The main problems caused by long methods include reduced readability, testing complexity, and limited reusability. They are harder to understand at a glance, more difficult to isolate and test, and often make debugging time-consuming. Furthermore, code duplication within these methods can hinder reusability, leading to repetitive and inefficient code.
+
+### Duplicate Code
+
+The "Duplicate Code" code smell occurs when the same or highly similar code appears in multiple places within a program. This repetition can make the codebase harder to maintain, as any changes to the duplicated logic need to be manually updated in each location, increasing the risk of errors and inconsistencies. In the Scene.java file, the moveRight and moveLeft methods demonstrate this issue by containing similar logic for moving the king and updating its position.
+
+Duplicate code often indicates a lack of abstraction or reuse, resulting in code that is more verbose and difficult to manage. It can lead to inconsistencies if one instance of the duplicate logic is modified while others are overlooked. Moreover, it obscures the true intent of the code, making it harder to understand and reason about the overall behavior of the program.
+
+This code smell is especially problematic as projects grow, amplifying maintenance overhead and making debugging more time-consuming. It highlights a deeper structural issue where behaviors that should be generalized are instead repeated, undermining the clarity and scalability of the codebase.
+
+### Switch Statements
+
+The "Switch Statements" code smell occurs when multiple switch or if-else statements are used to determine the behavior of a program based on different conditions. In our code, the switch statement in the SceneController class may be handling different key inputs to control the game's behavior. While switch statements are a common way to implement conditional logic, excessive use can lead to code that is hard to maintain, extend, and test.
+
+### Error-Prone Code
+
+Although we have made efforts to ensure the reliability and robustness of our code through testing and validation using the error-prone plugin, there may still be areas that are error-prone. For example although we have fixed the code smells caught by error-prone in our source code, we have left many warning on our test classes untouched, leading to potential issues in the future.
 
 ## Testing
 - **Unit Testing** - We used JUnit to test the individual components of the game, such as the collision logic, player movement, and map loading. This helped ensure that each component worked as expected in isolation.
@@ -278,8 +304,8 @@ This pattern is exemplified in the LanternaScreenCreator class, which creates GU
 </p>
 
 - **Test Coverage** - We aimed to achieve a high test coverage to ensure that our code was well-tested and reliable.
-    - Instruction Coverage ≈ 95%
-    - Branch Coverage ≈ 82%
+    - Instruction Coverage ≈ 96%
+    - Branch Coverage ≈ 84%
     - [Coverage Report Summary](resources/tests/Coverage Report Summary.png)
     
 <p align="center">
@@ -287,11 +313,15 @@ This pattern is exemplified in the LanternaScreenCreator class, which creates GU
 </p>
 
 - **Mutation Testing** - We used PITest to perform mutation testing on our code. This helped us identify areas of our code that were not adequately tested and improve our test coverage.
-    - Line Coverage:
-    - Mutation Coverage:
-    - Test Strength:
+    - Line Coverage ≈ 94%
+    - Mutation Coverage ≈ 78%
+    - Test Strength ≈ 81%
+
+<p>
+    <img src="resources/tests/Mutation Test Report.png" alt="Tests">
+</p>
 
 >## Self Evaluation
- >- **André Cortim:** 30%
- >- **Hugo Azevedo:** 40%
+ >- **André Cotrim:** 33%
+ >- **Hugo Azevedo:** 37%
  >- **Joana Carvalhal:** 30%
